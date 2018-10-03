@@ -68,7 +68,7 @@ export default class Dashboard extends Component{
                 />
                 <CardMedia
                   image="/static/images/cards/paella.jpg"
-                  style={{paddingTop: '40%'}}
+                  style={{paddingTop: '50%'}}
                 />
                 <CardContent>
                   <Typography component="p">
