@@ -16,7 +16,7 @@ export default class Header extends Component{
             </a>
             <div style={{flexGrow: 1}}></div>
             <div style={{width: '20%'}}>
-              <Input placeholder="Search..." className='search'/>
+              <Input id="search" placeholder="Search..." className='search'/>
             </div>
             <IconButton>
               <Avatar aria-label="Recipe">
