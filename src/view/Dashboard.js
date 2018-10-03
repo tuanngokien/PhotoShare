@@ -14,8 +14,19 @@ import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 
 export default class Dashboard extends Component{
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      favourite: false,
+    };
+    this.onHandleLike = this.onHandleLike.bind(this);
+  }
+  onHandleLike = () => {
+    this.setState({ favourite: !this.state.favourite });
+  }
   render(){
+    const favourite = this.state.favourite;
     return(
       <div className='main'>
         <Grid container spacing={40}>
@@ -41,8 +52,8 @@ export default class Dashboard extends Component{
                   </Typography>
                 </CardContent>
                 <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
+                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
+                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
                   </IconButton>
                   <IconButton aria-label="Share">
                     <Comment />

@@ -4,6 +4,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Input from '@material-ui/core/Input';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from "@material-ui/core/IconButton";
+import Notifications from '@material-ui/icons/Notifications';
+import CloudUpload from '@material-ui/icons/CloudUpload';
+import ChatBubble from '@material-ui/icons/ChatBubble';
 import IMG_3958 from '../../assets/img/IMG_3958.JPG';
 
 export default class Header extends Component{
@@ -19,6 +22,15 @@ export default class Header extends Component{
             <div style={{width: '20%'}}>
               <Input placeholder="Search..." className='search'/>
             </div>
+            <IconButton>
+              <CloudUpload/>
+            </IconButton>
+            <IconButton>
+              <ChatBubble/>
+            </IconButton>
+            <IconButton>
+              <Notifications/>
+            </IconButton>
             <IconButton>
               <Avatar aria-label="Recipe">
                 <img src={IMG_3958} style={{height: '100%', width: '100%'}} alt="avatar"/>
