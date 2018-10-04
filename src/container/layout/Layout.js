@@ -4,6 +4,8 @@ import Footer from './Footer.js';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Dashboard from './../../view/Dashboard.js';
+import routes from './../../routes.js';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 export default class Layout extends Component{
     render(){
@@ -11,7 +13,14 @@ export default class Layout extends Component{
         <div className='main-container'>
           <Header/>
           <div className='container' style={{flexGrow: 1, marginTop: '6%', marginBottom: '2%'}}>
-            <Dashboard/>
+            <Switch>
+              {routes.map((route, idx) =>{
+                return route.component ?
+                  (<Route ey={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                        <route.component {...props} />
+                  )}/>): (null);
+              })}
+            </Switch>
           </div>
           <div >
             <Footer/>
