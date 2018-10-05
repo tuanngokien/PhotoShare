@@ -8,9 +8,24 @@ import Notifications from '@material-ui/icons/Notifications';
 import CloudUpload from '@material-ui/icons/CloudUpload';
 import ChatBubble from '@material-ui/icons/ChatBubble';
 import IMG_3958 from '../../assets/img/IMG_3958.JPG';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export default class Header extends Component{
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({anchorEl: event.currentTarget});
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render(){
+    const { anchorEl } = this.state;
     return(
       <div >
         <AppBar position='fixed' className='header'>
@@ -25,16 +40,33 @@ export default class Header extends Component{
             <IconButton>
               <CloudUpload/>
             </IconButton>
-            <IconButton>
+            <IconButton href='#/chat'>
               <ChatBubble/>
             </IconButton>
             <IconButton>
               <Notifications/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={this.handleClick}>
               <Avatar aria-label="Recipe">
                 <img src={IMG_3958} style={{height: '100%', width: '100%'}} alt="avatar"/>
               </Avatar>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={this.handleClose}
+                  PaperProps={{
+                          style: {
+                              width: 120,
+                              paddingTop: 0,
+                              paddingBottom: 0
+                          }
+                      }}
+                >
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                </Menu>
             </IconButton>
           </Toolbar>
         </AppBar>
