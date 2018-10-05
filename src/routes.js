@@ -1,14 +1,11 @@
 import React from 'react';
 import Loadable from 'react-loadable';
+import Layout from './container/layout/Layout.js';
 
 function Loading() {
   return (
-    <div className="sk-wave">
-      <div className="sk-rect sk-rect1"></div>
-      <div className="sk-rect sk-rect2"></div>
-      <div className="sk-rect sk-rect3"></div>
-      <div className="sk-rect sk-rect4"></div>
-      <div className="sk-rect sk-rect5"></div>
+    <div>
+      ...Loading
     </div>
   )
 }
@@ -18,8 +15,15 @@ const Dashboard = Loadable({
   loading: Loading
 });
 
+const Chat = Loadable({
+  loader: () => import('./view/Chat.js'),
+  loading: Loading
+});
+
 const routes = [
-  {path:'/dashboard', name: 'Dashboard', component: Dashboard}
+  {path: '/', exact: true, name: 'Home', component: Layout },
+  {path:'/dashboard', name: 'Dashboard', component: Dashboard},
+  {path:'/chat', name: 'Chat', component: Chat}
 ];
 
 export default routes;

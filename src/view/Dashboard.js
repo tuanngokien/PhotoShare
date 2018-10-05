@@ -12,6 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
+import IMG_3958 from '../assets/img/IMG_3958.JPG';
 
 export default class Dashboard extends Component{
   constructor(props) {
@@ -36,15 +37,15 @@ export default class Dashboard extends Component{
                 <CardHeader
                   avatar={
                     <Avatar aria-label="Recipe">
-                      A
+                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
                     </Avatar>
                   }
                   title="Đỗ Tuấn Anh"
                   subheader="September 14, 2018"
                 />
                 <CardMedia
-                  image="/assets/img/IMG_3958.jpg"
-                  style={{paddingTop: '50%'}}
+                  image={IMG_3958}
+                  style={{paddingTop: '60%', height: '100%'}}
                 />
                 <CardContent>
                   <Typography component="p">
