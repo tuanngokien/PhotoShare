@@ -11,6 +11,11 @@ Mạng xã hội chia sẻ ảnh
 - MySQL, Firebase
 
 ### Cài đặt
+Sửa cấu hình kết nối DB tại ./config/config.json
+```bash
+npm install
+npm start
+```
 
 ## Thành viên
 
