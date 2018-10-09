@@ -24,6 +24,11 @@ export default class Header extends Component{
     this.setState({ anchorEl: null });
   };
 
+  logout = () => {
+    this.handleClose();
+    window.location.replace("#/login");
+  };
+
   render(){
     const { anchorEl } = this.state;
     return(
@@ -35,7 +40,7 @@ export default class Header extends Component{
             </a>
             <div style={{flexGrow: 1}}></div>
             <div style={{width: '20%'}}>
-              <Input placeholder="Search..." className='search'/>
+              <Input id="search" placeholder="Search..." className='search'/>
             </div>
             <IconButton>
               <CloudUpload/>
@@ -50,24 +55,24 @@ export default class Header extends Component{
               <Avatar aria-label="Recipe">
                 <img src={IMG_3958} style={{height: '100%', width: '100%'}} alt="avatar"/>
               </Avatar>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={this.handleClose}
-                  PaperProps={{
-                          style: {
-                              width: 120,
-                              paddingTop: 0,
-                              paddingBottom: 0
-                          }
-                      }}
-                >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                </Menu>
             </IconButton>
+             <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+                PaperProps={{
+                        style: {
+                            width: 120,
+                            paddingTop: 0,
+                            paddingBottom: 0
+                        }
+                    }}
+              >
+                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                <MenuItem onClick={this.logout}>Logout</MenuItem>
+              </Menu>
           </Toolbar>
         </AppBar>
       </div>

@@ -30,3 +30,8 @@ html, body, #root, .App {
     transform: rotate(360deg);
   }
 }
+
+.search{
+  background-color: #ededed;
+  font-color: black;
+}
