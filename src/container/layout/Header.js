@@ -26,26 +26,31 @@ export default class Header extends Component{
 
   logout = () => {
     this.handleClose();
-    window.location.replace("#/login");
+    window.location.replace("#/firstLogin");
   };
+
+  redirectProfile = () => {
+    this.handleClose();
+    window.location.replace("#/pts/profile");
+  }
 
   render(){
     const { anchorEl } = this.state;
     return(
       <div >
         <AppBar position='fixed' className='header'>
-          <Toolbar className='container'>
+          <Toolbar className='main'>
             <a className="app-logo" href="#">
               <img src="http://via.placeholder.com/180x65" alt="Jambo" title="Jambo"/>
             </a>
             <div style={{flexGrow: 1}}></div>
             <div style={{width: '20%'}}>
-              <Input id="search" placeholder="Search..." className='search'/>
+              <Input placeholder="Search..." className='search'/>
             </div>
             <IconButton>
               <CloudUpload/>
             </IconButton>
-            <IconButton href='#/chat'>
+            <IconButton href='#/pts/chat'>
               <ChatBubble/>
             </IconButton>
             <IconButton>
@@ -69,8 +74,7 @@ export default class Header extends Component{
                         }
                     }}
               >
-                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                <MenuItem onClick={this.redirectProfile}>Profile</MenuItem>
                 <MenuItem onClick={this.logout}>Logout</MenuItem>
               </Menu>
           </Toolbar>

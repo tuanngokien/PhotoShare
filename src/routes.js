@@ -1,8 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 import Layout from './container/layout/Layout.js';
-import Login from './view/Login.js';
-import Firstlogin from './view/First_login.js'
+import Profile from './view/Profile.js';
 
 function Loading() {
   return (
@@ -23,11 +22,10 @@ const Chat = Loadable({
 });
 
 const routes = [
-  {path: '/', exact: true, name: 'Home', component: Layout },
-  {path:'/dashboard', name: 'Dashboard', component: Dashboard},
-  {path:'/chat', name: 'Chat', component: Chat},
-  {path:'/login', name: 'Login', component: Login},
-  {path:'/Firstlogin', name:'Firstlogin', component: Firstlogin}
+  {path: '/pts', exact: true, name: 'Home', component: Layout },
+  {path:'/pts/dashboard', name: 'Dashboard', component: Dashboard},
+  {path:'/pts/chat', name: 'Chat', component: Chat},
+  {path:'/pts/profile', name: 'Profile', component: Profile}
 ];
 
 export default routes;

@@ -81,7 +81,7 @@ function SignIn(props) {
               variant="raised"
               color="primary"
               className={classes.submit}
-              href = "#/dashboard"
+              href = "#/pts/dashboard"
             >
               Sign in
             </Button>

@@ -11,8 +11,10 @@ export default class Layout extends Component{
     render(){
       return(
         <div className='main-container'>
+        <div>
           <Header/>
-          <div className='container' style={{flexGrow: 1, marginTop: '6%', marginBottom: '2%'}}>
+          </div>
+          <div style={{flexGrow: 1, marginTop: '6%', marginBottom: '2%'}}>
             <Switch>
               {routes.map((route, idx) =>{
                 return route.component ?

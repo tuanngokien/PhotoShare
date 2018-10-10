@@ -20,8 +20,8 @@ code {
 }
 
 .main{
-  margin-left: 8%;
-  margin-right: 8%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .search{
@@ -29,9 +29,8 @@ code {
   border-radius: 25px;
 }
 
-.header{
+.header, .footer{
   background: linear-gradient(45deg, #2e4e82, gray);
-  height: 8%;
 }
 
 .main-container{

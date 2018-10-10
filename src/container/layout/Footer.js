@@ -6,7 +6,7 @@ export default class Footer extends Component{
   render(){
     return(
       <div >
-        <AppBar position='static' className='header'>
+        <AppBar position='static' className='footer'>
           <Toolbar>
           </Toolbar>
         </AppBar>

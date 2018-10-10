@@ -9,7 +9,7 @@ import IMG_3958 from '../assets/img/IMG_3958.JPG';
 export default class Chat extends Component{
     render(){
       return(
-        <div className='main'>
+        <div className='container'>
           <Grid container spacing={40}>
             <Grid item xs={12} sm={4}>
               <List>

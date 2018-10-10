@@ -29,7 +29,7 @@ export default class Dashboard extends Component{
   render(){
     const favourite = this.state.favourite;
     return(
-      <div className='main'>
+      <div className='container'>
         <Grid container spacing={40}>
           <Grid item xs={12} sm={6}>
             <Paper>

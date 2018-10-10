@@ -7,10 +7,13 @@
     "@material-ui/icons": "^3.0.1",
     "@material/menu": "^0.40.0",
     "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
+    "react-bootstrap-tabs": "^1.0.2",
     "react-dom": "^16.5.2",
     "react-loadable": "^5.5.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.0.3"
+    "react-scripts": "2.0.3",
+    "react-tabs": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
