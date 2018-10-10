@@ -8,8 +8,37 @@ import IMG_3958 from '../assets/img/IMG_3958.JPG';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import SwipeableViews from 'react-swipeable-views';
+import Typography from '@material-ui/core/Typography';
+import ImageGridList from './../components/imageGridList/ImageGridList.js';
+
+function TabContainer({ children, dir }) {
+  return (
+    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+      {children}
+    </Typography>
+  );
+}
+
+const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
+});
 
 export default class Profile extends Component{
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  handleChangeIndex = index => {
+    this.setState({ value: index });
+  };
   render(){
     return(
       <div>
@@ -20,16 +49,14 @@ export default class Profile extends Component{
                   image={IMG_3958}
                   style={{paddingTop: '20%', height: '30%'}}
               >
-              <Avatar style={{marginLeft: '10%', marginBottom: '1%', width: '10%'}}>
-                <img/>
-              </Avatar>
               </CardMedia>
             </Card>
           </Grid>
           <Grid items xs={12}>
             <AppBar position="static" color="default">
               <Tabs
-                value="fdmck"
+                value={this.state.value}
+                onChange={this.handleChange}
                 indicatorColor="primary"
                 textColor="primary"
                 fullWidth
@@ -40,6 +67,19 @@ export default class Profile extends Component{
                 <Tab label="Tagged" />
               </Tabs>
             </AppBar>
+            <div className='container'>
+              <SwipeableViews
+                index={this.state.value}
+                onChangeIndex={this.handleChangeIndex}
+              >
+                <TabContainer>
+                  <ImageGridList/>
+                </TabContainer>
+                <TabContainer >Item Two</TabContainer>
+                <TabContainer >Item Three</TabContainer>
+                <TabContainer >Item Four</TabContainer>
+              </SwipeableViews>
+            </div>
           </Grid>
         </Grid>
       </div>
