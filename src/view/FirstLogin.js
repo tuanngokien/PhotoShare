@@ -9,11 +9,11 @@ class FirstLogin extends Component{
 	render(){
 		return(
 			<div style = {{backgroundImage: `url(${Background})`, width: '100%', height:'100%' }}>
-						<p style={{
+						<div style={{
 						color:'white',
 						textAlign:'center',
 						fontSize:'80px',
-						}}>Find your inspiration.</p>
+						}}>Find your inspiration.</div>
 					<Button style = {{
 						backgroundColor: 'white',
 						width:'15%',
