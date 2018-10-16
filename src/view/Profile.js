@@ -42,12 +42,12 @@ export default class Profile extends Component{
   render(){
     return(
       <div>
-        <Grid container spacing={40}>
+        <Grid container>
           <Grid items xs={12}>
             <Card>
               <CardMedia
                   image={IMG_3958}
-                  style={{paddingTop: '20%', height: '30%'}}
+                  style={{paddingTop: '25%', height: '100%'}}
               >
               </CardMedia>
             </Card>
@@ -67,7 +67,7 @@ export default class Profile extends Component{
                 <Tab label="Tagged" />
               </Tabs>
             </AppBar>
-            <div className='container'>
+            <div className='containerImageList' style={{height: 'auto'}}>
               <SwipeableViews
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
@@ -75,9 +75,9 @@ export default class Profile extends Component{
                 <TabContainer>
                   <ImageGridList/>
                 </TabContainer>
-                <TabContainer >Item Two</TabContainer>
-                <TabContainer >Item Three</TabContainer>
-                <TabContainer >Item Four</TabContainer>
+                <TabContainer >Album</TabContainer>
+                <TabContainer >Saved</TabContainer>
+                <TabContainer >Tagged</TabContainer>
               </SwipeableViews>
             </div>
           </Grid>

@@ -13,6 +13,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../assets/img/IMG_3958.JPG';
+import Dialog from '../components/dialogImage/Dialog.js';
 
 export default class Dashboard extends Component{
   constructor(props) {
@@ -46,7 +47,7 @@ export default class Dashboard extends Component{
                 <CardMedia
                   image={IMG_3958}
                   style={{paddingTop: '60%', height: '100%'}}
-                />
+                ><Dialog/></CardMedia>
                 <CardContent>
                   <Typography component="p">
                     Rét quá

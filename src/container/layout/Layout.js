@@ -14,7 +14,7 @@ export default class Layout extends Component{
         <div>
           <Header/>
           </div>
-          <div style={{flexGrow: 1, marginTop: '6%', marginBottom: '2%'}}>
+          <div style={{flexGrow: 1, marginBottom: '2%'}}>
             <Switch>
               {routes.map((route, idx) =>{
                 return route.component ?

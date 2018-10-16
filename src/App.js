@@ -16,7 +16,7 @@ class App extends Component {
             <Redirect exact from="/" to="/pts/dashboard" />
             <Route path="/pts" name="Home" component={Layout} />
             <Route path="/firstLogin" name="FirstLogin" component={FirstLogin} />
-            <Route path="/login" name="Login" component={Login} />
+            <Route path="/form" name="Login" component={Login} />
           </Switch>
         </HashRouter>
       </div>

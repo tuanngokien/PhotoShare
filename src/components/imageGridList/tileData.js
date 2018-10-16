@@ -50,6 +50,24 @@ const tileData=[
   author: 'author',
   cols: 1,
 },
+{
+  img: image1,
+  title: "back",
+  author: 'author',
+  cols: 1,
+},
+{
+  img: image1,
+  title: "back",
+  author: 'author',
+  cols: 1,
+},
+{
+  img: image1,
+  title: "back",
+  author: 'author',
+  cols: 1,
+},
 ]
 
 export default tileData;

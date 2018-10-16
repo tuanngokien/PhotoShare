@@ -4,7 +4,7 @@ import Background from "./../assets/img/back.png";
 
 class FirstLogin extends Component{
 	login = () => {
-		window.location.replace("#/login")
+		window.location.replace("#/form")
 	}
 	render(){
 		return(

@@ -26,7 +26,7 @@ export default class Header extends Component{
 
   logout = () => {
     this.handleClose();
-    window.location.replace("#/firstLogin");
+    window.location.replace("#/form");
   };
 
   redirectProfile = () => {

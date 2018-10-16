@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Button from "@material-ui/core/Button";
 
 class SignInForm extends Component {
     constructor() {
@@ -31,6 +32,9 @@ class SignInForm extends Component {
         console.log(this.state);
     }
 
+    redirectDashboard(){
+        window.location.replace("/");
+    }
     render() {
         return (
         <div className="FormCenter">
@@ -46,7 +50,7 @@ class SignInForm extends Component {
               </div>
 
               <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
+                  <button className="FormField__Button mr-20" onClick={this.redirectDashboard}>Sign In</button>
               </div>
             </form>
           </div>

@@ -25,7 +25,7 @@ const routes = [
   {path: '/pts', exact: true, name: 'Home', component: Layout },
   {path:'/pts/dashboard', name: 'Dashboard', component: Dashboard},
   {path:'/pts/chat', name: 'Chat', component: Chat},
-  {path:'/pts/profile', name: 'Profile', component: Profile}
+  {path:'/pts/profile', name: 'Profile', component: Profile},
 ];
 
 export default routes;
