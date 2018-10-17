@@ -4,14 +4,13 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import 'react-tabs/style/react-tabs.css';
-import IMG_3958 from '../assets/img/IMG_3958.JPG';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
 import ImageGridList from './../components/imageGridList/ImageGridList.js';
-import ImageBox from '../components/imageBox/ImageBox.js';
+import ImageLayout from '../components/imageLayout/ImageLayout.js';
 
 function TabContainer({ children, dir }) {
   return (
@@ -47,7 +46,7 @@ export default class Profile extends Component{
           <Grid items xs={12}>
             <Card>
               <CardMedia
-                  image={IMG_3958}
+                  image='https://source.unsplash.com/2ShvY8Lf6l0/800x599'
                   style={{paddingTop: '25%', height: '100%'}}
               >
               </CardMedia>
@@ -74,9 +73,11 @@ export default class Profile extends Component{
                 onChangeIndex={this.handleChangeIndex}
               >
                 <TabContainer>
+                  <ImageLayout/>
+                </TabContainer>
+                <TabContainer>
                   <ImageGridList/>
                 </TabContainer>
-                <TabContainer ><ImageBox/></TabContainer>
                 <TabContainer >Saved</TabContainer>
                 <TabContainer >Tagged</TabContainer>
               </SwipeableViews>

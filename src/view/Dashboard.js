@@ -14,6 +14,10 @@ import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../assets/img/IMG_3958.JPG';
 import Dialog from '../components/dialogImage/Dialog.js';
+import { NavLink } from 'react-router-dom';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ImageBox from '../components/imageBox/ImageBox.js';
 
 export default class Dashboard extends Component{
   constructor(props) {
@@ -21,11 +25,24 @@ export default class Dashboard extends Component{
 
     this.state = {
       favourite: false,
+      isOpenImgBox: false,
+      currentImage: 0,
     };
     this.onHandleLike = this.onHandleLike.bind(this);
+    this.openImgBox = this.openImgBox.bind(this);
+    this.closeImgBox = this.closeImgBox.bind(this);
   }
   onHandleLike = () => {
     this.setState({ favourite: !this.state.favourite });
+  }
+  openImgBox = () => {
+    this.setState({
+      isOpenImgBox: true,
+      currentImage: 0,
+    });
+  }
+  closeImgBox = () => {
+    this.setState({ isOpenImgBox: false });
   }
   render(){
     const favourite = this.state.favourite;
@@ -44,10 +61,13 @@ export default class Dashboard extends Component{
                   title="Đỗ Tuấn Anh"
                   subheader="September 14, 2018"
                 />
-                <CardMedia
-                  image={IMG_3958}
-                  style={{paddingTop: '60%', height: '100%'}}
-                ><Dialog/></CardMedia>
+                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
+                  <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
+                  <ImageBox isOpen={this.state.isOpenImgBox}
+                            isClose={this.closeImgBox.bind(this)}
+                            currentImage={this.state.currentImage}
+                  />
+                </ListItem>
                 <CardContent>
                   <Typography component="p">
                     Rét quá

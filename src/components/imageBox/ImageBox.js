@@ -15,36 +15,52 @@ export default class ImageBox extends React.Component {
 
     this.state = {
       lightboxIsOpen: false,
-      currentImage: 0
+      currentImage: this.props.currentImage,
     };
     this.openLightbox = this.openLightbox.bind(this);
     this.closeLightbox = this.closeLightbox.bind(this);
     this.gotoNext = this.gotoNext.bind(this);
     this.gotoPrevious = this.gotoPrevious.bind(this);
+//    this.thumbnail = this.thumbnail.bind(this);
   }
   openLightbox(){
-    this.setState({lightboxIsOpen: true});
+    this.setState({
+      lightboxIsOpen: true,
+      currentImage: 0,
+    });
   }
   closeLightbox(){
     this.setState({lightboxIsOpen: false});
   }
-  gotoNext(){
-    this.setState({currentImage: this.state.currentImage + 1});
+  gotoPrevious () {
+    if (this.props.currentImageWillChange) {
+        this.props.currentImageWillChange.call(this, this.state.currentImage - 1);
+    }
+    this.setState({
+        currentImage: this.state.currentImage - 1
+    });
   }
-  gotoPrevious(){
-    this.setState({currentImage: this.state.currentImage - 1});
+  gotoNext () {
+    if (this.props.currentImageWillChange) {
+        this.props.currentImageWillChange.call(this, this.state.currentImage + 1);
+    }
+    this.setState({
+        currentImage: this.state.currentImage + 1
+    });
   }
+  // thumbnail = (e, obj) => {
+  //   console.log(obj.index);
+  // }
   render() {
     return (
       <div>
-        <Button onClick={this.openLightbox}>test</Button>
         <Lightbox
           images = {images}
-          isOpen={this.state.lightboxIsOpen}
+          isOpen={this.props.isOpen}
           onClickPrev={this.gotoPrevious}
           onClickNext={this.gotoNext}
-          onClose={this.closeLightbox}
-          showThumbnails = 'true'
+          onClose={this.props.isClose}
+          showThumbnails = {true}
           currentImage = {this.state.currentImage}
         />
       </div>
