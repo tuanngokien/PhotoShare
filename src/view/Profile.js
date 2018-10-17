@@ -11,6 +11,7 @@ import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
 import ImageGridList from './../components/imageGridList/ImageGridList.js';
+import ImageBox from '../components/imageBox/ImageBox.js';
 
 function TabContainer({ children, dir }) {
   return (
@@ -75,7 +76,7 @@ export default class Profile extends Component{
                 <TabContainer>
                   <ImageGridList/>
                 </TabContainer>
-                <TabContainer >Album</TabContainer>
+                <TabContainer ><ImageBox/></TabContainer>
                 <TabContainer >Saved</TabContainer>
                 <TabContainer >Tagged</TabContainer>
               </SwipeableViews>
