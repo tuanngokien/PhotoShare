@@ -19,6 +19,6 @@ passport.use('login', new localStrategy({
         });
     }).catch(err => {
         console.log(err);
-        done({login: "Error in signin"}, false);
+        return done({login: "Error in signin"}, false);
     });
 }));

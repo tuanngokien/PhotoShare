@@ -11,15 +11,18 @@ jwtOptions.expiresIn = 1800;
 jwtOptions.passReqToCallback = true;
 
 passport.use("tokenAuth", new JwtStrategy(jwtOptions, function (req, jwtPayload, done) {
-    User.findById(jwtPayload.id).then(user => {
+    User.findById(jwtPayload.id)
+        .then(user => {
         if (user) {
             req.user = user;
             done(null, user);
+            return null;
         } else {
             done({"token": "Invalid token"}, false);
         }
-    }).catch(err => {
-        done({"auth": "Error when authorizing"})
+    })
+        .catch(err => {
+        done({"auth": "Error when authorizing"}, false);
     });
 
 }));

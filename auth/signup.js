@@ -12,17 +12,17 @@ passport.use('signup', new localStrategy({
             return done({email: "User Already Exists"}, false);
         } else {
             User.create({...req.body, email, password}).then(user => {
-                done(null, user);
+                return done(null, user);
             }).catch(validationErrors => {
                 let errors = {};
                 for (let e of validationErrors["errors"]) {
                     errors[e.path] = e.message;
                 }
-                done(errors, false);
+                return done(errors, false);
             });
         }
     }).catch(err => {
         console.log(err);
-        done({signup: "Error in signup"}, false);
+        return done({signup: "Error in signup"}, false);
     })
 }));

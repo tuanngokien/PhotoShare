@@ -62,7 +62,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = function (models) {
-
+        User.hasMany(models.Post);
+        User.belongsToMany(models.Post, {through: 'UserPostLikes', as: 'Likes'});
     };
 
     User.prototype.validatePassword = function (password) {
@@ -71,6 +72,11 @@ module.exports = (sequelize, DataTypes) => {
 
     User.prototype.fullName = function () {
         return this.firstName + " " + this.lastName
+    };
+
+    User.prototype.toJSON = function () {
+        let {id, email, firstName, lastName} = this.dataValues;
+        return {id, email, firstName, lastName};
     };
 
     return User;
