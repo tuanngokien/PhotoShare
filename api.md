@@ -21,6 +21,6 @@
 | Like post      | /api/posts/{postId}/likes | POST |Content-Type:multipart/form-data||
 | Unlike post      | /api/posts/{postId}/likes | DELETE |Content-Type:multipart/form-data||
 | Comment post      | /api/posts/{postId}/comments | POST |Content-Type:multipart/form-data|text|
-| Edit post comment      | /api/posts/{postId}/comments | POST |Content-Type:multipart/form-data|text|
+|Edit post comment| /api/posts/{postId}/comments/{commentId} | PATCH |Content-Type:multipart/form-data|text|
 | Delete comment post      | /api/posts/{postId}/comments/{commentId} | DELETE |Content-Type:multipart/form-data||
 
