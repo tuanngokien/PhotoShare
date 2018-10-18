@@ -16,7 +16,8 @@ Sửa cấu hình kết nối DB tại ./config/config.json
 npm install
 npm start
 ```
-
+### [API](api.md)
+- [api.md](api.md)
 ## Thành viên
 
 1. Nguyễn Trung Hiếu - 16020958 - K61-CD

@@ -22,7 +22,7 @@ router.use("/:postID/", function (req, res, next) {
 });
 
 router.route(LIKE_ROUTE_PATH)
-    .get(function (req, res){
+    .get(function (req, res) {
         req.post.getLikes({
             order: [
                 ['createdAt', 'DESC']
@@ -54,6 +54,14 @@ router.route(COMMENT_ROUTE_PATH)
     });
 
 router.route(`${COMMENT_ROUTE_PATH}/:commentID`)
+    .patch(function (req, res) {
+        Comment.update(
+            {text: req.body.text},
+            {where: {id: req.params.commentID, userId: req.user.id, postId: req.post.id}}
+        ).then(result => {
+            res.json({success: Boolean(result)});
+        })
+    })
     .delete(function (req, res) {
         Comment.destroy({
             where: {id: req.params.commentID, userId: req.user.id, postId: req.post.id}
