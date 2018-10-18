@@ -20,7 +20,23 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ImageBox from '../components/imageBox/ImageBox.js';
 import {Col, Row} from 'react-grid-system';
+import PostContainer from '../components/dashboard/postContainer.js';
 
+const photo = [
+  {url: 'https://source.unsplash.com/I1ASdgphUH4/800x599'},
+  {url: IMG_3958},
+  {url: 'https://source.unsplash.com/PpOHJezOalU/800x599'}
+]
+const photo1 = [
+  {url: back}
+]
+const photo2 = [
+  {url: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599'}
+]
+const photo3 = [
+  {url: 'https://source.unsplash.com/Dm-qxdynoEc/800x799'},
+  {url: 'https://source.unsplash.com/qDkso9nvCg0/600x799'}
+]
 export default class Dashboard extends Component{
   constructor(props) {
     super(props);
@@ -52,161 +68,12 @@ export default class Dashboard extends Component{
       <div className='container'>
       <Row>
         <Col xs={12} sm={6} >
-          <Paper style={{margin: '4%'}}>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                    </Avatar>
-                  }
-                  title="Đỗ Tuấn Anh"
-                  subheader="September 14, 2018"
-                />
-                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
-                <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                  <ImageBox isOpen={this.state.isOpenImgBox}
-                            isClose={this.closeImgBox.bind(this)}
-                            currentImage={this.state.currentImage}
-                  />
-                </ListItem>
-                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
-                <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                  <ImageBox isOpen={this.state.isOpenImgBox}
-                            isClose={this.closeImgBox.bind(this)}
-                            currentImage={this.state.currentImage}
-                  />
-                </ListItem>
-                <CardContent>
-                  <Typography component="p">
-                    Rét quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
-                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
-
-            <Paper style={{margin: '4%'}}>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                    </Avatar>
-                  }
-                  title="Đỗ Tuấn Anh"
-                  subheader="September 14, 2018"
-                />
-                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
-                  <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                  <ImageBox isOpen={this.state.isOpenImgBox}
-                            isClose={this.closeImgBox.bind(this)}
-                            currentImage={this.state.currentImage}
-                  />
-                </ListItem>
-                <CardContent>
-                  <Typography component="p">
-                    Rét quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
-                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
+          <PostContainer photo={photo}/>
+          <PostContainer photo={photo1}/>
         </Col>
         <Col >
-          <Paper style={{margin: '4%'}}>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                    </Avatar>
-                  }
-                  title="Đỗ Tuấn Anh"
-                  subheader="September 14, 2018"
-                />
-                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
-                  <img src={back} style={{width: '100%', height: '100%'}}/>
-                  <ImageBox isOpen={this.state.isOpenImgBox}
-                            isClose={this.closeImgBox.bind(this)}
-                            currentImage={this.state.currentImage}
-                  />
-                </ListItem>
-                <CardContent>
-                  <Typography component="p">
-                    Rét quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
-                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
-
-            <Paper style={{margin: '4%'}}>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                    </Avatar>
-                  }
-                  title="Đỗ Tuấn Anh"
-                  subheader="September 14, 2018"
-                />
-                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
-                  <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
-                  <ImageBox isOpen={this.state.isOpenImgBox}
-                            isClose={this.closeImgBox.bind(this)}
-                            currentImage={this.state.currentImage}
-                  />
-                </ListItem>
-                <CardContent>
-                  <Typography component="p">
-                    Rét quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
-                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
+          <PostContainer photo={photo2}/>
+          <PostContainer photo={photo3}/>
         </Col>
         </Row>
       </div>
