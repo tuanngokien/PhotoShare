@@ -11,13 +11,15 @@
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-tabs": "^1.0.2",
     "react-dom": "^16.5.2",
+    "react-grid-system": "^4.3.1",
     "react-images": "^0.5.19",
     "react-loadable": "^5.5.0",
     "react-photo-gallery": "^6.2.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
     "react-swipeable-views": "^0.13.0",
-    "react-tabs": "^2.3.0"
+    "react-tabs": "^2.3.0",
+    "reactstrap": "^6.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

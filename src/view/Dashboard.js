@@ -13,11 +13,13 @@ import ShareIcon from '@material-ui/icons/Share';
 import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../assets/img/IMG_3958.JPG';
+import back from '../assets/img/back.png';
 import Dialog from '../components/dialogImage/Dialog.js';
 import { NavLink } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ImageBox from '../components/imageBox/ImageBox.js';
+import {Col, Row} from 'react-grid-system';
 
 export default class Dashboard extends Component{
   constructor(props) {
@@ -48,9 +50,53 @@ export default class Dashboard extends Component{
     const favourite = this.state.favourite;
     return(
       <div className='container'>
-        <Grid container spacing={40}>
-          <Grid item xs={12} sm={6}>
-            <Paper>
+      <Row>
+        <Col xs={12} sm={6} >
+          <Paper style={{margin: '4%'}}>
+              <Card>
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="Recipe">
+                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
+                    </Avatar>
+                  }
+                  title="Đỗ Tuấn Anh"
+                  subheader="September 14, 2018"
+                />
+                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
+                <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
+                  <ImageBox isOpen={this.state.isOpenImgBox}
+                            isClose={this.closeImgBox.bind(this)}
+                            currentImage={this.state.currentImage}
+                  />
+                </ListItem>
+                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
+                <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
+                  <ImageBox isOpen={this.state.isOpenImgBox}
+                            isClose={this.closeImgBox.bind(this)}
+                            currentImage={this.state.currentImage}
+                  />
+                </ListItem>
+                <CardContent>
+                  <Typography component="p">
+                    Rét quá
+                  </Typography>
+                </CardContent>
+                <CardActions disableActionSpacing>
+                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
+                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
+                  </IconButton>
+                  <IconButton aria-label="Share">
+                    <Comment />
+                  </IconButton>
+                  <IconButton aria-label="Share">
+                    <ShareIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Paper>
+
+            <Paper style={{margin: '4%'}}>
               <Card>
                 <CardHeader
                   avatar={
@@ -86,31 +132,34 @@ export default class Dashboard extends Component{
                 </CardActions>
               </Card>
             </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper>
+        </Col>
+        <Col >
+          <Paper style={{margin: '4%'}}>
               <Card>
                 <CardHeader
                   avatar={
                     <Avatar aria-label="Recipe">
-                      H
+                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
                     </Avatar>
                   }
-                  title="Nguyễn Trung Hiếu"
+                  title="Đỗ Tuấn Anh"
                   subheader="September 14, 2018"
                 />
-                <CardMedia
-                  image="/static/images/cards/paella.jpg"
-                  style={{paddingTop: '50%'}}
-                />
+                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
+                  <img src={back} style={{width: '100%', height: '100%'}}/>
+                  <ImageBox isOpen={this.state.isOpenImgBox}
+                            isClose={this.closeImgBox.bind(this)}
+                            currentImage={this.state.currentImage}
+                  />
+                </ListItem>
                 <CardContent>
                   <Typography component="p">
-                    Mưa rồi ae ơi
+                    Rét quá
                   </Typography>
                 </CardContent>
                 <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
+                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
+                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
                   </IconButton>
                   <IconButton aria-label="Share">
                     <Comment />
@@ -121,31 +170,33 @@ export default class Dashboard extends Component{
                 </CardActions>
               </Card>
             </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper>
+
+            <Paper style={{margin: '4%'}}>
               <Card>
                 <CardHeader
                   avatar={
                     <Avatar aria-label="Recipe">
-                      T
+                      <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
                     </Avatar>
                   }
-                  title="Trần Mạnh Tùng"
+                  title="Đỗ Tuấn Anh"
                   subheader="September 14, 2018"
                 />
-                <CardMedia
-                  image="/static/images/cards/paella.jpg"
-                  style={{paddingTop: '40%'}}
-                />
+                <ListItem dense button style={{padding: 'unset'}} onClick={this.openImgBox}>
+                  <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
+                  <ImageBox isOpen={this.state.isOpenImgBox}
+                            isClose={this.closeImgBox.bind(this)}
+                            currentImage={this.state.currentImage}
+                  />
+                </ListItem>
                 <CardContent>
                   <Typography component="p">
-                    Mát quá
+                    Rét quá
                   </Typography>
                 </CardContent>
                 <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
+                  <IconButton aria-label="Add to favorites" onClick= {this.onHandleLike}>
+                    <FavoriteIcon style = {{color : favourite ? ('red'): null}}/>
                   </IconButton>
                   <IconButton aria-label="Share">
                     <Comment />
@@ -156,78 +207,8 @@ export default class Dashboard extends Component{
                 </CardActions>
               </Card>
             </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      T
-                    </Avatar>
-                  }
-                  title="Ngô Kiên Tuấn"
-                  subheader="September 14, 2018"
-                />
-                <CardMedia
-                  image="/static/images/cards/paella.jpg"
-                  style={{paddingTop: '40%'}}
-                />
-                <CardContent>
-                  <Typography component="p">
-                    Trời nóng quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar aria-label="Recipe">
-                      P
-                    </Avatar>
-                  }
-                  title="Nguyễn Minh Phương"
-                  subheader="September 14, 2018"
-                />
-                <CardMedia
-                  image="/static/images/cards/paella.jpg"
-                  style={{paddingTop: '40%'}}
-                />
-                <CardContent>
-                  <Typography component="p">
-                    Nắng to quá
-                  </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <Comment />
-                  </IconButton>
-                  <IconButton aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Paper>
-          </Grid>
-        </Grid>
+        </Col>
+        </Row>
       </div>
     )
   }
