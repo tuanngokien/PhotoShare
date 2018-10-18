@@ -15,9 +15,9 @@
 
 | Action        | URL           | Method  |Header| Body
 | ------------- |:----------:| :-----:| :-----:|:-----:|
-| Get all user's posts        | /api/posts  | GET |Content-Type:multipart/form-data||
+| Get all user's posts        | /api/posts/{userId}  | GET |Content-Type:multipart/form-data||
 | New post      | /api/posts | POST |Content-Type:multipart/form-data|caption, images|
-| Get post's liked users      | /api/posts/{postId}/likes | GET |Content-Type:multipart/form-data||
+| Get users liked post      | /api/posts/{postId}/likes | GET |Content-Type:multipart/form-data||
 | Like post      | /api/posts/{postId}/likes | POST |Content-Type:multipart/form-data||
 | Unlike post      | /api/posts/{postId}/likes | DELETE |Content-Type:multipart/form-data||
 | Comment post      | /api/posts/{postId}/comments | POST |Content-Type:multipart/form-data|text|

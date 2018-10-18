@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary');
 const cloudinaryStorage = require("multer-storage-cloudinary");
 const multer = require('multer');
 const router = require("./user");
-const {User, Photo, Comment} = require("../models");
+const {Post, Photo, Comment} = require("../models");
 
 const storage = cloudinaryStorage({
     cloudinary: cloudinary,
@@ -14,28 +14,6 @@ const storage = cloudinaryStorage({
 const parser = multer({storage: storage});
 
 router.route("/")
-    .get(function (req, res) {
-        req.user.getPosts({
-            include: [
-                {model: Photo},
-                {model: Comment},
-            ],
-            order: [
-                ['createdAt', 'DESC']
-            ]
-        })
-            .then(posts => {
-                Promise.all(posts.map(function (post) {
-                    return post.countLikes();
-                })).then(function (reactions) {
-                    let postsWithLikes = posts.map(function (post, index) {
-                        post.dataValues.likes = reactions[index];
-                        return post;
-                    });
-                    res.json(postsWithLikes);
-                })
-            });
-    })
     .post(parser.array('images', 10), function (req, res) {
         if (req.files) {
             let photos = [];
@@ -60,6 +38,32 @@ router.route("/")
         } else {
             res.json({success: false});
         }
+    });
+
+router.route("/:userID")
+    .get(function (req, res) {
+        let userId = req.params.userID
+        Post.findAll({
+            where: {userId: userId},
+            include: [
+                {model: Photo},
+                {model: Comment},
+            ],
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        })
+            .then(posts => {
+                Promise.all(posts.map(function (post) {
+                    return post.countLikes();
+                })).then(function (reactions) {
+                    let postsWithLikes = posts.map(function (post, index) {
+                        post.dataValues.likes = reactions[index];
+                        return post;
+                    });
+                    res.json({userId, posts: postsWithLikes});
+                })
+            });
     });
 
 module.exports = router;
