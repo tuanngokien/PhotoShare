@@ -47,8 +47,8 @@ export default class Header extends Component{
             <div style={{width: '20%'}}>
               <Input placeholder="Search..." className='search'/>
             </div>
-            <IconButton>
-              <CloudUpload/>
+            <IconButton href='#/pts/upload'>
+              <CloudUpload />
             </IconButton>
             <IconButton href='#/pts/chat'>
               <ChatBubble/>

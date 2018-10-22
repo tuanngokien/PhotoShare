@@ -13,11 +13,37 @@ import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../../assets/img/IMG_3958.JPG';
 import ListItem from '@material-ui/core/ListItem';
+import ImageBox from './../imageBox/ImageBox.js';
 
 export default class postContainer extends React.Component{
 	constructor(props){
 		super(props);
+
+		this.state = {
+			openImgBox: false,
+			currentImage: 0,
+		}
+		this.openImgBox = this.openImgBox.bind(this);
+		this.closeImgBox = this.closeImgBox.bind(this);
+		this.gotoPrevious = this.gotoPrevious.bind(this);
+		this.gotoNext = this.gotoNext.bind(this);
 	}
+	openImgBox () {
+		this.setState({openImgBox: true});
+	}
+	closeImgBox () {
+		this.setState({openImgBox: false});
+	}
+	gotoPrevious () {
+    this.setState({
+        currentImage: this.state.currentImage - 1
+    });
+  }
+  gotoNext () {
+    this.setState({
+        currentImage: this.state.currentImage + 1
+    });
+  }
 	render (){
 		console.log(this.props.photo);
 		return(
@@ -33,9 +59,15 @@ export default class postContainer extends React.Component{
 	          subheader="September 14, 2018"
 	        />
 	        {this.props.photo.map( photo =>(                
-	        <ListItem dense button style={{padding: 'unset', marginBottom:'1%'}}>
+	        <ListItem dense button style={{padding: 'unset', marginBottom:'1%'}} onClick={this.openImgBox}>
 	          <img src={photo.url} style={{width: '100%', height: '100%'}}/>
 	        </ListItem>))}
+	        <ImageBox isOpen={this.state.openImgBox}
+	          					isClose={this.closeImgBox.bind(this)}
+	        						gotoPrevious={this.gotoPrevious.bind(this)}
+	        						gotoNext={this.gotoNext.bind(this)}
+	        						currentImage={this.state.currentImage}
+	        	/>
 	        <CardContent>
 	          <Typography component="p">
 	            Rét quá

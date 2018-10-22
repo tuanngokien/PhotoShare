@@ -14,7 +14,7 @@ export default class ImageBox extends React.Component {
     super(props);
 
     this.state = {
-      lightboxIsOpen: false,
+      lightboxIsOpen: this.props.isOpen,
       currentImage: this.props.currentImage,
     };
     this.openLightbox = this.openLightbox.bind(this);
@@ -25,7 +25,7 @@ export default class ImageBox extends React.Component {
   }
   openLightbox(){
     this.setState({
-      lightboxIsOpen: true,
+      lightboxIsOpen: this.props.isOpen,
       currentImage: 0,
     });
   }
@@ -52,16 +52,17 @@ export default class ImageBox extends React.Component {
   //   console.log(obj.index);
   // }
   render() {
+    console.log(this.state.lightboxIsOpen);
     return (
       <div>
         <Lightbox
           images = {images}
           isOpen={this.props.isOpen}
-          onClickPrev={this.gotoPrevious}
-          onClickNext={this.gotoNext}
+          onClickPrev={this.props.gotoPrevious}
+          onClickNext={this.props.gotoNext}
           onClose={this.props.isClose}
           showThumbnails = {true}
-          currentImage = {this.state.currentImage}
+          currentImage = {this.props.currentImage}
         />
       </div>
     );

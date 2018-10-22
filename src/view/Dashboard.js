@@ -14,7 +14,6 @@ import Comment from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../assets/img/IMG_3958.JPG';
 import back from '../assets/img/back.png';
-import Dialog from '../components/dialogImage/Dialog.js';
 import { NavLink } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
