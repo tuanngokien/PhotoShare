@@ -2,6 +2,7 @@ import React from 'react';
 import Loadable from 'react-loadable';
 import Layout from './container/layout/Layout.js';
 import Profile from './view/Profile.js';
+import UpLoad from'./view/UpLoad.js';
 
 function Loading() {
   return (
@@ -26,6 +27,7 @@ const routes = [
   {path:'/pts/dashboard', name: 'Dashboard', component: Dashboard},
   {path:'/pts/chat', name: 'Chat', component: Chat},
   {path:'/pts/profile', name: 'Profile', component: Profile},
+  {path: '/pts/upload', name: 'UpLoad', component: UpLoad},
 ];
 
 export default routes;

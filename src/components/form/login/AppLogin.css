@@ -10,10 +10,12 @@
 }
 
 .App__Form {
-  width: 50%;
-  background-color: #2E4158;
-  padding: 25px 40px;
-  overflow: auto;
+  width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  padding: 2% 5%;
+  overflow: hidden;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .PageSwitcher {
