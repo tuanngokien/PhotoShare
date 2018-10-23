@@ -6,7 +6,7 @@
 | ------------- |:----------:| :-----:| :-----:|:-----:|
 | Sign up      | /api/signup | POST |Content-Type:application/x-www-form-urlencoded|firstName, lastName, email, password|
 | Login        | /api/login  | POST |Content-Type:application/x-www-form-urlencoded |email, password|
-| Get user info        | /api/me | GET |Authorization: Bearer {access_token}, Content-Type:application/x-www-form-urlencoded ||
+| Get user info        | /api/me | GET |Authorization: Bearer {access_token} <br> Content-Type:application/x-www-form-urlencoded ||
 
 ## **PHOTO - POST MANIPULATION**
 ##### *Required header* :
@@ -15,7 +15,7 @@
 
 | Action        | URL           | Method  |Header| Body
 | ------------- |:----------:| :-----:| :-----:|:-----:|
-| Get all user's posts        | /api/posts/{userId}  | GET |Content-Type:multipart/form-data||
+| Get all user's posts        | /api/{userId}/posts/  | GET |Content-Type:multipart/form-data||
 | New post      | /api/posts | POST |Content-Type:multipart/form-data|caption, images|
 | Get users liked post      | /api/posts/{postId}/likes | GET |Content-Type:multipart/form-data||
 | Like post      | /api/posts/{postId}/likes | POST |Content-Type:multipart/form-data||
