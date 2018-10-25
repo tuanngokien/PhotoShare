@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
+import axios from 'axios';
 
 class SignInForm extends Component {
     constructor() {
@@ -11,18 +12,36 @@ class SignInForm extends Component {
             password: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.signInRequest = this.signInRequest.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+    signInRequest = async () => {
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'token' : localStorage.getItem('token')
+      };
+      var data = {
+        email: this.state.email,
+        password: this.state.password, 
+      }
+      await axios.post('http://192.168.0.101:3000/api/signin', {headers: headers}, {params: data})
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
 
-        this.setState({
-          [name]: value
-        });
+    inputEmail = (e) => {
+      e.preventDefault();
+      this.setState({email: e.target.value});
+    }
+
+    inputPassword = (e) => {
+      e.preventDefault();
+      this.setState({password: e.target.value});
     }
 
     handleSubmit(e) {
@@ -41,16 +60,33 @@ class SignInForm extends Component {
             <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
+                <input 
+                  type="email" 
+                  id="email" 
+                  className="FormField__Input" 
+                  placeholder="Enter your email" name="email" 
+                  value={this.state.email} onChange={this.inputEmail} />
               </div>
 
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="password">Password</label>
-                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
+                <input 
+                  type="password" 
+                  id="password" 
+                  className="FormField__Input" 
+                  placeholder="Enter your password" 
+                  name="password" 
+                  value={this.state.password} 
+                  onChange={this.inputPassword} />
               </div>
 
               <div className="FormField">
-                  <button className="FormField__Button mr-20" onClick={this.redirectDashboard}>Sign In</button>
+                  <button 
+                    className="FormField__Button mr-20" 
+                    onClick={this.signInRequest}
+                  >
+                    Sign In
+                  </button>
               </div>
             </form>
           </div>
