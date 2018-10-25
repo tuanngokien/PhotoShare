@@ -38,7 +38,12 @@ code {
 }
 
 .header, .footer{
-  background: linear-gradient(45deg, #2e4e82, gray);
+  background: rgba(21,21,23,.95)!important;
+  box-shadow: 1px 1px 50px 3px #888888 !important;
+}
+
+.header input{
+  font-size: 0.9em;
 }
 
 .main-container{
