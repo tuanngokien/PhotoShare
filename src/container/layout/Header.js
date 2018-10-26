@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Input from '@material-ui/core/Input';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from "@material-ui/core/IconButton";
 import Notifications from '@material-ui/icons/Notifications';
@@ -13,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
+import Logo from '../../assets/img/logo3.png';
 
 export default class Header extends Component {
     state = {
@@ -44,8 +44,8 @@ export default class Header extends Component {
                 <AppBar position='fixed' className='header'>
                     <Toolbar className='main'>
                         <Grid container justify={"space-between"} alignItems={"center"}>
-                            <a className="app-logo" href="#">
-                                <img src="http://via.placeholder.com/180x65" alt="Jambo" title="Jambo"/>
+                            <a className="app-logo" href="/">
+                                <img src={Logo} alt="Jambo" title="Jambo" style={{width: "100%", height: "auto"}}/>
                             </a>
                             <div>
                                 <Grid container justify={"flex-start"} alignItems={"center"}>

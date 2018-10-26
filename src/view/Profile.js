@@ -138,7 +138,7 @@ class Profile extends Component {
         const {classes} = this.props;
         return (
             <div>
-                <Grid container>
+                <Grid container className={"user-page-container"}>
                     <TimelineProfile classes={classes}/>
                     <Grid items xs={12}>
                         <AppBar position="static" color="#FFFFFF">
