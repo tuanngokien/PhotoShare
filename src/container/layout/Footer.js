@@ -14,13 +14,13 @@ export default class Footer extends Component {
                         <div>
                             <Grid container spacing={"40"} justify={"flex-start"} alignItems={"center"}>
                                 <Grid item>
-                                    <a href={"#"}><FaFacebook size="1.3rem" color="white"/></a>
+                                    <a href={"/"}><FaFacebook size="1.3rem" color="white"/></a>
                                 </Grid>
                                 <Grid item>
-                                    <a href={"#"}><FaInstagram size="1.3rem" color="white"/></a>
+                                    <a href={"/"}><FaInstagram size="1.3rem" color="white"/></a>
                                 </Grid>
                                 <Grid item>
-                                    <a href={"#"}><FaTwitter size="1.3rem" color="white"/></a>
+                                    <a href={"/"}><FaTwitter size="1.3rem" color="white"/></a>
                                 </Grid>
                             </Grid>
                         </div>

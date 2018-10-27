@@ -46,7 +46,7 @@ class PostsOrderSelect extends React.Component {
             <FormControl>
                 <Select value={this.state.order}
                         onChange={this.handleChange}
-                        style={{fontSize: "85%"}}>
+                        style={{fontSize: "85%", fontWeight: "bold"}}>
                     <MenuItem value={"recent"}>Most Recent</MenuItem>
                     <MenuItem value={"top"}>Top Posts</MenuItem>
                 </Select>
@@ -87,7 +87,7 @@ const TimelineProfile = withStyles(styles)((props) => {
                                 <h1 style={{marginRight: "15px"}}>Tuan Ngo Kien</h1>
                                 <Button variant="outlined"
                                         style={{borderColor: "white", color: "white", padding: "0 15px"}}>
-                                    <Grid container justify={"center"} alignItems={"flex-end"}>
+                                    <Grid container justify={"center"} alignItems={"center"}>
                                         <Icon style={{marginRight: "5px"}}>add_plus</Icon>
                                         <span>Follow</span>
                                     </Grid>
@@ -117,7 +117,7 @@ const TimelineProfile = withStyles(styles)((props) => {
 
 const StyleTab = props => {
     return (
-        <Tab {...props} style={{fontWeight: "bold",}}/>
+        <Tab {...props} style={{fontWeight: "bold"}}/>
     )
 };
 
@@ -147,16 +147,17 @@ class Profile extends Component {
                                 style={{margin: "0 10%"}}
                                 value={this.state.value}
                                 onChange={this.handleChange}
-                                indicatorColor="primary"
-                                textColor="primary">
+                                textColor={"black"}
+                                indicatorColor={"primary"}>
                                 <StyleTab label="Post"/>
                                 <StyleTab label="Album"/>
                                 <StyleTab label="Saved"/>
                                 <StyleTab label="Tagged"/>
                             </Tabs>
                         </AppBar>
-                        <div className='containerImageList' style={{height: 'auto'}}>
-                            <Grid container justify={"flex-end"} style={{paddingRight: "24px"}}>
+                        <div className='containerImageList' style={{height: 'auto', position: "relative"}}>
+                            <Grid container justify={"flex-end"}
+                                  style={{paddingRight: "24px", position: "absolute", "top": "-11px"}}>
                                 <PostsOrderSelect/>
                             </Grid>
                             <SwipeableViews

@@ -50,50 +50,8 @@ const photos = [
     }
 ];
 
-var Photo = function Photo(_ref) {
-    var _extends = Object.assign || function (target) {
-        for (var i = 1; i < arguments.length; i++) {
-            var source = arguments[i];
-
-            for (var key in source) {
-                if (Object.prototype.hasOwnProperty.call(source, key)) {
-                    target[key] = source[key];
-                }
-            }
-        }
-        return target;
-    };
-
-    var imgWithClick = { cursor: 'pointer' };
-
-    var index = _ref.index,
-        onClick = _ref.onClick,
-        photo = _ref.photo,
-        margin = _ref.margin,
-        direction = _ref.direction,
-        top = _ref.top,
-        left = _ref.left;
-
-    var imgStyle = {margin: margin};
-    if (direction === 'column') {
-        imgStyle.position = 'absolute';
-        imgStyle.left = left;
-        imgStyle.top = top;
-    }
-
-    var handleClick = function handleClick(event) {
-        onClick(event, {photo: photo, index: index});
-    };
-
-    return React.createElement('img', _extends({
-        style: onClick ? _extends({}, imgStyle, imgWithClick) : imgStyle
-    }, photo, {
-        onClick: onClick ? handleClick : null
-    }));
-};
-
 export default class imageLayout extends React.Component {
     render() {
-        return <Gallery ImageComponent={Photo} photos={photos}/>;
+        return <Gallery columns={4} photos={photos}/>;
     }
 }
