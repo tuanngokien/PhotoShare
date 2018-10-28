@@ -12,7 +12,7 @@ export default class Footer extends Component {
                     <Grid container justify={"space-between"} alignItems={"center"} style={{margin: "0 10%"}}>
                         <span>© 2018 PHOTOSHARE</span>
                         <div>
-                            <Grid container spacing={"40"} justify={"flex-start"} alignItems={"center"}>
+                            <Grid container spacing={32} justify={"flex-start"} alignItems={"center"}>
                                 <Grid item>
                                     <a href={"/"}><FaFacebook size="1.3rem" color="white"/></a>
                                 </Grid>

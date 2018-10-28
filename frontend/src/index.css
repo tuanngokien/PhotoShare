@@ -62,3 +62,14 @@ code {
 .app-logo img {
     height: 35px;
 }
+
+iframe{
+    z-index: 0!important;
+    display: block!important;
+}
+
+#img-uploader{
+    padding: 0 20%;
+    background-image: linear-gradient(to left bottom, #8d9fb1, #9ba5b3, #a7abb5, #b1b2b7, #b9b9b9);
+    /*background-color: #8D9FB1;*/
+}
