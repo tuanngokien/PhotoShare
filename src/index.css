@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Niramit');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Niramit, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+    margin-top: 6%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100%;
+}
+
+.user-page-container {
+    background: linear-gradient(rgba(141, 153, 174, 0.5), rgba(141, 153, 174, 0.3)), url(assets/img/bg1.png);
+}
+
+.containerImageList {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100%;
+}
+
+.main {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.search {
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+.header, .footer {
+    background: rgba(21, 21, 23, .95) !important;
+}
+
+.header {
+    box-shadow: 1px 1px 50px 3px #888888 !important;
+}
+
+.header input {
+    font-size: 0.9em;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app-logo img {
+    height: 35px;
+}
