@@ -14,10 +14,14 @@ code {
 }
 
 .container {
-    margin-top: 6%;
+    padding-top: 6%;
     margin-left: 10%;
     margin-right: 10%;
     height: 100%;
+}
+
+.dashboard-background {
+    background: rgb(239, 240, 242);
 }
 
 .user-page-container {

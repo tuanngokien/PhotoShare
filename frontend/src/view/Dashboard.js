@@ -64,17 +64,19 @@ export default class Dashboard extends Component{
   render(){
     const favourite = this.state.favourite;
     return(
-      <div className='container'>
-      <Row>
-        <Col xs={12} sm={6} >
-          <PostContainer photo={photo}/>
-          <PostContainer photo={photo1}/>
-        </Col>
-        <Col >
-          <PostContainer photo={photo2}/>
-          <PostContainer photo={photo3}/>
-        </Col>
-        </Row>
+      <div className='dashboard-background'>
+        <div className='container'>
+        <Row>
+          <Col xs={12} sm={6} >
+            <PostContainer photo={photo}/>
+            <PostContainer photo={photo1}/>
+          </Col>
+          <Col >
+            <PostContainer photo={photo2}/>
+            <PostContainer photo={photo3}/>
+          </Col>
+          </Row>
+        </div>
       </div>
     )
   }

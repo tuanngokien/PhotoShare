@@ -47,7 +47,7 @@ export default class postContainer extends React.Component{
 	render (){
 		console.log(this.props.photo);
 		return(
-			<Paper style={{marginBottom: '15%', marginLeft: '7%', marginRight:'7%'}}>
+			<Paper style={{marginBottom: '10%', marginLeft: '5%', marginRight:'5%'}}>
 	      <Card>
 	        <CardHeader
 	          avatar={
