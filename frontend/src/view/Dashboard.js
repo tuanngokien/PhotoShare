@@ -22,19 +22,19 @@ import {Col, Row} from 'react-grid-system';
 import PostContainer from '../components/dashboard/postContainer.js';
 
 const photo = [
-  {url: 'https://source.unsplash.com/I1ASdgphUH4/800x599'},
-  {url: IMG_3958},
-  {url: 'https://source.unsplash.com/PpOHJezOalU/800x599'}
+  {index: 0, src: 'https://source.unsplash.com/I1ASdgphUH4/800x599'},
+  {index: 1,src: IMG_3958},
+  {index: 2,src: 'https://source.unsplash.com/PpOHJezOalU/800x599'}
 ]
 const photo1 = [
-  {url: back}
+  {index: 0, src: back}
 ]
 const photo2 = [
-  {url: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599'}
+  {index: 0, src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599'}
 ]
 const photo3 = [
-  {url: 'https://source.unsplash.com/Dm-qxdynoEc/800x799'},
-  {url: 'https://source.unsplash.com/qDkso9nvCg0/600x799'}
+  {index: 0, src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799'},
+  {index: 1, src: 'https://source.unsplash.com/qDkso9nvCg0/600x799'}
 ]
 export default class Dashboard extends Component{
   constructor(props) {

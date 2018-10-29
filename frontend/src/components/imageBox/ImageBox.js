@@ -3,12 +3,6 @@ import Lightbox from 'react-images';
 import Button from '@material-ui/core/Button';
 import IMG from '../../assets/img/IMG_3958.JPG';
 
-const images=[
-{ src: 'http://placekitten.com/1500/500' },
-{ src: 'http://placekitten.com/1500/501' },
-{ src: 'http://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg'},
-{ src: require('../../assets/img/IMG_3958.JPG')}
-]
 export default class ImageBox extends React.Component {
   constructor(props) {
     super(props);
@@ -48,15 +42,13 @@ export default class ImageBox extends React.Component {
         currentImage: this.state.currentImage + 1
     });
   }
-  // thumbnail = (e, obj) => {
-  //   console.log(obj.index);
-  // }
+  
   render() {
     console.log(this.state.lightboxIsOpen);
     return (
       <div>
         <Lightbox
-          images = {images}
+          images = {this.props.images}
           isOpen={this.props.isOpen}
           onClickPrev={this.props.gotoPrevious}
           onClickNext={this.props.gotoNext}

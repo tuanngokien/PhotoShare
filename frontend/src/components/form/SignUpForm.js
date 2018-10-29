@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import * as IpConfig from '../../ipConfig/IpConfig.js';
 
 class SignUpForm extends Component {
     constructor() {
@@ -28,7 +29,7 @@ class SignUpForm extends Component {
         firstName: this.state.firstName, 
         lastName: this.state.lastName,
       }
-      await axios.post('http://192.168.0.101:3000/api/signup', {headers: headers}, {params: data})
+      await axios.post(IpConfig + '/api/signup', {headers: headers}, {params: data})
       .then(function (response) {
         console.log(response);
         localStorage.setItem('token',response.data.token);

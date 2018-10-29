@@ -28,8 +28,9 @@ export default class postContainer extends React.Component{
 		this.gotoPrevious = this.gotoPrevious.bind(this);
 		this.gotoNext = this.gotoNext.bind(this);
 	}
-	openImgBox () {
+	openImgBox = (e, index) => {
 		this.setState({openImgBox: true});
+		this.setState({currentImage: index})
 	}
 	closeImgBox () {
 		this.setState({openImgBox: false});
@@ -55,19 +56,23 @@ export default class postContainer extends React.Component{
 	              <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
 	            </Avatar>
 	          }
-	          title="Đỗ Tuấn Anh"
+	          title=<p style={{margin:0, fontWeight:"bold"}}>Đỗ Tuấn Anh</p>
 	          subheader="September 14, 2018"
 	        />
-	        {this.props.photo.map( photo =>(                
-	        <ListItem dense button style={{padding: 'unset', marginBottom:'1%'}} onClick={this.openImgBox}>
-	          <img src={photo.url} style={{width: '100%', height: '100%'}}/>
-	        </ListItem>))}
-	        <ImageBox isOpen={this.state.openImgBox}
-	          					isClose={this.closeImgBox.bind(this)}
-	        						gotoPrevious={this.gotoPrevious.bind(this)}
-	        						gotoNext={this.gotoNext.bind(this)}
-	        						currentImage={this.state.currentImage}
-	        	/>
+	        {this.props.photo.map( photo =>(             
+		        <ListItem dense button style={{padding: 'unset', marginBottom:'1%'}} onClick={(e) => this.openImgBox(e,photo.index)}>
+		          <img src={photo.src} style={{width: '100%', height: '100%'}}/>
+		        </ListItem>
+		        ))
+	      	}
+	      	<ImageBox 
+		        	isOpen={this.state.openImgBox}
+    					isClose={this.closeImgBox.bind(this)}
+  						gotoPrevious={this.gotoPrevious.bind(this)}
+  						gotoNext={this.gotoNext.bind(this)}
+  						currentImage={this.state.currentImage}
+  						images = {this.props.photo}
+		      />
 	        <CardContent>
 	          <Typography component="p">
 	            Rét quá

@@ -1,5 +1,6 @@
 import React from "react";
 import Gallery from "react-photo-gallery";
+import ImageBox from "../imageBox/ImageBox"
 /* popout the browser and maximize to see more rows! -> */
 
 const photos = [
@@ -48,10 +49,58 @@ const photos = [
         width: 4,
         height: 3
     }
-];
+];	
 
 export default class imageLayout extends React.Component {
-    render() {
-        return <Gallery columns={4} photos={photos}/>;
-    }
+	constructor(props){
+	  super(props);
+
+	  this.state = {
+	    openImgBox: false,
+	    currentImage: 0,
+	    value: 0,
+	}
+  this.openImgBox = this.openImgBox.bind(this);
+  this.closeImgBox = this.closeImgBox.bind(this);
+  this.gotoPrevious = this.gotoPrevious.bind(this);
+  this.gotoNext = this.gotoNext.bind(this);
+  this.handleClick = this.handleClick.bind(this);
+  }
+  openImgBox () {
+    this.setState({openImgBox: true});
+  }
+  closeImgBox () {
+    this.setState({openImgBox: false});
+  }
+  gotoPrevious () {
+    this.setState({
+        currentImage: this.state.currentImage - 1
+    });
+  }
+  gotoNext () {
+    this.setState({
+        currentImage: this.state.currentImage + 1
+    });
+  }
+  handleClick(e, index){
+  	this.setState({
+  		openImgBox: true,
+  		currentImage: index
+  	})
+  }
+  render() {
+      return (
+      	<div>
+         <Gallery columns={4} photos={photos} onClick={(e)=>this.handleClick(e,photos.index)}/>
+         <ImageBox 
+          isOpen={this.state.openImgBox}
+          isClose={this.closeImgBox.bind(this)}
+          gotoPrevious={this.gotoPrevious.bind(this)}
+          gotoNext={this.gotoNext.bind(this)}
+          currentImage={this.state.currentImage}
+          images = {photos}
+        />
+        </div>
+      )
+  }
 }

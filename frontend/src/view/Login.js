@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as HashRouter, Route, Link, NavLink, Switch } from 'react-router-dom';
-import SignUpForm from '../components/form/login/SignUpForm.js';
-import SignInForm from '../components/form/login/SignInForm';
+import SignUpForm from '../components/form/SignUpForm.js';
+import SignInForm from '../components/form/SignInForm';
 import Background from "./../assets/img/back.png";
 
-import '../components/form/login/AppLogin.css';
+import '../components/form/Form.css';
 
 
 class Login extends Component {
