@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
-import * as IpConfig from '../../ipConfig/IpConfig.js'
+import * as IpConfig from '../../ipConfig/IpConfig'
 
 class SignInForm extends Component {
     constructor() {
@@ -24,9 +24,9 @@ class SignInForm extends Component {
       };
       var data = {
         email: this.state.email,
-        password: this.state.password, 
+        password: this.state.password,
       }
-      await axios.post(IpConfig + '/api/signin',{headers: headers}, {params: data})
+      await axios.post(IpConfig.URL + '/api/signin',{headers: headers}, {params: data})
       .then(function (response) {
         console.log(response);
       })
@@ -58,36 +58,40 @@ class SignInForm extends Component {
     render() {
         return (
         <div className="FormCenter">
+
             <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className="FormField__Input" 
-                  placeholder="Enter your email" name="email" 
+                <input
+                  type="email"
+                  id="email"
+                  className="FormField__Input"
+                  placeholder="Enter your email" name="email"
                   value={this.state.email} onChange={this.inputEmail} />
               </div>
 
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="password">Password</label>
-                <input 
-                  type="password" 
-                  id="password" 
-                  className="FormField__Input" 
-                  placeholder="Enter your password" 
-                  name="password" 
-                  value={this.state.password} 
+                <input
+                  type="password"
+                  id="password"
+                  className="FormField__Input"
+                  placeholder="Enter your password"
+                  name="password"
+                  value={this.state.password}
                   onChange={this.inputPassword} />
               </div>
 
-              <div className="FormField">
-                  <button 
-                    className="FormField__Button mr-20" 
-                    onClick={this.signInRequest}
-                  >
-                    Sign In
-                  </button>
+              <div className="FormField" style={{textAlign:'center'}}>
+                <br/>
+                <Button
+                  variant="extendedFab"
+                  aria-label="Delete"
+                  style={{ backgroundColor: '#52C4B9', color: 'white', minWidth: '30%'}}
+                  onClick={this.signInRequest}
+                >
+                  <span>Sign in</span>
+                </Button>
               </div>
             </form>
           </div>

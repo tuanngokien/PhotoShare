@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as IpConfig from '../../ipConfig/IpConfig.js';
+import Button from "@material-ui/core/Button";
 
 class SignUpForm extends Component {
     constructor() {
@@ -25,11 +26,11 @@ class SignUpForm extends Component {
       };
       var data = {
         email: this.state.email,
-        password: this.state.password, 
-        firstName: this.state.firstName, 
+        password: this.state.password,
+        firstName: this.state.firstName,
         lastName: this.state.lastName,
       }
-      await axios.post(IpConfig + '/api/signup', {headers: headers}, {params: data})
+      await axios.post(IpConfig.URL + '/api/signup', {headers: headers}, {params: data})
       .then(function (response) {
         console.log(response);
         localStorage.setItem('token',response.data.token);
@@ -37,7 +38,7 @@ class SignUpForm extends Component {
       .catch(function (error) {
         console.log(error);
       });
-    } 
+    }
 
     inputEmail = (e) => {
       e.preventDefault();
@@ -82,38 +83,45 @@ class SignUpForm extends Component {
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">First Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className="FormField__Input" 
-                  placeholder="Enter your first name" 
-                  name="name" value={this.state.fisrtName} 
+                <input
+                  type="text"
+                  id="name"
+                  className="FormField__Input"
+                  placeholder="Enter your first name"
+                  name="name" value={this.state.fisrtName}
                   onChange={this.inputFirstName} />
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Last Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className="FormField__Input" 
-                  placeholder="Enter your last name" 
-                  name="name" 
-                  value={this.state.lastName} 
+                <input
+                  type="text"
+                  id="name"
+                  className="FormField__Input"
+                  placeholder="Enter your last name"
+                  name="name"
+                  value={this.state.lastName}
                   onChange={this.inputLastName} />
               </div>
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="password">Password</label>
-                <input 
-                  type="password" 
-                  id="password" 
-                  className="FormField__Input" 
-                  placeholder="Enter your password" 
-                  name="password" 
-                  value={this.state.password} 
+                <input
+                  type="password"
+                  id="password"
+                  className="FormField__Input"
+                  placeholder="Enter your password"
+                  name="password"
+                  value={this.state.password}
                   onChange={this.inputPassword} />
               </div>
-              <div className="FormField">
-                  <button className="FormField__Button mr-20" onClick={this.signUpRequest}>Sign Up</button>
+              <div className="FormField" style={{textAlign: 'center'}}>
+                <Button
+                  variant="extendedFab"
+                  aria-label="Delete"
+                  style={{ backgroundColor: '#52C4B9', color: 'white', minWidth: '30%'}}
+                  onClick={this.signUpRequest}
+                >
+                  <span>Sign up</span>
+                </Button>
               </div>
             </form>
           </div>

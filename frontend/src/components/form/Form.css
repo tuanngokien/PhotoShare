@@ -11,17 +11,15 @@
 
 .App__Form {
   width: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   padding: 2% 5%;
   overflow: hidden;
-  margin-left: 25%;
-  margin-right: 25%;
 }
 
 .PageSwitcher {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10%;
+  margin-bottom: 7%;
 }
 
 .PageSwitcher__Item {
@@ -52,12 +50,15 @@
 
 .FormCenter {
   margin-bottom: 100px;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .FormTitle {
   color: #707C8B;
   font-weight: 300;
   margin-bottom: 50px;
+  margin-left: 30%;
 }
 
 .FormTitle__Link {
@@ -89,7 +90,7 @@
   color: white;
 }
 .FormField__Input {
-  width: 85%;
+  width: 100%;
   background-color: transparent;
   border: none;
   color: white;
