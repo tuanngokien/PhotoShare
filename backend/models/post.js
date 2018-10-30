@@ -1,11 +1,6 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-    const Post = sequelize.define('Post', {
-        caption: {
-            type: DataTypes.TEXT,
-            defaultValue: "",
-        }
-    });
+    const Post = sequelize.define('Post');
 
     Post.associate = function (models) {
         Post.belongsTo(models.User, { foreignKey: { allowNull: false }});

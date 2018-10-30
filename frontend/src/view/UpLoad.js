@@ -1,39 +1,9 @@
 import React, {Component} from 'react';
 import ImageUploader from 'react-images-upload';
 import Grid from '@material-ui/core/Grid';
+import axios from "axios";
+import * as IpConfig from "../ipConfig/IpConfig";
 
-class UpLoad extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {pictures: []};
-        this.onDrop = this.onDrop.bind(this);
-    }
-
-    onDrop(picture) {
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <div style={{
-                    marginTop: '100px',
-                }}>
-                    <ImageUploader
-                        withIcon={true}
-                        buttonText='Chọn ảnh để tải lên'
-                        onChange={this.onDrop}
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                        maxFileSize={52428800}
-                        withPreview={true}
-                    />
-                </div>
-            </div>
-        );
-    }
-}
 
 const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
 const PRESET = process.env.REACT_APP_PRESET;
@@ -63,7 +33,22 @@ class Upload extends Component {
                 }
             },
             function (error, result) {
-                console.log(result);
+                if (!error && result.event === "show-completed") {
+                    let uploadedPhoto = result.info.items.filter(photo => photo.done);
+                    let publicIds = uploadedPhoto.map(photo => photo.uploadInfo.public_id);
+                    axios.post(IpConfig.URL + '/api/posts',
+                        {
+                            images: publicIds
+                        }, {
+                            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+                        }
+                    )
+                        .then(res => {
+                            console.log(res);
+                        }).catch(err => {
+                        console.log(err);
+                    });
+                }
             });
         let contentHeight = document.getElementById("main-content").clientHeight;
         document.getElementById("img-uploader").style.height = `${contentHeight}px`;

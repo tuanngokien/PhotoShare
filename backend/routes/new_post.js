@@ -5,44 +5,39 @@ const router = require("./user");
 const {Photo, Tag} = require("../models");
 const {extractTags} = require("../utils");
 
-const storage = cloudinaryStorage({
-    cloudinary: cloudinary,
-    folder: 'photos',
-    allowedFormats: ['jpg', 'png', 'jpeg'],
-    params: {
-        categorization: "google_tagging",
-        auto_tagging: 0.6
-    }
-});
+// const storage = cloudinaryStorage({
+//     cloudinary: cloudinary,
+//     folder: 'photos',
+//     allowedFormats: ['jpg', 'png', 'jpeg'],
+//     params: {
+//         categorization: "google_tagging",
+//         auto_tagging: 0.6
+//     }
+// });
+
+let secure = true;
 
 const PHOTO_PROPERTIES = {
-    POST: {height: 600, crop: "scale"},
-    THUMBNAIL: {height: 400, crop: 'thumb'}
+    POST: {secure, height: 600, crop: "scale"},
+    THUMBNAIL: {secure, height: 400, crop: 'thumb'}
 };
 
-const parser = multer({storage: storage});
+const AUTO_TAGGING_OPTION = {
+    categorization: "google_tagging",
+    auto_tagging: 0.6
+};
+
 
 router.route("/")
-    .post(parser.array('images', 10), function (req, res) {
-        if (req.files.length > 0) {
+    .post(function (req, res) {
+        let imagePublicIds = req.body.images;
+        if (imagePublicIds.length > 0) {
             let photos = [];
-            for (let img of req.files.filter(img => img.hasOwnProperty("public_id"))) {
-                let publicId = img.public_id;
-                let originalImage = img.url;
+            for (let publicId of imagePublicIds) {
+                let originalImage = cloudinary.url(publicId, {secure});
                 let postImage = cloudinary.url(publicId, PHOTO_PROPERTIES.POST);
                 let thumbnail = cloudinary.url(publicId, PHOTO_PROPERTIES.THUMBNAIL);
-                let photoTags = new Set();
-                try {
-                    let categorization = img.info.categorization;
-                    for (let taggingService in categorization) {
-                        let currentTags = extractTags(categorization[taggingService]);
-                        photoTags = new Set([...photoTags, ...currentTags]);
-                    }
-                } catch (e) {
-                    console.log(e);
-                }
-                photoTags = Array.from(photoTags);
-                photos.push({originalImage, postImage, thumbnail, photoTags});
+                photos.push({publicId, originalImage, postImage, thumbnail});
             }
             req.user.createPost({
                 caption: req.body.caption,
@@ -53,20 +48,26 @@ router.route("/")
                 }],
             }).then((post) => {
                 post.getPhotos().then((db_photos) => {
-                    for (let i in photos) {
-                        let photo = photos[i];
-                        Promise.all(photo.photoTags.map(tag => {
-                            return Tag.findOrCreate({
-                                where: {
-                                    name: tag
-                                }
-                            })
-                        })).then(tags => {
-                            db_photos[i].setTags(tags.map(tag => tag[0]));
-                        })
+                    for (let photo of db_photos) {
+                        let publicId = photo.publicId;
+                        cloudinary.api.update(publicId, function (cPhoto) {
+                            let tags = cPhoto.tags;
+                            Promise.all(tags.map(tag => {
+                                return Tag.findOrCreate({
+                                    where: {
+                                        name: tag
+                                    }
+                                })
+                            })).then(tags => {
+                                photo.setTags(tags.map(tag => tag[0]));
+                            });
+                        }, AUTO_TAGGING_OPTION);
                     }
                 });
                 res.json({success: true, post});
+            }).catch(err => {
+                console.log(err);
+                res.json({success: false});
             });
         } else {
             res.json({success: false});

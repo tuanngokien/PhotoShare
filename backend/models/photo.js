@@ -1,9 +1,32 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
     const Photo = sequelize.define('Photo', {
-        originalImage: DataTypes.STRING,
-        postImage: DataTypes.STRING,
-        thumbnail: DataTypes.STRING,
+        publicId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        originalImage: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isUrl: true,
+            }
+        },
+        postImage: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isUrl: true,
+            }
+        },
+        thumbnail: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isUrl: true,
+            }
+        },
     }, {
         timestamps: false,
     });
