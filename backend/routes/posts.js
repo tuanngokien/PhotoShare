@@ -36,5 +36,4 @@ router.route("/:userID/posts")
                 })
             });
     });
-
 module.exports = router;

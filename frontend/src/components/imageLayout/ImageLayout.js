@@ -1,13 +1,15 @@
 import React from "react";
 import Gallery from "react-photo-gallery";
 import ImageBox from "../imageBox/ImageBox"
+import axios from "axios";
+import * as IpConfig from "../../ipConfig/IpConfig.js";
 /* popout the browser and maximize to see more rows! -> */
 
 const photos = [
     {
-        src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-        width: 4,
-        height: 3
+        src: "https://res.cloudinary.com/uetphotoshare/image/upload/c_scale,h_600/v1/photos/ezad2u7q8vtqgnbitxvv",
+        width: 3,
+        height: 4
     },
     {
         src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
@@ -58,13 +60,34 @@ export default class imageLayout extends React.Component {
 	  this.state = {
 	    openImgBox: false,
 	    currentImage: 0,
-	    value: 0,
-	}
-  this.openImgBox = this.openImgBox.bind(this);
-  this.closeImgBox = this.closeImgBox.bind(this);
-  this.gotoPrevious = this.gotoPrevious.bind(this);
-  this.gotoNext = this.gotoNext.bind(this);
-  this.handleClick = this.handleClick.bind(this);
+	    photo: [
+        'src': null,
+        'width': null,
+        'height': null,
+      ],
+	 }
+    this.openImgBox = this.openImgBox.bind(this);
+    this.closeImgBox = this.closeImgBox.bind(this);
+    this.gotoPrevious = this.gotoPrevious.bind(this);
+    this.gotoNext = this.gotoNext.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.postIndex = this.postIndex.bind(this);
+  }
+  componentWillMount(){
+    this.postIndex();
+  }
+  postIndex = async () =>{
+    var user_id = localStorage.getItem('id');
+    var headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+    var com = this;
+    await axios.get(IpConfig.URL + '/api/' + user_id + '/posts',{headers: headers})
+    .then(function(res){
+      res.data.posts.map(photo => photo.Photos.map(img => (com.state.photo.push({'src': img.originalImage, 'width': null, 'height': null}))));
+    }).catch(function(error){
+      console.log(error);
+    });
   }
   openImgBox () {
     this.setState({openImgBox: true});
@@ -89,6 +112,7 @@ export default class imageLayout extends React.Component {
   	})
   }
   render() {
+    console.log(this.state.photo);
       return (
       	<div>
          <Gallery columns={4} photos={photos} onClick={(e)=>this.handleClick(e,photos.index)}/>

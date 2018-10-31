@@ -29,6 +29,7 @@ class SignInForm extends Component {
       .then(function (response) {
         console.log(response);
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('id', response.data.id);
       })
       .catch(function (error) {
         console.log(error);
