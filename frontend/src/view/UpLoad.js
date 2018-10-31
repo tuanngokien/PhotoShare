@@ -33,18 +33,25 @@ class Upload extends Component {
                 }
             },
             function (error, result) {
+                console.log(result);
                 if (!error && result.event === "show-completed") {
                     let uploadedPhoto = result.info.items.filter(photo => photo.done);
-                    let publicIds = uploadedPhoto.map(photo => photo.uploadInfo.public_id);
+                    let photos = uploadedPhoto.map(photo => {
+                        let {public_id : publicId, width, height} = photo.uploadInfo;
+                        return {publicId, width, height};
+                    });
                     axios.post(IpConfig.URL + '/api/posts',
                         {
-                            images: publicIds
+                            photos
                         }, {
                             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                         }
                     )
                         .then(res => {
-                            console.log(res);
+                            if(res.success){
+                                alert("Uploaded");
+                            }
+                            //todo redirect
                         }).catch(err => {
                         console.log(err);
                     });

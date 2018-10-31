@@ -72,7 +72,7 @@ const styles = {
 const TimelineProfile = withStyles(styles)((props) => {
     const {classes} = props;
     return (
-        <Grid items xs={12}>
+        <Grid item xs={12}>
             <Card>
                 <CardMedia
                     image='http://farm2.staticflickr.com/1861/coverphoto/60475224@N05_h.jpg?1537188632#60475224@N05'
@@ -140,14 +140,13 @@ class Profile extends Component {
             <div>
                 <Grid container className={"user-page-container"}>
                     <TimelineProfile classes={classes}/>
-                    <Grid items xs={12}>
+                    <Grid item xs={12}>
                         <AppBar position="static" color="#FFFFFF">
                             <Tabs
                                 className={"containerImageList"}
-                                style={{margin: "0 10%"}}
+                                style={{margin: "0 10%", color: "black"}}
                                 value={this.state.value}
                                 onChange={this.handleChange}
-                                textColor={"black"}
                                 indicatorColor={"primary"}>
                                 <StyleTab label="Post"/>
                                 <StyleTab label="Album"/>

@@ -44,7 +44,7 @@ function ImageGridList(props) {
                             style={{fontFamily: "Niramit"}}
                             title={<p style={{margin: "0 0 4px 0"}}>{tile.title}</p>}
                             subtitle={
-                                <Grid container spacing={10} alignItems={"center"}>
+                                <Grid container spacing={16} alignItems={"center"}>
                                     <Grid item xs={4}>
                                         <Grid container alignItems={"center"}>
                                             <IoIosKeypad/>

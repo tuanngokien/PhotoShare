@@ -5,9 +5,9 @@ import ImageBox from "../imageBox/ImageBox"
 
 const photos = [
     {
-        src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-        width: 4,
-        height: 3
+        src: "https://res.cloudinary.com/uetphotoshare/image/upload/v1540958607/photos/bybjlfecmfcamrz8zipu.jpg",
+        width: 5472,
+        height: 3648
     },
     {
         src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",

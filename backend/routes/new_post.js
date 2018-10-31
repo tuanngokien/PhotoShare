@@ -30,14 +30,15 @@ const AUTO_TAGGING_OPTION = {
 
 router.route("/")
     .post(function (req, res) {
-        let imagePublicIds = req.body.images || [];
-        if (imagePublicIds.length > 0) {
+        let reqPhotos = req.body.photos || [];
+        if (reqPhotos.length > 0) {
             let photos = [];
-            for (let publicId of imagePublicIds) {
+            for (let photo of reqPhotos) {
+                const {publicId, width, height} = photo;
                 let originalImage = cloudinary.url(publicId, {secure});
                 let postImage = cloudinary.url(publicId, PHOTO_PROPERTIES.POST);
                 let thumbnail = cloudinary.url(publicId, PHOTO_PROPERTIES.THUMBNAIL);
-                photos.push({publicId, originalImage, postImage, thumbnail});
+                photos.push({publicId, width, height, originalImage, postImage, thumbnail});
             }
             req.user.createPost({
                 caption: req.body.caption,

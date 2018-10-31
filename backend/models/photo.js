@@ -6,6 +6,14 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             unique: true
         },
+        width: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        height: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         originalImage: {
             type: DataTypes.STRING,
             allowNull: false,
