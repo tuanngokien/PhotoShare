@@ -10,7 +10,7 @@ router.post('/signup', (req, res, next) => {
         if (!user) {
             res.json({"errors": error});
         } else {
-            res.json({success: true, "email":user.email});
+            res.json({success: true, "email": user.email});
         }
     })(req, res, next);
 });

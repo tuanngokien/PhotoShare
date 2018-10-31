@@ -30,7 +30,7 @@ const AUTO_TAGGING_OPTION = {
 
 router.route("/")
     .post(function (req, res) {
-        let imagePublicIds = req.body.images;
+        let imagePublicIds = req.body.images || [];
         if (imagePublicIds.length > 0) {
             let photos = [];
             for (let publicId of imagePublicIds) {
