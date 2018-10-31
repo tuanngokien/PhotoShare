@@ -56,7 +56,7 @@ class Upload extends Component {
 
     render() {
         return (
-            <Grid container direction={"column"} justify={"center"} id={"img-uploader"}>
+            <Grid container direction={"column"} justify={"center"} id={"img-uploader"} style={{paddingTop: '5%', paddingLeft: '12%', paddingRight: '12%'}}>
             </Grid>
         );
     }

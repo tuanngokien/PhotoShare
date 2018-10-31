@@ -49,7 +49,7 @@ const photos = [
         width: 4,
         height: 3
     }
-];	
+];
 
 export default class imageLayout extends React.Component {
 	constructor(props){
@@ -92,7 +92,7 @@ export default class imageLayout extends React.Component {
       return (
       	<div>
          <Gallery columns={4} photos={photos} onClick={(e)=>this.handleClick(e,photos.index)}/>
-         <ImageBox 
+         <ImageBox
           isOpen={this.state.openImgBox}
           isClose={this.closeImgBox.bind(this)}
           gotoPrevious={this.gotoPrevious.bind(this)}

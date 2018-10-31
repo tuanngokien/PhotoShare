@@ -19,7 +19,7 @@
 .PageSwitcher {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 7%;
+  margin-bottom: 5%;
 }
 
 .PageSwitcher__Item {
