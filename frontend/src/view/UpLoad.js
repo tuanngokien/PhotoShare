@@ -33,7 +33,6 @@ class Upload extends Component {
                 }
             },
             function (error, result) {
-                console.log(result);
                 if (!error && result.event === "show-completed") {
                     let uploadedPhoto = result.info.items.filter(photo => photo.done);
                     let photos = uploadedPhoto.map(photo => {
@@ -45,15 +44,14 @@ class Upload extends Component {
                             photos
                         }, {
                             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-                        }
-                    )
+                        })
                         .then(res => {
                             if(res.success){
                                 alert("Uploaded");
                             }
                             //todo redirect
                         }).catch(err => {
-                        console.log(err);
+                            console.log(err);
                     });
                 }
             });

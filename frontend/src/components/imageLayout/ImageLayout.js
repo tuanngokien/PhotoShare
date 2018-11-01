@@ -60,12 +60,13 @@ export default class imageLayout extends React.Component {
 	  this.state = {
 	    openImgBox: false,
 	    currentImage: 0,
-	    photo: [
-        'src': null,
-        'width': null,
-        'height': null,
-      ],
-	 }
+	  //   photo: [
+      //   'src': null,
+      //   'width': null,
+      //   'height': null,
+      // ],
+	 };
+
     this.openImgBox = this.openImgBox.bind(this);
     this.closeImgBox = this.closeImgBox.bind(this);
     this.gotoPrevious = this.gotoPrevious.bind(this);

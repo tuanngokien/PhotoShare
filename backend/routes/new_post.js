@@ -41,7 +41,6 @@ router.route("/")
                 photos.push({publicId, width, height, originalImage, postImage, thumbnail});
             }
             req.user.createPost({
-                caption: req.body.caption,
                 Photos: photos,
             }, {
                 include: [{

@@ -75,8 +75,8 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     User.prototype.toJSON = function () {
-        let {id, email, firstName, lastName} = this.dataValues;
-        return {id, email, firstName, lastName};
+        let {id, email, firstName, lastName, createdAt} = this.dataValues;
+        return {id, email, firstName, lastName, joined: createdAt.getFullYear()};
     };
 
     return User;

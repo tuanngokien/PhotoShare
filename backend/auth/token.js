@@ -7,7 +7,6 @@ const {User} = require('../models/');
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = process.env.JWT_SECRET;
-jwtOptions.expiresIn = 1800;
 jwtOptions.passReqToCallback = true;
 
 passport.use("tokenAuth", new JwtStrategy(jwtOptions, function (req, jwtPayload, done) {
@@ -16,10 +15,10 @@ passport.use("tokenAuth", new JwtStrategy(jwtOptions, function (req, jwtPayload,
             if (user) {
                 req.user = user;
                 done(null, user);
-                return null;
             } else {
                 done({"token": "Invalid token"}, false);
             }
+            return null;
         })
         .catch(err => {
             console.log(err);
