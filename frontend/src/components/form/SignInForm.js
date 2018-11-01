@@ -20,15 +20,16 @@ class SignInForm extends Component {
     signInRequest = async () => {
       var headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'token' : localStorage.getItem('token')
       };
       var data = {
         email: this.state.email,
         password: this.state.password,
       }
-      await axios.post(IpConfig.URL + '/api/signin',{headers: headers}, {params: data})
+      await axios.post(IpConfig.URL + '/api/login',{headers: headers}, {params: data})
       .then(function (response) {
         console.log(response);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('id', response.data.id);
       })
       .catch(function (error) {
         console.log(error);
