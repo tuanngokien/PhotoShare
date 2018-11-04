@@ -34,6 +34,7 @@ class SignInForm extends Component {
       .catch(function (error) {
         console.log(error);
       });
+      window.location.replace("#/pts/dashboard");
     }
 
     inputEmail = (e) => {

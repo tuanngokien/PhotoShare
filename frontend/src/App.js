@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Layout} from './container';
-import FirstLogin  from './view/FirstLogin.js';
 import Login from './view/Login.js';
 
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
@@ -13,9 +12,8 @@ class App extends Component {
       <div className="App">
         <HashRouter basename="/">
           <Switch>
-            <Redirect exact from="/" to="/pts/dashboard" />
+            <Redirect exact from="/" to="/form" />
             <Route path="/pts" name="Home" component={Layout} />
-            <Route path="/firstLogin" name="FirstLogin" component={FirstLogin} />
             <Route path="/form" name="Login" component={Login} />
           </Switch>
         </HashRouter>
