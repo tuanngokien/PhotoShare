@@ -76,3 +76,7 @@ iframe{
     padding: 0 20%;
     background: linear-gradient(0deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%),radial-gradient(50% 120%,rgba(0,0,0,0) 50%,rgba(0,0,0,.7) 100%), url(./assets/img/bg2.jpeg);
 }
+
+.MuiTypography-headline-225 {
+    line-height: 0.8em!important;
+}

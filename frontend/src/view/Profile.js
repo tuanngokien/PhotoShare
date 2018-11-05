@@ -131,7 +131,7 @@ class Profile extends Component {
     };
 
     handleChangeIndex = index => {
-        this.setState({value: index});
+        console.log(index);
     };
 
     render() {
@@ -161,7 +161,8 @@ class Profile extends Component {
                             </Grid>
                             <SwipeableViews
                                 index={this.state.value}
-                                onChangeIndex={this.handleChangeIndex}>
+                                onChangeIndex={this.handleChangeIndex}
+                                >
                                 <TabContainer>
                                     <ImageLayout/>
                                 </TabContainer>
