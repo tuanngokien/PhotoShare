@@ -141,7 +141,7 @@ class Profile extends Component {
                 <Grid container className={"user-page-container"}>
                     <TimelineProfile classes={classes}/>
                     <Grid item xs={12}>
-                        <AppBar position="static" color="#FFFFFF">
+                        <AppBar position="static" color="default">
                             <Tabs
                                 className={"containerImageList"}
                                 style={{margin: "0 10%", color: "black"}}
