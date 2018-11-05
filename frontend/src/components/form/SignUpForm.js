@@ -33,6 +33,8 @@ class SignUpForm extends Component {
       await axios.post(IpConfig.URL + '/api/signup', data)
       .then(function (response) {
         console.log(response);
+        response.data.success? alert("Đăng kí thành công")
+        : alert(response.data.errors===null? "Vui lòng nhập đầy đủ thông tin": (response.data.errors.email||response.data.errors.password)) ;
       })
       .catch(function (error) {
         console.log(error);
