@@ -104,9 +104,9 @@ const TimelineProfile = withStyles(styles)((props) => {
                     </Grid>
                     <Grid container justify={"flex-end"} alignItems={"flex-start"}>
                         <div style={{color: "white", margin: "0 10% 20px 10px"}}>
-                            <span style={{marginRight: "20px",}}>19 Posts</span>
-                            <span style={{marginRight: "20px",}}>230 Photos</span>
-                            <span>Joined 2018</span>
+                            <span style={{marginRight: "20px",}}>{props.posts} Posts</span>
+                            <span style={{marginRight: "20px",}}>{props.photos} Photos</span>
+                            <span>Joined {props.joined}</span>
                         </div>
                     </Grid>
                 </CardMedia>
@@ -124,6 +124,9 @@ const StyleTab = props => {
 class Profile extends Component {
     state = {
         value: 0,
+        postsCount: 0,
+        photosCount: 0,
+        joined: null
     };
 
     handleChange = (event, value) => {
@@ -134,12 +137,29 @@ class Profile extends Component {
         this.setState({value: index});
     };
 
+    setPostsCount = (postsCount) => {
+        this.setState({postsCount: postsCount});
+    };
+
+    setPhotosCount = (photosCount) => {
+        this.setState({photosCount: photosCount});
+    };
+
+    setJoined = (joined) => {
+        this.setState({joined: joined});
+    };
+
     render() {
         const {classes} = this.props;
         return (
             <div>
                 <Grid container className={"user-page-container"}>
-                    <TimelineProfile classes={classes}/>
+                    <TimelineProfile
+                        classes={classes}
+                        posts = {this.state.postsCount}
+                        photos = {this.state.photosCount}
+                        joined = {this.state.joined}
+                    />
                     <Grid item xs={12}>
                         <AppBar position="static" color="default">
                             <Tabs
@@ -163,7 +183,10 @@ class Profile extends Component {
                                 index={this.state.value}
                                 onChangeIndex={this.handleChangeIndex}>
                                 <TabContainer>
-                                    <ImageLayout/>
+                                    <ImageLayout
+                                        postsCount = {this.setPostsCount.bind(this)}
+                                        photosCount = {this.setPhotosCount.bind(this)}
+                                        joined = {this.setJoined.bind(this)}/>
                                 </TabContainer>
                                 <TabContainer>
                                     <ImageGridList/>

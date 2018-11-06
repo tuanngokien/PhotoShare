@@ -3,6 +3,8 @@ import ImageUploader from 'react-images-upload';
 import Grid from '@material-ui/core/Grid';
 import axios from "axios";
 import * as IpConfig from "../ipConfig/IpConfig";
+import {NotificationContainer, NotificationManager} from 'react-notifications'
+import 'react-notifications/dist/react-notifications.css'
 
 
 const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
@@ -10,6 +12,14 @@ const PRESET = process.env.REACT_APP_PRESET;
 const FOLDER = process.env.REACT_APP_FOLDER;
 
 class Upload extends Component {
+    constructor(){
+        super();
+        this.state = {
+            success: false,
+        }
+        this.createNotification = this.createNotification.bind(this);
+    }
+
     componentDidMount() {
         window.cloudinary.openUploadWidget({
                 cloud_name: CLOUD_NAME,
@@ -33,6 +43,7 @@ class Upload extends Component {
                 }
             },
             function (error, result) {
+                var com = this;
                 if (!error && result.event === "show-completed") {
                     let uploadedPhoto = result.info.items.filter(photo => photo.done);
                     let photos = uploadedPhoto.map(photo => {
@@ -46,8 +57,9 @@ class Upload extends Component {
                             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                         })
                         .then(res => {
-                            if(res.success){
-                                alert("Uploaded");
+                            console.log(res);
+                            if(res.data.success){
+                                //call createNoti function
                             }
                             //todo redirect
                         }).catch(err => {
@@ -58,6 +70,14 @@ class Upload extends Component {
         let contentHeight = document.getElementById("main-content").clientHeight;
         document.getElementById("img-uploader").style.height = `${contentHeight}px`;
     }
+
+    createNotification = (type) => {
+      switch (type) {
+        case 'success':
+          NotificationManager.success('Đăng ảnh thành công', 'Yêu cầu thành công', 4000);
+          break;
+      };
+    };
 
     render() {
         return (
@@ -71,6 +91,7 @@ class Upload extends Component {
                 paddingRight: '12%'
               }}
             >
+            <NotificationContainer/>
             </Grid>
         );
     }

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as IpConfig from '../../ipConfig/IpConfig.js';
 import Button from "@material-ui/core/Button";
+import {NotificationContainer, NotificationManager} from 'react-notifications'
+import 'react-notifications/dist/react-notifications.css'
 
 class SignUpForm extends Component {
     constructor() {
@@ -18,12 +20,14 @@ class SignUpForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.signUpRequest = this.signUpRequest.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
 
     signUpRequest = async () => {
       var headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
       };
+      var com = this;
       var data = {
         email: this.state.email,
         password: this.state.password,
@@ -33,8 +37,8 @@ class SignUpForm extends Component {
       await axios.post(IpConfig.URL + '/api/signup', data)
       .then(function (response) {
         console.log(response);
-        response.data.success? alert("Đăng kí thành công")
-        : alert(response.data.errors===null? "Vui lòng nhập đầy đủ thông tin": (response.data.errors.email||response.data.errors.password)) ;
+        response.data.success? com.createNotification('success')
+        : com.createNotification(response.data.errors===null? 'info': (response.data.errors.email||response.data.errors.password)) ;
       })
       .catch(function (error) {
         console.log(error);
@@ -78,9 +82,32 @@ class SignUpForm extends Component {
         console.log(this.state);
     }
 
+    redirect() {
+      window.location.replace('#/form');
+    }
+
+    createNotification = (type) => {
+      switch (type) {
+        case 'success':
+          NotificationManager.success('Đăng kí thành công', 'Yêu cầu thành công', 4000, () => {this.redirect()});
+          break;
+        case 'Invalid email':
+          NotificationManager.error('Hãy nhập lại email', 'Yêu cầu lỗi',5000);
+          break;
+        case 'Password must be between 8 and 20 characters':
+          NotificationManager.error('Mật khẩu phải từ 8 đến 20 kí tự', 'Yêu cầu lỗi', 5000);
+          break;
+        case 'info':
+          NotificationManager.error('Hãy nhập đầy đủ thông tin', 'Yêu cầu lỗi', 5000);
+          break;
+      };
+    };
+
     render() {
         return (
         <div className="FormCenter">
+
+            <NotificationContainer/>
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">First Name</label>
