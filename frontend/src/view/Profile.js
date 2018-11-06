@@ -134,7 +134,7 @@ class Profile extends Component {
     };
 
     handleChangeIndex = index => {
-        this.setState({value: index});
+        console.log(index);
     };
 
     setPostsCount = (postsCount) => {
@@ -181,7 +181,8 @@ class Profile extends Component {
                             </Grid>
                             <SwipeableViews
                                 index={this.state.value}
-                                onChangeIndex={this.handleChangeIndex}>
+                                onChangeIndex={this.handleChangeIndex}
+                                >
                                 <TabContainer>
                                     <ImageLayout
                                         postsCount = {this.setPostsCount.bind(this)}
