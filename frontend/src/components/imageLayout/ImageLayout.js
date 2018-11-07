@@ -80,15 +80,21 @@ export default class imageLayout extends React.Component {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         }
         var com = this;
+        var temp = -1;
         await axios.get(IpConfig.URL + '/api/' + user_id + '/posts', {headers: headers})
             .then(function (res) {
-                res.data.posts.map(photo => photo.Photos.map(img => (
-                    com.setState({photos: [...com.state.photos, {
-                        'src': img.postImage,
-                        'width': img.width,
-                        'height': img.height
-                    }]})
-                )));
+              console.log(res.data.posts);
+              res.data.posts.map(photo => photo.Photos.map(img => (
+                  com.setState({photos: [...com.state.photos, {
+                      'index': ++temp,
+                      'src': img.postImage,
+                      'width': img.width,
+                      'height': img.height
+                  }]})
+              )));
+              com.props.postsCount(res.data.user.postCount);
+              com.props.photosCount(res.data.user.photoCount);
+              com.props.joined(res.data.user.joined);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -115,27 +121,25 @@ export default class imageLayout extends React.Component {
     }
 
     handleClick(e, index) {
-        this.setState({
-            openImgBox: true,
-            currentImage: index
-        })
+      this.setState({
+        openImgBox: true,
+        currentImage: index
+      })
     }
 
     render() {
-        console.log(this.state.photos);
-        console.log(photos);
-        return (
-            <div>
-                <Gallery columns={4} photos={this.state.photos} onClick={(e) => this.handleClick(e, photos.index)}/>
-                <ImageBox
-                    isOpen={this.state.openImgBox}
-                    isClose={this.closeImgBox.bind(this)}
-                    gotoPrevious={this.gotoPrevious.bind(this)}
-                    gotoNext={this.gotoNext.bind(this)}
-                    currentImage={this.state.currentImage}
-                    images={this.state.photos}
-                />
-            </div>
-        )
+      return (
+          <div>
+              <Gallery columns={4} photos={this.state.photos} onClick={(e) => this.handleClick(e, 0)}/>
+              <ImageBox
+                  isOpen={this.state.openImgBox}
+                  isClose={this.closeImgBox.bind(this)}
+                  gotoPrevious={this.gotoPrevious.bind(this)}
+                  gotoNext={this.gotoNext.bind(this)}
+                  currentImage={this.state.currentImage}
+                  images={this.state.photos}
+              />
+          </div>
+      )
     }
 }

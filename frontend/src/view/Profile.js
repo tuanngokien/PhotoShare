@@ -97,16 +97,18 @@ const TimelineProfile = withStyles(styles)((props) => {
                                   justify="space-between"
                                   alignItems="center">
                                 <span style={{marginRight: "20px",}}>@ngokientuan</span>
-                                <span style={{marginRight: "20px",}}>12.5K Followers</span>
-                                <span>6K Following</span>
+                                <span style={{marginRight: "20px"}}>
+                                  <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>12.5K Followers</a>
+                                </span>
+                                <span><a href='#/pts/following' style={{textDecoration:'none', color:'white'}}>6K Following</a></span>
                             </Grid>
                         </div>
                     </Grid>
                     <Grid container justify={"flex-end"} alignItems={"flex-start"}>
                         <div style={{color: "white", margin: "0 10% 20px 10px"}}>
-                            <span style={{marginRight: "20px",}}>19 Posts</span>
-                            <span style={{marginRight: "20px",}}>230 Photos</span>
-                            <span>Joined 2018</span>
+                            <span style={{marginRight: "20px",}}>{props.posts} Posts</span>
+                            <span style={{marginRight: "20px",}}>{props.photos} Photos</span>
+                            <span>Joined {props.joined}</span>
                         </div>
                     </Grid>
                 </CardMedia>
@@ -124,6 +126,9 @@ const StyleTab = props => {
 class Profile extends Component {
     state = {
         value: 0,
+        postsCount: 0,
+        photosCount: 0,
+        joined: null
     };
 
     handleChange = (event, value) => {
@@ -134,12 +139,29 @@ class Profile extends Component {
         console.log(index);
     };
 
+    setPostsCount = (postsCount) => {
+        this.setState({postsCount: postsCount});
+    };
+
+    setPhotosCount = (photosCount) => {
+        this.setState({photosCount: photosCount});
+    };
+
+    setJoined = (joined) => {
+        this.setState({joined: joined});
+    };
+
     render() {
         const {classes} = this.props;
         return (
             <div>
                 <Grid container className={"user-page-container"}>
-                    <TimelineProfile classes={classes}/>
+                    <TimelineProfile
+                        classes={classes}
+                        posts = {this.state.postsCount}
+                        photos = {this.state.photosCount}
+                        joined = {this.state.joined}
+                    />
                     <Grid item xs={12}>
                         <AppBar position="static" color="default">
                             <Tabs
@@ -164,7 +186,10 @@ class Profile extends Component {
                                 onChangeIndex={this.handleChangeIndex}
                                 >
                                 <TabContainer>
-                                    <ImageLayout/>
+                                    <ImageLayout
+                                        postsCount = {this.setPostsCount.bind(this)}
+                                        photosCount = {this.setPhotosCount.bind(this)}
+                                        joined = {this.setJoined.bind(this)}/>
                                 </TabContainer>
                                 <TabContainer>
                                     <ImageGridList/>
