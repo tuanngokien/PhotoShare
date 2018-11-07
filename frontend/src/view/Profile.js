@@ -97,8 +97,10 @@ const TimelineProfile = withStyles(styles)((props) => {
                                   justify="space-between"
                                   alignItems="center">
                                 <span style={{marginRight: "20px",}}>@ngokientuan</span>
-                                <span style={{marginRight: "20px",}}>12.5K Followers</span>
-                                <span>6K Following</span>
+                                <span style={{marginRight: "20px"}}>
+                                  <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>12.5K Followers</a>
+                                </span>
+                                <span><a href='#/pts/following' style={{textDecoration:'none', color:'white'}}>6K Following</a></span>
                             </Grid>
                         </div>
                     </Grid>

@@ -103,7 +103,7 @@ export default class Dashboard extends Component {
     render() {
         const favourite = this.state.favourite;
         return (
-            <div className='dashboard-background'>
+            <div className='background'>
                 <div className='container'>
                     <Row>
                         <Col xs={12} sm={9}>
