@@ -24,14 +24,14 @@ const UserFollowListItem = ({avatarSrc, username, fullName}) => {
             <Avatar
                 src={avatarSrc}/>
             <Card style={{boxShadow: "none"}}>
-                <CardHeader title={<span style={{fontSize: "0.75em"}}>{username}</span>}
+                <CardHeader title={<span style={{fontSize: "0.6em", fontWeight: "bold"}}>{username}</span>}
                             subheader={<span style={{fontSize: "0.85em"}}>{fullName}</span>}
                             style={{paddingTop: "0px", paddingBottom: "0px"}}
                 />
             </Card>
             <ListItemSecondaryAction>
                 <IconButton aria-label="Comments">
-                    <MdAddBox style={{fontSize: "1.2em"}}/>
+                    <MdAddBox style={{fontSize: "1.1em"}}/>
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>

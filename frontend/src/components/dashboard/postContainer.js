@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import IMG_3958 from '../../assets/img/IMG_3958.JPG';
 import ListItem from '@material-ui/core/ListItem';
 import ImageBox from './../imageBox/ImageBox.js';
+import {FaRegHeart, FaHeart, FaRegComment, FaRegPaperPlane} from "react-icons/fa";
 
 export default class postContainer extends React.Component {
     constructor(props) {
@@ -61,8 +62,9 @@ export default class postContainer extends React.Component {
                                 <img src={IMG_3958} style={{width: '100%', height: '100%'}}/>
                             </Avatar>
                         }
-                        title=<p style={{margin: 0, fontWeight: "bold"}}>Đỗ Tuấn Anh</p>
-                    subheader="September 14, 2018"
+                        title={<p style={{margin: 0, fontWeight: "bold", fontSize: "1.1em"}}>Đỗ Tuấn Anh</p>}
+                        subheader={"September 14, 2018"}
+                        style={{paddingBottom: "10px"}}
                     />
                     {this.props.photo.map(photo => (
                         <ListItem dense button style={{padding: 'unset', marginBottom: '1%'}}
@@ -79,20 +81,16 @@ export default class postContainer extends React.Component {
                         currentImage={this.state.currentImage}
                         images={this.props.photo}
                     />
-                    <CardContent>
-                        <Typography component="p">
-                            Rét quá
-                        </Typography>
-                    </CardContent>
-                    <CardActions disableActionSpacing>
+                    <CardActions disableActionSpacing style={{paddingTop: "3px"}}>
                         <IconButton aria-label="Add to favorites" onClick={this.onHandleLike}>
-                            <FavoriteIcon/>
+                            <FaRegHeart/>
+                            {/*<FaHeart style={{color: "#dc3545"}}/>*/}
                         </IconButton>
                         <IconButton aria-label="Share">
-                            <Comment/>
+                            <FaRegComment/>
                         </IconButton>
                         <IconButton aria-label="Share">
-                            <ShareIcon/>
+                            <FaRegPaperPlane/>
                         </IconButton>
                     </CardActions>
                 </Card>

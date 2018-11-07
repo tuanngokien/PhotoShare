@@ -1,9 +1,49 @@
-@import url('https://fonts.googleapis.com/css?family=Niramit');
+@import url('https://fonts.googleapis.com/css?family=Niramit|Titillium+Web|Kanit');
+
+@font-face {
+    font-family: Proxima Nova;
+    font-weight: 100;
+    font-style: normal;
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.eot);
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.eot#iefix) format("embedded-opentype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.woff2) format("woff2"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.woff) format("woff"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.ttf) format("truetype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.svg#svgFontName) format("svg")
+}
+
+@font-face {
+    font-family: Proxima Nova;
+    font-weight: 300;
+    font-style: normal;
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.eot);
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.eot#iefix) format("embedded-opentype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.woff2) format("woff2"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.woff) format("woff"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.ttf) format("truetype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-light.svg#svgFontName) format("svg")
+}
+
+@font-face {
+    font-family: Proxima Nova;
+    font-weight: 400;
+    font-style: normal;
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.eot);
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.eot#iefix) format("embedded-opentype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.woff2) format("woff2"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.woff) format("woff"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.ttf) format("truetype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-regular.svg#svgFontName) format("svg")
+}
+
+@font-face {
+    font-family: Proxima Nova;
+    font-weight: 600;
+    font-style: normal;
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.eot);
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.eot#iefix) format("embedded-opentype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.woff2) format("woff2"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.woff) format("woff"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.ttf) format("truetype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-semibold.svg#svgFontName) format("svg")
+}
+
+@font-face {
+    font-family: Proxima Nova;
+    font-weight: 700;
+    font-style: normal;
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.eot);
+    src: url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.eot#iefix) format("embedded-opentype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.woff2) format("woff2"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.woff) format("woff"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.ttf) format("truetype"), url(https://s.yimg.com/ap/build/fonts/proxima-nova-bold.svg#svgFontName) format("svg")
+}
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Niramit, sans-serif !important;
+    font-family: Proxima Nova, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -14,14 +54,14 @@ code {
 }
 
 .container {
-    padding-top: 8%;
+    padding-top: 3%;
     margin-left: 10%;
     margin-right: 10%;
     height: 100%;
 }
 
 .dashboard-background {
-    background: rgb(239, 240, 242);
+    background: #f3f5f6;
 }
 
 .user-page-container {
@@ -45,12 +85,18 @@ code {
     border-radius: 25px;
 }
 
+.header-transparent{
+    background: transparent!important;
+    box-shadow: none!important;
+}
+
 .header, .footer {
     background: rgba(21, 21, 23, .95) !important;
 }
 
 .header {
     box-shadow: 1px 1px 50px 3px #888888 !important;
+    transition: background-color 1s;
 }
 
 .header input {
@@ -67,16 +113,61 @@ code {
     height: 35px;
 }
 
-iframe{
-    z-index: 0!important;
-    display: block!important;
+iframe {
+    z-index: 0 !important;
+    display: block !important;
 }
 
-#img-uploader{
+#img-uploader {
     padding: 0 20%;
-    background: linear-gradient(0deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%),radial-gradient(50% 120%,rgba(0,0,0,0) 50%,rgba(0,0,0,.7) 100%), url(./assets/img/bg2.jpeg);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .5) 100%), radial-gradient(50% 120%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .7) 100%), url(./assets/img/bg2.jpeg);
 }
 
 .MuiTypography-headline-225 {
-    line-height: 0.8em!important;
+    line-height: 0.8em !important;
+}
+
+.jumbotron {
+    height: 60vh;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, .38) 3.5%, rgba(0, 0, 0, .379) 7%, rgba(0, 0, 0, .377) 10.35%, rgba(0, 0, 0, .375) 13.85%, rgba(0, 0, 0, .372) 17.35%, rgba(0, 0, 0, .369) 20.85%, rgba(0, 0, 0, .366) 24.35%, rgba(0, 0, 0, .364) 27.85%, rgba(0, 0, 0, .361) 31.35%, rgba(0, 0, 0, .358) 34.85%, rgba(0, 0, 0, .355) 38.35%, rgba(0, 0, 0, .353) 41.85%, rgba(0, 0, 0, .351) 45.35%, rgba(0, 0, 0, .35) 48.85%, rgba(0, 0, 0, .353) 52.35%, rgba(0, 0, 0, .36) 55.85%, rgba(0, 0, 0, .371) 59.35%, rgba(0, 0, 0, .385) 62.85%, rgba(0, 0, 0, .402) 66.35%, rgba(0, 0, 0, .42) 69.85%, rgba(0, 0, 0, .44) 73.35%, rgba(0, 0, 0, .46) 76.85%, rgba(0, 0, 0, .48) 80.35%, rgba(0, 0, 0, .498) 83.85%, rgba(0, 0, 0, .515) 87.35%, rgba(0, 0, 0, .529) 90.85%, rgba(0, 0, 0, .54) 94.35%, rgba(0, 0, 0, .547) 97.85%, rgba(0, 0, 0, .55)), url("./assets/img/landing.jpg") no-repeat;
+    background-size: cover;
+}
+
+.jumbotron > div{
+    color: white;
+}
+
+.jumbotron h1 {
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 3px;
+}
+
+.jumbotron .dashboard-searchbar {
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.dashboard-searchbar input{
+    font-size: 1.2em;
+    padding: 15px 0;
+}
+
+.dashboard-searchbar span{
+    font-size: 3em;
+    margin: 5px 5px 0 5px;
+}
+
+.jumbotron .trending-searches > a{
+    color: hsla(0,0%,100%,.8);
+    text-decoration: none;
+}
+
+.jumbotron .trending-searches > a:not(:last-child)::after{
+    content: ", ";
+    margin: 2px;
+}
+
+.jumbotron .trending-searches > a:hover{
+    color: white;
 }

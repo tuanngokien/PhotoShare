@@ -41,16 +41,14 @@ export default class Header extends Component {
         const {anchorEl} = this.state;
         return (
             <div>
-                <AppBar position='fixed' className='header'>
+                <AppBar position='fixed' id='header' className={"header"}>
                     <Toolbar className='main'>
                         <Grid container justify={"space-between"} alignItems={"center"}>
                             <a className="app-logo" href="#/pts/dashboard">
-                                <img src={Logo} alt="Jambo" title="Jambo" style={{width: "100%", height: "auto"}}/>
+                                <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
                             </a>
                             <div>
-                                <Grid container justify={"flex-start"} alignItems={"center"}>
-                                    <Grid container spacing={8} alignItems="center"
-                                          style={{background: "white", borderRadius: "5px"}}>
+                                <Grid container justify={"flex-start"} alignItems={"center"} style={{background: "white", borderRadius: "5px", padding: "3px"}} id={"top-searchbar"}>
                                         <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent",}}>
                                             <Icon>search</Icon>
                                         </Grid>
@@ -62,7 +60,6 @@ export default class Header extends Component {
                                             }} placeholder={"Photos, people"}/>
                                         </Grid>
                                     </Grid>
-                                </Grid>
                             </div>
                             <div>
                                 <IconButton href='#/pts/upload'>
@@ -90,8 +87,7 @@ export default class Header extends Component {
                                             paddingTop: 0,
                                             paddingBottom: 0
                                         }
-                                    }}
-                                >
+                                    }}>
                                     <MenuItem onClick={this.redirectProfile}>Profile</MenuItem>
                                     <MenuItem onClick={this.logout}>Logout</MenuItem>
                                 </Menu>

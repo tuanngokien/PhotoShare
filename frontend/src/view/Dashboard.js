@@ -22,6 +22,8 @@ import {Col, Row} from 'react-grid-system';
 import PostContainer from '../components/dashboard/postContainer.js';
 import FollowSidebar from '../components/dashboard/followSidebar';
 import SearchTrendingSidebar from '../components/dashboard/searchTrendingSidebar';
+import Icon from "@material-ui/core/Icon/Icon";
+import TextField from "@material-ui/core/TextField/TextField";
 
 const photo = [
     {index: 0, src: 'https://source.unsplash.com/I1ASdgphUH4/800x599'},
@@ -87,6 +89,32 @@ export default class Dashboard extends Component {
         this.closeImgBox = this.closeImgBox.bind(this);
     }
 
+    scrollEvent = () => {
+        if (window.scrollY > window.innerHeight / 4) {
+            this.headerClassList.add('header');
+            this.topSearchBar.style.display = "flex";
+        } else {
+            this.headerClassList.remove('header');
+            this.topSearchBar.style.display = "none";
+        }
+    };
+
+    componentDidMount() {
+        this.headerClassList = document.getElementById("header").classList;
+        this.headerClassList.remove("header");
+        this.headerClassList.add("header-transparent");
+        this.topSearchBar = document.getElementById("top-searchbar");
+        this.topSearchBar.style.display = "none";
+        window.addEventListener("scroll", this.scrollEvent);
+    }
+
+    componentWillUnmount() {
+        this.headerClassList.remove("header-transparent");
+        this.headerClassList.add("header");
+        this.topSearchBar.style.display = "flex";
+        window.removeEventListener("scroll", this.scrollEvent)
+    }
+
     onHandleLike = () => {
         this.setState({favourite: !this.state.favourite});
     }
@@ -104,6 +132,35 @@ export default class Dashboard extends Component {
         const favourite = this.state.favourite;
         return (
             <div className='dashboard-background'>
+                <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"}>
+                    <div>
+                        <Grid container direction={"column"} alignItems={"center"}>
+                            <h1 style={{fontWeight: "900", margin: 0, fontSize: "3em"}}>PHOTOSHARE</h1>
+                            <h3 style={{margin: "10px 0 30px 0"}}>Gifted by the world’s most generous community of
+                                photographers</h3>
+                        </Grid>
+                        <Grid container justify={"flex-start"} alignItems={"center"} className={"dashboard-searchbar"}>
+                            <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent",}}>
+                                <Icon>search</Icon>
+                            </Grid>
+                            <Grid>
+                                <TextField style={{
+                                    background: "transparent",
+                                    width: "40vw",
+                                    marginRight: "10px"
+                                }} placeholder={"Photos, people"}/>
+                            </Grid>
+                        </Grid>
+                        <Grid container alignItems={"center"}>
+                            <p style={{marginRight: "10px"}}>Trending searches:</p>
+                            <div className={"trending-searches"}>
+                                <a href={"#"}>the walking dead</a>
+                                <a href={"#"}>miss earth 2018</a>
+                                <a href={"#"}>league of legends</a>
+                            </div>
+                        </Grid>
+                    </div>
+                </Grid>
                 <div className='container'>
                     <Row>
                         <Col xs={12} sm={9}>
