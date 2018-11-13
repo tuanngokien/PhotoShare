@@ -46,14 +46,14 @@ router.route('/info/:userId')
     })
   })
 
-router.route('/unfollow')
+router.route('/:userId/unfollow')
   .delete((req, res) => {
-    let { follow_by, follow_to } = req.body;
+    let unfollowId = req.param.userId;
 
     follow.destroy({
       where: {
-        follow_by: follow_by,
-        follow_to: follow_to
+        follow_by: req.user.id,
+        follow_to: unfollowId
       }
     }).then(isUnfollw => {
       if (isUnfollw) {
