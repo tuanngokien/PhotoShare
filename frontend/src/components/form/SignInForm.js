@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
-import * as IpConfig from '../../ipConfig/IpConfig'
 
 class SignInForm extends Component {
     constructor() {
@@ -25,7 +24,7 @@ class SignInForm extends Component {
         email: this.state.email,
         password: this.state.password,
       }
-      await axios.post(IpConfig.URL + '/api/login',{headers: headers}, {params: data})
+      await axios.post('/api/login',{headers: headers}, {params: data})
       .then(function (response) {
         console.log(response);
         localStorage.setItem('token', response.data.token);

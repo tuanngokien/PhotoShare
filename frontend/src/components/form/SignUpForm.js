@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import * as IpConfig from '../../ipConfig/IpConfig.js';
 import Button from "@material-ui/core/Button";
 import {NotificationContainer, NotificationManager} from 'react-notifications'
 import 'react-notifications/dist/react-notifications.css'
@@ -34,7 +33,7 @@ class SignUpForm extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
       }
-      await axios.post(IpConfig.URL + '/api/signup', data)
+      await axios.post('/api/signup', data)
       .then(function (response) {
         console.log(response);
         response.data.success? com.createNotification('success')

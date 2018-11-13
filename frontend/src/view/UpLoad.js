@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ImageUploader from 'react-images-upload';
 import Grid from '@material-ui/core/Grid';
 import axios from "axios";
-import * as IpConfig from "../ipConfig/IpConfig";
 import {NotificationContainer, NotificationManager} from 'react-notifications'
 import 'react-notifications/dist/react-notifications.css'
 
@@ -50,7 +49,7 @@ class Upload extends Component {
                         let {public_id : publicId, width, height} = photo.uploadInfo;
                         return {publicId, width, height};
                     });
-                    axios.post(IpConfig.URL + '/api/posts',
+                    axios.post('/api/posts',
                         {
                             photos
                         }, {

@@ -59,7 +59,7 @@ export default class postContainer extends React.Component {
                         className={"md-line-height"}
                     />
                     {photos.map(photo => (
-                        <ListItem dense button style={{padding: 'unset', marginBottom: '1%'}}
+                        <ListItem key={photo.id} dense button style={{padding: 'unset', marginBottom: '1%'}}
                                   onClick={(e) => this.openImgBox(e, photo.id)}>
                             <img src={photo.src} style={{
                                 width: '100%',

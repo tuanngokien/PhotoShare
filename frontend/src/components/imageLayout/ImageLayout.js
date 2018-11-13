@@ -2,7 +2,6 @@ import React from "react";
 import Gallery from "react-photo-gallery";
 import ImageBox from "../imageBox/ImageBox"
 import axios from "axios";
-import * as IpConfig from "../../ipConfig/IpConfig.js";
 /* popout the browser and maximize to see more rows! -> */
 
 const photos = [
@@ -81,7 +80,7 @@ export default class imageLayout extends React.Component {
         }
         var com = this;
         var temp = -1;
-        await axios.get(IpConfig.URL + '/api/' + user_id + '/posts', {headers: headers})
+        await axios.get('/api/' + user_id + '/posts', {headers: headers})
             .then(function (res) {
               console.log(res.data.posts);
               res.data.posts.map(photo => photo.Photos.map(img => (
