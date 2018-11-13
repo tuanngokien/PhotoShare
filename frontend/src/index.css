@@ -58,6 +58,7 @@ code {
     margin-left: 10%;
     margin-right: 10%;
     height: 100%;
+    position: relative;
 }
 
 .dashboard-background {
@@ -85,9 +86,9 @@ code {
     border-radius: 25px;
 }
 
-.header-transparent{
-    background: transparent!important;
-    box-shadow: none!important;
+.header-transparent {
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 .header, .footer {
@@ -133,7 +134,7 @@ iframe {
     background-size: cover;
 }
 
-.jumbotron > div{
+.jumbotron > div {
     color: white;
 }
 
@@ -148,26 +149,27 @@ iframe {
     padding: 3px;
 }
 
-.dashboard-searchbar input{
+.dashboard-searchbar input {
     font-size: 1.2em;
     padding: 15px 0;
 }
 
-.dashboard-searchbar span{
+.dashboard-searchbar span {
     font-size: 3em;
     margin: 5px 5px 0 5px;
 }
 
-.jumbotron .trending-searches > a{
-    color: hsla(0,0%,100%,.8);
+.jumbotron .trending-searches > a {
+    color: hsla(0, 0%, 100%, .8);
     text-decoration: none;
 }
 
-.jumbotron .trending-searches > a:not(:last-child)::after{
+.jumbotron .trending-searches > a:not(:last-child)::after {
     content: ", ";
     margin: 2px;
 }
 
-.jumbotron .trending-searches > a:hover{
+.jumbotron .trending-searches > a:hover {
     color: white;
 }
+

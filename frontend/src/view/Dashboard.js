@@ -23,20 +23,83 @@ import PostContainer from '../components/dashboard/postContainer.js';
 import FollowSidebar from '../components/dashboard/followSidebar';
 import SearchTrendingSidebar from '../components/dashboard/searchTrendingSidebar';
 import Icon from "@material-ui/core/Icon/Icon";
-import TextField from "@material-ui/core/TextField/TextField";
+import Input from '@material-ui/core/Input';
+import StickyBox from "react-sticky-box";
 
-const photo = [
-    {index: 0, src: 'https://source.unsplash.com/I1ASdgphUH4/800x599'},
-]
-const photo1 = [
-    {index: 1, src: 'https://source.unsplash.com/qDkso9nvCg0/600x799'}
-]
-const photo2 = [
-    {index: 0, src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599'}
-]
-const photo3 = [
-    {index: 0, src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799'},
-]
+const posts = [
+    {
+        postId: 1,
+        username: "",
+        fullName: "Ngô Kiên Tuấn",
+        avatar: "https://scontent-hkg3-2.cdninstagram.com/vp/6f96e7097d8163ee1fefb6a9b3db7c53/5C64433E/t51.2885-19/10957309_939315289448043_1331377706_a.jpg",
+        photos: [
+            {
+                id: 1,
+                src: 'https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=683c7e0153887541062433dfe0677dd3&auto=format&fit=crop&w=1324&q=80'
+            }
+        ]
+    },
+    {
+        postId: 2,
+        username: "",
+        fullName: "Đỗ Tuấn Anh",
+        avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/43092133_1151422405012777_734286631334313984_n.jpg?_nc_cat=108&_nc_ht=scontent-hkg3-2.xx&oh=ba6ed1280d0a2b39a3c7210f9b8ae58d&oe=5C69FE1F",
+        photos: [
+            {
+                id: 2,
+                src: 'https://images.unsplash.com/photo-1541985304080-a5e4c227922b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=97c57e7a67165df000ee5b23eba86159&auto=format&fit=crop&w=634&q=80'
+            }
+        ]
+    },
+    {
+        postId: 3,
+        username: "",
+        fullName: "Trần Mạnh Tùng",
+        avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/43405773_309164506549982_2639100151754391552_n.jpg?_nc_cat=103&_nc_ht=scontent-hkg3-2.xx&oh=adfb71a1c496b12136bd3f6b00d41799&oe=5C864EBC",
+        photos: [
+            {
+                id: 3,
+                src: 'https://images.unsplash.com/photo-1540206395-a40899915755?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=994dfe6a3da7a7caf0f0ee49fb20214b&auto=format&fit=crop&w=2081&q=80'
+            }
+        ]
+    },
+    {
+        postId: 4,
+        username: "",
+        fullName: "Nguyễn Minh Phương",
+        avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/40790094_1481480935330880_8436778046794498048_n.jpg?_nc_cat=100&_nc_ht=scontent-hkg3-2.xx&oh=53b0576df76a4f8b4e44fc905c9b4d91&oe=5C81CEFA",
+        photos: [
+            {
+                id: 4,
+                src: 'https://c1.staticflickr.com/4/3007/5839421567_c436038175_b.jpg',
+            }
+        ]
+    },
+    {
+        postId: 5,
+        username: "",
+        fullName: "Nguyễn Trung Hiếu",
+        avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/44813388_1439705432829822_1911499573319172096_n.jpg?_nc_cat=110&_nc_ht=scontent-hkg3-2.xx&oh=9ae2273c3ac052c7a2f4532802233be0&oe=5C80BC03",
+        photos: [
+            {
+                id: 5,
+                src: 'https://c1.staticflickr.com/3/2397/32747864111_4a354d2d7a_b.jpg',
+            }
+        ]
+    },
+    {
+        postId: 6,
+        username: "",
+        fullName: "Phương Ly",
+        avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-9/23517516_534566840230174_2745494573450495754_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=be9257a19b9371a1ff182c6fd28a49df&oe=5C831339",
+        photos: [
+            {
+                id: 5,
+                src: 'https://scontent-hkg3-2.cdninstagram.com/vp/03110991ef1e9ae1a18df1934429bb53/5C66FBE8/t51.2885-15/e35/45607214_1161744457310562_4084931356889979267_n.jpg',
+            }
+        ]
+    },
+];
 
 const followList = [
     {
@@ -66,14 +129,22 @@ const followList = [
     },
 ];
 
-const keywordList = [
-    "The Walking Dead",
-    "Miss Earth 2018",
-    "League Of Legends",
-    "Rihana",
-    "Apple Iphone Xs",
-    "Chelsea FC"
-];
+const keywordList = ["animals", "travel", "nature", "house", "love", "business",];
+
+const splitArray = (array) => {
+    const part1 = [];
+    const part2 = [];
+    let track = true;
+    array.map(e => {
+        if (track) {
+            part1.push(e);
+        } else {
+            part2.push(e);
+        }
+        track = !track;
+    });
+    return [part1, part2];
+};
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -130,6 +201,7 @@ export default class Dashboard extends Component {
 
     render() {
         const favourite = this.state.favourite;
+        const [postPart1, postPart2] = splitArray(posts);
         return (
             <div className='dashboard-background'>
                 <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"}>
@@ -144,40 +216,38 @@ export default class Dashboard extends Component {
                                 <Icon>search</Icon>
                             </Grid>
                             <Grid>
-                                <TextField style={{
-                                    background: "transparent",
-                                    width: "40vw",
-                                    marginRight: "10px"
-                                }} placeholder={"Photos, people"}/>
+                                <Input
+                                    disableUnderline={true}
+                                    style={{
+                                        background: "transparent",
+                                        width: "40vw",
+                                        marginRight: "10px"
+                                    }} placeholder={"Photos, people"}/>
                             </Grid>
-                        </Grid>
-                        <Grid container alignItems={"center"}>
-                            <p style={{marginRight: "10px"}}>Trending searches:</p>
-                            <div className={"trending-searches"}>
-                                <a href={"#"}>the walking dead</a>
-                                <a href={"#"}>miss earth 2018</a>
-                                <a href={"#"}>league of legends</a>
-                            </div>
                         </Grid>
                     </div>
                 </Grid>
                 <div className='container'>
                     <Row>
-                        <Col xs={12} sm={9}>
+                        <Col xs={12} sm={9.2}>
                             <Row>
                                 <Col xs={12} sm={6} style={{padding: 0}}>
-                                    <PostContainer photo={photo}/>
-                                    <PostContainer photo={photo1}/>
+                                    {postPart1.map(post => {
+                                        return <PostContainer key={post.postId} {...post}/>
+                                    })}
                                 </Col>
                                 <Col xs={12} sm={6} style={{padding: 0}}>
-                                    <PostContainer photo={photo2}/>
-                                    <PostContainer photo={photo3}/>
+                                    {postPart2.map(post => {
+                                        return <PostContainer key={post.postId} {...post}/>
+                                    })}
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={12} sm={3} style={{padding: 0}}>
-                            <FollowSidebar followList={followList}/>
-                            <SearchTrendingSidebar keywordList={keywordList}/>
+                        <Col xs={12} sm={2.7} style={{padding: 0}}>
+                            <StickyBox offsetTop={100}>
+                                <FollowSidebar followList={followList}/>
+                                <SearchTrendingSidebar keywordList={keywordList}/>
+                            </StickyBox>
                         </Col>
                     </Row>
                 </div>

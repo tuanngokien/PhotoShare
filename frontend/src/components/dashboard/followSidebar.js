@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
-import {MdAddBox} from "react-icons/md";
+import {FaPlus} from "react-icons/fa";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
@@ -21,17 +21,18 @@ const styles = theme => ({
 const UserFollowListItem = ({avatarSrc, username, fullName}) => {
     return (
         <ListItem style={{borderBottom: "1px solid #E1E1E1"}}>
-            <Avatar
-                src={avatarSrc}/>
+            <div style={{background: "linear-gradient(to right, #40e0d0, #ff8c00, #ff0080)", borderRadius: "50%", padding: "2.5px"}}>
+                <Avatar src={avatarSrc} style={{border: "2px solid white", width: "2.3em", height: "2.3em"}}/>
+            </div>
             <Card style={{boxShadow: "none"}}>
-                <CardHeader title={<span style={{fontSize: "0.6em", fontWeight: "bold"}}>{username}</span>}
-                            subheader={<span style={{fontSize: "0.85em"}}>{fullName}</span>}
+                <CardHeader title={<span style={{fontSize: "0.65em", fontWeight: "bold"}}>{username}</span>}
+                            subheader={<span style={{fontSize: "0.9em"}}>{fullName}</span>}
                             style={{paddingTop: "0px", paddingBottom: "0px"}}
                 />
             </Card>
             <ListItemSecondaryAction>
-                <IconButton aria-label="Comments">
-                    <MdAddBox style={{fontSize: "1.1em"}}/>
+                <IconButton style={{backgroundColor: "#128fdc", borderRadius: "5px", padding: "7px 15px", marginRight: "15px"}}>
+                    <span style={{color: "white", fontSize: "0.57em", fontWeight: "bold", marginRight: "3px"}}>Follow</span>
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>

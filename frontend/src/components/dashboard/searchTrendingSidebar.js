@@ -11,7 +11,7 @@ const SearchKeyword = ({keyword, color}) => {
         <Grid item xs={5} style={{marginRight: "10px", marginBottom: "10px"}}>
             <Button variant="contained" fullWidth style={{
                 padding: "0px 10px",
-                fontSize: "0.8em",
+                fontSize: "0.9em",
                 backgroundColor: color,
                 color: "white",
                 fontWeight: "bold",
