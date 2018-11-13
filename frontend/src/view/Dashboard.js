@@ -229,21 +229,21 @@ export default class Dashboard extends Component {
                 </Grid>
                 <div className='container'>
                     <Row>
-                        <Col xs={12} sm={9.2}>
+                        <Col xs={12} md={9.2}>
                             <Row>
-                                <Col xs={12} sm={6} style={{padding: 0}}>
+                                <Col xs={12} md={6} style={{padding: 0}}>
                                     {postPart1.map(post => {
                                         return <PostContainer key={post.postId} {...post}/>
                                     })}
                                 </Col>
-                                <Col xs={12} sm={6} style={{padding: 0}}>
+                                <Col xs={12} md={6} style={{padding: 0}}>
                                     {postPart2.map(post => {
                                         return <PostContainer key={post.postId} {...post}/>
                                     })}
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={12} sm={2.7} style={{padding: 0}}>
+                        <Col xs={12} md={2.8} style={{padding: 0}}>
                             <StickyBox offsetTop={100}>
                                 <FollowSidebar followList={followList}/>
                                 <SearchTrendingSidebar keywordList={keywordList}/>

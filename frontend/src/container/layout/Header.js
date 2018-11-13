@@ -9,7 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import Logo from '../../assets/img/logo3.png';
 
 export default class Header extends Component {
@@ -46,18 +46,21 @@ export default class Header extends Component {
                                 <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
                             </a>
                             <div>
-                                <Grid container justify={"flex-start"} alignItems={"center"} style={{background: "white", borderRadius: "5px", padding: "3px"}} id={"top-searchbar"}>
-                                        <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent",}}>
-                                            <Icon>search</Icon>
-                                        </Grid>
-                                        <Grid>
-                                            <TextField style={{
+                                <Grid container justify={"flex-start"} alignItems={"flex-end"}
+                                      style={{background: "white", borderRadius: "5px", padding: "3px"}}
+                                      id={"top-searchbar"}>
+                                    <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent", paddingLeft: "5px", paddingRight: "5px"}}>
+                                        <Icon>search</Icon>
+                                    </Grid>
+                                    <Grid>
+                                        <Input
+                                            style={{
                                                 background: "transparent",
                                                 width: "300px",
-                                                marginRight: "10px"
+                                                marginRight: "10px",
                                             }} placeholder={"Photos, people"}/>
-                                        </Grid>
                                     </Grid>
+                                </Grid>
                             </div>
                             <div>
                                 <IconButton href='#/pts/upload'>
@@ -69,9 +72,11 @@ export default class Header extends Component {
                                 <IconButton>
                                     <Notifications style={{color: "white", fontSize: "1.2em"}}/>
                                 </IconButton>
-                                <IconButton onClick={this.handleClick}>
+                                <IconButton onClick={this.handleClick} style={{paddingBottom: "0", paddingTop: "0"}}>
                                     <Avatar aria-label="Recipe" style={{border: "3px dotted white"}}>
-                                        <img src={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"} style={{height: '100%', width: '100%'}} alt="avatar"/>
+                                        <img
+                                            src={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"}
+                                            style={{height: '100%', width: '100%'}} alt="avatar"/>
                                     </Avatar>
                                 </IconButton>
                                 <Menu

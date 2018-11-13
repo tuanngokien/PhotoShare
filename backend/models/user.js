@@ -64,6 +64,8 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = function (models) {
         User.hasMany(models.Post);
         User.belongsToMany(models.Post, {through: 'UserPostLikes', as: 'Likes'});
+        User.hasMany(models.follow, {foreignKey: "follow_by", as: "FollowBy"});
+        User.hasMany(models.follow, {foreignKey: "follow_to", as: "FollowTo"});
     };
 
     User.prototype.validatePassword = function (password) {

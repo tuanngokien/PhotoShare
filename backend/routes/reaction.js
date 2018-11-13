@@ -7,7 +7,7 @@ const LIKE_ROUTE_PATH = "/:postID/likes";
 const COMMENT_ROUTE_PATH = "/:postID/comments";
 
 router.use("/:postID/", function (req, res, next) {
-    Post.findById(req.params.postID).then(function (post) {
+    Post.findByPk(req.params.postID).then(function (post) {
         if (post) {
             req.post = post;
             next();

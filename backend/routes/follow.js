@@ -1,89 +1,70 @@
-const router = require('express').Router();
-const { follow } = require('../models');
+const router = require("./user");
+const {Op} = require("sequelize");
+const {follow, User} = require('../models');
 
 
-router.route('/')
-  .post((req, res) => {
-    let { follow_to } = req.body;
-    let userId = req.user.id
-
-    follow.findOrCreate({
-      where: {
-        follow_by: userId,
-        follow_to: follow_to
-      }
-    }).spread((user, create) => {
-      if (create) {
-        res.status(200).json({ name: "SUCCESS", message: "Follow success", data: user });
-      }
-      else {
-        res.status(400).json({ name: "FAIL", message: "Can't follow" });
-      }
-    }).catch(err => {
-      res.status(500).json({ name: "ERROR", message: err })
+router.route('/:userID/follows')
+    .get((req, res) => {
+        let userTargetId = req.params.userID;
+        follow.findAll({
+            where: {[Op.or]: [{follow_by: userTargetId}, {follow_to: userTargetId}]},
+            include: [
+                {model: User, as: "follow_by_user"},
+                {model: User, as: "follow_to_user"},
+            ]
+        }).then(follows => {
+            let following = [];
+            let followers = [];
+            follows.forEach(follow => {
+                if (follow.follow_by === parseInt(userTargetId)) {
+                    following.push(follow.follow_to_user.toJSON());
+                } else {
+                    followers.push(follow.follow_by_user.toJSON());
+                }
+            });
+            res.json({success: true, following, followers});
+        }).catch(err => {
+            console.log(err);
+            res.json({success: false});
+        })
     })
-  })
-
-router.route('/info/:userId')
-  .get((req, res, next) => {
-    let friendId = req.param.userId;
-    let userId = req.user.id;
-
-    follow.count({
-      where: {
-        follow_by: userId,
-        follow_to: friendId
-      }
-    }).then(isFollow => {
-      if (isFollow) {
-        res.status(200).json({ name: "FOLLOWED", message: "followed" })
-      }
-      else {
-        res.status(200).json({ name: "NOT_FOLLOWED", message: "not followed" })
-      }
-    }).catch(err => {
-      res.status(500).json({ name: "ERROR", message: err })
+    .post((req, res) => {
+        let follow_to = req.params.userID;
+        let userId = req.user.id;
+        if (parseInt(follow_to) === userId) {
+            res.json({success: false});
+        } else {
+            follow.findOrCreate({
+                where: {
+                    follow_by: userId,
+                    follow_to: follow_to
+                },
+            }).spread((follow) => {
+                res.json({success: true});
+            }).catch(err => {
+                res.json({success: false});
+            })
+        }
     })
-  })
+    .delete((req, res) => {
+        let unfollowId = req.params.userID;
 
-router.route('/:userId/unfollow')
-  .delete((req, res) => {
-    let unfollowId = req.param.userId;
+        follow.destroy({
+            where: {
+                follow_by: req.user.id,
+                follow_to: unfollowId
+            }
+        }).then(isUnfollow => {
+            if (isUnfollow) {
+                res.json({success: true})
+            } else {
+                res.json({success: false})
+            }
+        }).catch(err => {
+            console.log(err);
+            res.json({success: false});
+        })
+    });
 
-    follow.destroy({
-      where: {
-        follow_by: req.user.id,
-        follow_to: unfollowId
-      }
-    }).then(isUnfollw => {
-      if (isUnfollw) {
-        res.status(200).json({ name: "SUCCESS", message: "Unfollow success" })
-      }
-      else {
-        res.status(400).json({ name: "ERROR", message: "Something wrong" })
-      }
-    }).catch(err => {
-      res.status(500).json({ name: "ERROR", message: err })
-    })
-  })
-
-router.route('/followed')
-  .get((req, res) => {
-    let userId = req.user.id;
-
-    follow.findAll({
-      where: {
-        follow_by: userId
-      }
-    }).then(follows => {
-      if(follows) {
-        follows = follows.map(follow => follow.toJSON());
-      }
-      res.status(200).json({name: "SUCCESS", follows: follows})
-    })
-    .catch(err => {
-      res.status(500).json({name: "ERROR", message: "Server error"})
-    })
-  })
 
 module.exports = router;

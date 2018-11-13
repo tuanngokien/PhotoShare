@@ -27,7 +27,8 @@ const UserFollowListItem = ({avatarSrc, username, fullName}) => {
             <Card style={{boxShadow: "none"}}>
                 <CardHeader title={<span style={{fontSize: "0.65em", fontWeight: "bold"}}>{username}</span>}
                             subheader={<span style={{fontSize: "0.9em"}}>{fullName}</span>}
-                            style={{paddingTop: "0px", paddingBottom: "0px"}}
+                            style={{paddingLeft: "8px",paddingTop: "0", paddingBottom: "0"}}
+                            className={"sm-line-height"}
                 />
             </Card>
             <ListItemSecondaryAction>

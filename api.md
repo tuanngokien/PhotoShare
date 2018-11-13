@@ -23,4 +23,7 @@
 | Comment post      | /api/posts/{postId}/comments | POST |Content-Type:multipart/form-data|text|
 |Edit post comment| /api/posts/{postId}/comments/{commentId} | PATCH |Content-Type:multipart/form-data|text|
 | Delete comment post      | /api/posts/{postId}/comments/{commentId} | DELETE |Content-Type:multipart/form-data||
+| User follow info      | /api/{userId}/follows | GET |Content-Type:multipart/form-data||
+| Follow user      | /api/{userId}/follows | POST |Content-Type:multipart/form-data||
+| Unfollow user      | /api/{userId}/follows | DELETE |Content-Type:multipart/form-data||
 

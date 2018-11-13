@@ -54,9 +54,9 @@ code {
 }
 
 .container {
-    padding-top: 3%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-top: 3%;
+    margin-left: 7%;
+    margin-right: 7%;
     height: 100%;
     position: relative;
 }
@@ -124,8 +124,20 @@ iframe {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .5) 100%), radial-gradient(50% 120%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .7) 100%), url(./assets/img/bg2.jpeg);
 }
 
-.MuiTypography-headline-225 {
-    line-height: 0.8em !important;
+.sm-line-height > div > span{
+    line-height: 1em !important;
+}
+
+.md-line-height > div > span{
+    line-height: 1.4em !important;
+}
+
+#top-searchbar div::before{
+    display: none;
+}
+
+#top-searchbar div::after{
+    border-bottom-color: #989898;
 }
 
 .jumbotron {

@@ -53,15 +53,17 @@ router.route("/")
                                 let publicId = photo.publicId;
                                 cloudinary.api.update(publicId, function (cPhoto) {
                                     let tags = cPhoto.tags;
-                                    Promise.all(tags.map(tag => {
-                                        return Tag.findOrCreate({
-                                            where: {
-                                                name: tag
-                                            }
-                                        })
-                                    })).then(tags => {
-                                        photo.setTags(tags.map(tag => tag[0]));
-                                    });
+                                    if (tags) {
+                                        Promise.all(tags.map(tag => {
+                                            return Tag.findOrCreate({
+                                                where: {
+                                                    name: tag
+                                                }
+                                            })
+                                        })).then(tags => {
+                                            photo.setTags(tags.map(tag => tag[0]));
+                                        });
+                                    }
                                 }, AUTO_TAGGING_OPTION);
                             }
                         });

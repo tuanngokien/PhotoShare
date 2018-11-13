@@ -14,7 +14,6 @@ export default class postContainer extends React.Component {
 
         this.state = {
             openImgBox: false,
-            currentImage: 0,
         };
         this.openImgBox = this.openImgBox.bind(this);
         this.closeImgBox = this.closeImgBox.bind(this);
@@ -57,6 +56,7 @@ export default class postContainer extends React.Component {
                         title={<p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>{fullName}</p>}
                         subheader={"September 14, 2018"}
                         style={{paddingBottom: "10px"}}
+                        className={"md-line-height"}
                     />
                     {photos.map(photo => (
                         <ListItem dense button style={{padding: 'unset', marginBottom: '1%'}}
@@ -64,7 +64,7 @@ export default class postContainer extends React.Component {
                             <img src={photo.src} style={{
                                 width: '100%',
                                 height: '100%',
-                                maxHeight: "600px",
+                                maxHeight: "60vh",
                                 objectFit: "cover",
                             }}/>
                         </ListItem>
@@ -75,11 +75,11 @@ export default class postContainer extends React.Component {
                         isClose={this.closeImgBox.bind(this)}
                         gotoPrevious={this.gotoPrevious.bind(this)}
                         gotoNext={this.gotoNext.bind(this)}
-                        currentImage={this.state.currentImage}
-                        images={this.props.photo}
+                        // currentImage={this.state.currentImage}
+                        images={photos}
                     />
                     <CardActions disableActionSpacing style={{paddingTop: "3px"}}>
-                        <IconButton aria-label="Add to favorites" onClick={this.onHandleLike}>
+                        <IconButton aria-label="Like" onClick={this.onHandleLike}>
                             <FaRegHeart/>
                             {/*<FaHeart style={{color: "#dc3545"}}/>*/}
                         </IconButton>
