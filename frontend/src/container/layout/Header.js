@@ -32,7 +32,7 @@ export default class Header extends Component {
 
     redirectProfile = () => {
         this.handleClose();
-        window.location.replace("#/pts/profile");
+        window.location.replace("#/pts/profile/" + localStorage.getItem('id'));
     };
 
     render() {

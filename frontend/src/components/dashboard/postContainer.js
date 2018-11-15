@@ -53,7 +53,14 @@ export default class postContainer extends React.Component {
                                 <img src={avatar} style={{width: '100%', height: '100%'}}/>
                             </Avatar>
                         }
-                        title={<p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>{fullName}</p>}
+                        title={
+                            <a href="#/profile/{user_id}"
+                               style={{textDecoration: 'none', color:'black'}}
+                            >
+                                <p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>
+                                {fullName}
+                                </p>
+                            </a>}
                         subheader={"September 14, 2018"}
                         style={{paddingBottom: "10px"}}
                         className={"md-line-height"}

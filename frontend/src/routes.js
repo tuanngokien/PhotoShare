@@ -30,7 +30,7 @@ const routes = [
   {path:'/pts/chat', name: 'Chat', component: Chat},
   {path:'/pts/following', name: 'Following', component: Following},
   {path:'/pts/followers', name: 'Followers', component: Followers},
-  {path:'/pts/profile', name: 'Profile', component: Profile},
+  {path:'/pts/profile/:id', name: 'Profile', component: Profile},
   {path: '/pts/upload', name: 'UpLoad', component: UpLoad},
 ];
 
