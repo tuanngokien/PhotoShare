@@ -31,6 +31,7 @@ const posts = [
         postId: 1,
         username: "",
         fullName: "Ngô Kiên Tuấn",
+        liked: true,
         avatar: "https://scontent-hkg3-2.cdninstagram.com/vp/6f96e7097d8163ee1fefb6a9b3db7c53/5C64433E/t51.2885-19/10957309_939315289448043_1331377706_a.jpg",
         photos: [
             {
@@ -43,6 +44,7 @@ const posts = [
         postId: 2,
         username: "",
         fullName: "Đỗ Tuấn Anh",
+        liked: false,
         avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/43092133_1151422405012777_734286631334313984_n.jpg?_nc_cat=108&_nc_ht=scontent-hkg3-2.xx&oh=ba6ed1280d0a2b39a3c7210f9b8ae58d&oe=5C69FE1F",
         photos: [
             {
@@ -55,6 +57,7 @@ const posts = [
         postId: 3,
         username: "",
         fullName: "Trần Mạnh Tùng",
+        liked: true,
         avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/43405773_309164506549982_2639100151754391552_n.jpg?_nc_cat=103&_nc_ht=scontent-hkg3-2.xx&oh=adfb71a1c496b12136bd3f6b00d41799&oe=5C864EBC",
         photos: [
             {
@@ -67,6 +70,7 @@ const posts = [
         postId: 4,
         username: "",
         fullName: "Nguyễn Minh Phương",
+        liked: false,
         avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/40790094_1481480935330880_8436778046794498048_n.jpg?_nc_cat=100&_nc_ht=scontent-hkg3-2.xx&oh=53b0576df76a4f8b4e44fc905c9b4d91&oe=5C81CEFA",
         photos: [
             {
@@ -79,6 +83,7 @@ const posts = [
         postId: 5,
         username: "",
         fullName: "Nguyễn Trung Hiếu",
+        liked: true,
         avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/44813388_1439705432829822_1911499573319172096_n.jpg?_nc_cat=110&_nc_ht=scontent-hkg3-2.xx&oh=9ae2273c3ac052c7a2f4532802233be0&oe=5C80BC03",
         photos: [
             {
@@ -91,6 +96,7 @@ const posts = [
         postId: 6,
         username: "",
         fullName: "Phương Ly",
+        liked: true,
         avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-9/23517516_534566840230174_2745494573450495754_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=be9257a19b9371a1ff182c6fd28a49df&oe=5C831339",
         photos: [
             {
