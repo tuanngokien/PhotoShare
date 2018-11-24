@@ -42,7 +42,7 @@ export default class Header extends Component {
                 <AppBar position='fixed' id='header' className={"header"}>
                     <Toolbar className='main'>
                         <Grid container justify={"space-between"} alignItems={"center"}>
-                            <a className="app-logo" href="#/pts/dashboard">
+                            <a className="app-logo" href="#/pts/">
                                 <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
                             </a>
                             <div>
