@@ -17,6 +17,8 @@ import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import {Col, Row} from 'react-grid-system';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default class postContainer extends React.Component {
     constructor(props) {
@@ -135,7 +137,15 @@ export default class postContainer extends React.Component {
                             </Grid>
                           </Grid>
                         </ListItem>
-                        <ListItem style={{borderTop: "1px solid #E1E1E1", paddingLeft: 'unset', paddingRight: 'unset', paddingBottom:'unset'}}>
+                        <ListItem
+                            style={{
+                                borderTop: "1px solid #E1E1E1",
+                                borderBottom: "1px solid #E1E1E1",
+                                paddingLeft: 'unset',
+                                paddingRight: 'unset',
+                                paddingBottom:'unset'
+                            }}
+                        >
                           <Grid container spacing={8}>
                             <Grid item xs={1} >
                               <Avatar src={avatar}/>
@@ -152,6 +162,15 @@ export default class postContainer extends React.Component {
                             </Grid>
                           </Grid>
                         </ListItem>
+                        <TextField
+                            placeholder="Write your comment..."
+                            multiline="true"
+                            overflow = "hidden"
+                            margin="normal"
+                            variant="outlined"
+                            style={{width: '77%', marginRight: '2%', marginLeft: '2%', marginBottom: '3%'}}
+                        />
+                        <Button style={{marginTop: '6%', marginLeft: '1%'}}> Post</Button>
                       </List>
                     </Collapse>
                 </Card>
