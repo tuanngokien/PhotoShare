@@ -19,6 +19,11 @@ const Dashboard = Loadable({
   loading: Loading
 });
 
+const Explorer = Loadable({
+  loader: () => import('./view/Explorer'),
+  loading: Loading
+});
+
 const Chat = Loadable({
   loader: () => import('./view/Chat.js'),
   loading: Loading
@@ -32,6 +37,7 @@ const routes = [
   {path:'/pts/followers', name: 'Followers', component: Followers},
   {path:'/pts/profile', name: 'Profile', component: Profile},
   {path: '/pts/upload', name: 'UpLoad', component: UpLoad},
+  {path: '/pts/explorer', name: 'Explorer', component: Explorer},
 ];
 
 export default routes;

@@ -86,8 +86,8 @@ class Upload extends Component {
               id={"img-uploader"}
               style={{
                 paddingTop: '5%',
-                paddingLeft: '12%',
-                paddingRight: '12%'
+                paddingLeft: '15%',
+                paddingRight: '15%'
               }}
             >
             <NotificationContainer/>

@@ -1,0 +1,122 @@
+[
+    {
+        "name":"Season - Autumn",
+        "photoCount":12,
+        "previewImages":[
+            "https://images.pexels.com/photos/1563355/pexels-photo-1563355.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/1438248/pexels-photo-1438248.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1405144/pexels-photo-1405144.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/217860/pexels-photo-217860.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Creative Process",
+        "photoCount":34,
+        "previewImages":[
+            "https://images.pexels.com/photos/916335/pexels-photo-916335.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/886109/pexels-photo-886109.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/395074/pexels-photo-395074.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/220417/pexels-photo-220417.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Macro",
+        "photoCount":76,
+        "previewImages":[
+            "https://images.pexels.com/photos/33392/portrait-bird-nature-wild.jpg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/121753/pexels-photo-121753.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/162943/aviary-pigeons-birds-feather-162943.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/55832/flock-of-birds-canada-geese-geese-wing-55832.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Feeling Happy",
+        "photoCount":90,
+        "previewImages":[
+            "https://images.pexels.com/photos/1133742/pexels-photo-1133742.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/906081/pexels-photo-906081.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/935985/pexels-photo-935985.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/669007/pexels-photo-669007.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Rural living",
+        "photoCount":45,
+        "previewImages":[
+            "https://images.pexels.com/photos/841303/pexels-photo-841303.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/1187005/pexels-photo-1187005.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1340496/pexels-photo-1340496.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/211047/pexels-photo-211047.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Let the music play",
+        "photoCount":60,
+        "previewImages":[
+            "https://images.pexels.com/photos/1371177/pexels-photo-1371177.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/936030/pexels-photo-936030.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/92078/pexels-photo-92078.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Back to school",
+        "photoCount":125,
+        "previewImages":[
+            "https://images.pexels.com/photos/710744/pexels-photo-710744.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/76942/pexels-photo-76942.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/698516/pexels-photo-698516.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/6176/camera-notebook-pen-yellow.jpg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Asia",
+        "photoCount":382,
+        "previewImages":[
+            "https://images.pexels.com/photos/879359/pexels-photo-879359.png?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/234541/-ancient-meditation-architecture-234541.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1031659/pexels-photo-1031659.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1007689/pexels-photo-1007689.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Textures",
+        "photoCount":84,
+        "previewImages":[
+            "https://images.pexels.com/photos/1252848/pexels-photo-1252848.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/1431091/pexels-photo-1431091.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1328488/pexels-photo-1328488.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1092369/pexels-photo-1092369.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Social Media",
+        "photoCount":52,
+        "previewImages":[
+            "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/163097/twitter-social-media-communication-internet-network-163097.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/927629/pexels-photo-927629.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Dine out",
+        "photoCount":116,
+        "previewImages":[
+            "https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/6492/food-breakfast-fork-bagel.jpg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/1097530/pexels-photo-1097530.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/407293/pexels-photo-407293.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    },
+    {
+        "name":"Cars & Motorcycles",
+        "photoCount":88,
+        "previewImages":[
+            "https://images.pexels.com/photos/1600523/pexels-photo-1600523.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://images.pexels.com/photos/167681/pexels-photo-167681.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/704214/pexels-photo-704214.jpeg?auto=compress&cs=tinysrgb&h=130",
+            "https://images.pexels.com/photos/376361/pexels-photo-376361.jpeg?auto=compress&cs=tinysrgb&h=130"
+        ]
+    }
+]

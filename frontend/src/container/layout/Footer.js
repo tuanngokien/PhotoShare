@@ -10,7 +10,7 @@ export default class Footer extends Component {
             <AppBar position='static' className='footer'>
                 <Toolbar>
                     <Grid container justify={"space-between"} alignItems={"center"} style={{margin: "0 10%"}}>
-                        <span style={{fontSize: "0.8em"}}>© 2018 PHOTOSHARE</span>
+                        <span style={{fontSize: "0.9em"}}>© 2018 PHOTOSHARE</span>
                         <div>
                             <Grid container spacing={32} justify={"flex-start"} alignItems={"center"}>
                                 <Grid item>

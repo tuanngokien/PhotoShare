@@ -21,7 +21,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 function TabContainer({children, dir}) {
     return (
-        <Typography component="div" dir={dir} style={{padding: 8 * 3}}>
+        <Typography component="div" dir={dir} style={{padding: 24}}>
             {children}
         </Typography>
     );
@@ -61,7 +61,7 @@ const styles = {
     },
 
     avatar: {
-        margin: "5vh 20px 3vh 10%",
+        margin: "5vh 20px 3vh 7%",
     },
     bigAvatar: {
         width: 160,
@@ -76,7 +76,7 @@ const TimelineProfile = withStyles(styles)((props) => {
             <Card>
                 <CardMedia
                     image='http://farm2.staticflickr.com/1861/coverphoto/60475224@N05_h.jpg?1537188632#60475224@N05'
-                    style={{padding: '15vh 0 0 0'}}>
+                    style={{padding: '10vh 0 0 0'}}>
                     <Grid container direction="row" justify="flex-start" alignItems="center"
                           className={classes.timeline}>
                         <Avatar alt="Remy Sharp"
@@ -105,7 +105,7 @@ const TimelineProfile = withStyles(styles)((props) => {
                         </div>
                     </Grid>
                     <Grid container justify={"flex-end"} alignItems={"flex-start"}>
-                        <div style={{color: "white", margin: "0 10% 20px 10px"}}>
+                        <div style={{color: "white", margin: "0 7% 20px 10px"}}>
                             <span style={{marginRight: "20px",}}>{props.posts} Posts</span>
                             <span style={{marginRight: "20px",}}>{props.photos} Photos</span>
                             <span>Joined {props.joined}</span>
@@ -163,10 +163,10 @@ class Profile extends Component {
                         joined = {this.state.joined}
                     />
                     <Grid item xs={12}>
-                        <AppBar position="static" color="default">
+                        <AppBar position="static" color="default" className={"profile-nav-bar"}>
                             <Tabs
                                 className={"containerImageList"}
-                                style={{margin: "0 10%", color: "black"}}
+                                style={{margin: "0 7%", color: "black"}}
                                 value={this.state.value}
                                 onChange={this.handleChange}
                                 indicatorColor={"primary"}>
@@ -183,8 +183,7 @@ class Profile extends Component {
                             </Grid>
                             <SwipeableViews
                                 index={this.state.value}
-                                onChangeIndex={this.handleChangeIndex}
-                                >
+                                onChangeIndex={this.handleChangeIndex}>
                                 <TabContainer>
                                     <ImageLayout
                                         postsCount = {this.setPostsCount.bind(this)}
