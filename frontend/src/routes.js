@@ -5,6 +5,7 @@ import Profile from './view/Profile.js';
 import UpLoad from'./view/UpLoad.js';
 import Following from'./view/Following.js';
 import Followers from'./view/Followers.js';
+import EditProfile from './view/EditProfile.js'
 
 function Loading() {
   return (
@@ -35,7 +36,8 @@ const routes = [
   {path:'/pts/chat', name: 'Chat', component: Chat},
   {path:'/pts/following', name: 'Following', component: Following},
   {path:'/pts/followers', name: 'Followers', component: Followers},
-  {path:'/pts/profile', name: 'Profile', component: Profile},
+  {path:'/pts/profile/:id', name: 'Profile', component: Profile},
+  {path:'/pts/edit/:id', name: 'EditProfile', component: EditProfile},
   {path: '/pts/upload', name: 'UpLoad', component: UpLoad},
   {path: '/pts/explorer', name: 'Explorer', component: Explorer},
 ];

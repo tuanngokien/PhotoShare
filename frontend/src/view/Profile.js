@@ -18,6 +18,7 @@ import Icon from '@material-ui/core/Icon';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
 
 function TabContainer({children, dir}) {
     return (
@@ -71,6 +72,7 @@ const styles = {
 
 const TimelineProfile = withStyles(styles)((props) => {
     const {classes} = props;
+    var link = "#/pts/edit/" + props.current_user_id
     return (
         <Grid item xs={12}>
             <Card>
@@ -85,13 +87,18 @@ const TimelineProfile = withStyles(styles)((props) => {
                         <div>
                             <Grid container direction={"row"} justify={"flex-start"} alignItems={"center"}>
                                 <h1 style={{marginRight: "15px"}}>Tuan Ngo Kien</h1>
-                                <Button variant="outlined"
+                                {/*<Button variant="outlined"
                                         style={{borderColor: "white", color: "white", padding: "0 15px"}}>
                                     <Grid container justify={"center"} alignItems={"center"}>
                                         <Icon style={{marginRight: "5px"}}>add_plus</Icon>
                                         <span>Follow</span>
                                     </Grid>
-                                </Button>
+                                </Button>*/}
+                                <IconButton styles={{color: 'white'}} >
+                                    <a href={link}>
+                                        <Icon style={{color: 'white'}}>edit</Icon>
+                                    </a>
+                                </IconButton>
                             </Grid>
                             <Grid container direction="row"
                                   justify="space-between"
@@ -128,8 +135,13 @@ class Profile extends Component {
         value: 0,
         postsCount: 0,
         photosCount: 0,
-        joined: null
+        joined: null,
+        id: null
     };
+
+    componentWillMount(){
+        this.setState({id: localStorage.getItem('id')});
+    }
 
     handleChange = (event, value) => {
         this.setState({value});
@@ -161,6 +173,7 @@ class Profile extends Component {
                         posts = {this.state.postsCount}
                         photos = {this.state.photosCount}
                         joined = {this.state.joined}
+                        current_user_id = {this.state.id}
                     />
                     <Grid item xs={12}>
                         <AppBar position="static" color="default" className={"profile-nav-bar"}>

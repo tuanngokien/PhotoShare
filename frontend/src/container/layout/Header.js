@@ -32,7 +32,7 @@ export default class Header extends Component {
 
     redirectProfile = () => {
         this.handleClose();
-        window.location.replace("#/pts/profile");
+        window.location.replace("#/pts/profile/" + localStorage.getItem('id'));
     };
 
     render() {
@@ -42,7 +42,7 @@ export default class Header extends Component {
                 <AppBar position='fixed' id='header' className={"header"}>
                     <div className={"main"}>
                         <Grid container justify={"space-between"} alignItems={"center"}>
-                            <a className="app-logo" href="#/pts/dashboard">
+                            <a className="app-logo" href="#/pts/">
                                 <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
                             </a>
                             <div>
