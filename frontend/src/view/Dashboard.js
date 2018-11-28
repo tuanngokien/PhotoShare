@@ -29,6 +29,7 @@ import StickyBox from "react-sticky-box";
 const posts = [
     {
         postId: 1,
+        userID: 1,
         username: "",
         fullName: "Ngô Kiên Tuấn",
         liked: true,
@@ -38,10 +39,23 @@ const posts = [
                 id: 1,
                 src: 'https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=683c7e0153887541062433dfe0677dd3&auto=format&fit=crop&w=1324&q=80'
             }
-        ]
+        ],
+        comment: [
+            {
+                fullName: "Ngô Kiên Tuấn",
+                avatar: "https://scontent-hkg3-2.cdninstagram.com/vp/6f96e7097d8163ee1fefb6a9b3db7c53/5C64433E/t51.2885-19/10957309_939315289448043_1331377706_a.jpg",
+                content: "Ảnh của tôi đẹp quá!!!"
+            },
+            {
+                fullName: "Trần Mạnh Tùng",
+                avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/43405773_309164506549982_2639100151754391552_n.jpg?_nc_cat=103&_nc_ht=scontent-hkg3-2.xx&oh=adfb71a1c496b12136bd3f6b00d41799&oe=5C864EBC",
+                content: "Đẹp thật"
+            },
+        ],
     },
     {
         postId: 2,
+        userID: 2,
         username: "",
         fullName: "Đỗ Tuấn Anh",
         liked: false,
@@ -51,10 +65,18 @@ const posts = [
                 id: 2,
                 src: 'https://images.unsplash.com/photo-1541985304080-a5e4c227922b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=97c57e7a67165df000ee5b23eba86159&auto=format&fit=crop&w=634&q=80'
             }
+        ],
+        comment: [
+            {
+                fullName: "Nguyễn Trung Hiếu",
+                avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p160x160/44813388_1439705432829822_1911499573319172096_n.jpg?_nc_cat=110&_nc_ht=scontent-hkg3-2.xx&oh=9ae2273c3ac052c7a2f4532802233be0&oe=5C80BC03",
+                content: "Ảnh đẹp!!",
+            }
         ]
     },
     {
         postId: 3,
+        userID: 3,
         username: "",
         fullName: "Trần Mạnh Tùng",
         liked: true,
@@ -64,10 +86,12 @@ const posts = [
                 id: 3,
                 src: 'https://images.unsplash.com/photo-1540206395-a40899915755?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=994dfe6a3da7a7caf0f0ee49fb20214b&auto=format&fit=crop&w=2081&q=80'
             }
-        ]
+        ],
+        comment:[]
     },
     {
         postId: 4,
+        userID: 4,
         username: "",
         fullName: "Nguyễn Minh Phương",
         liked: false,
@@ -77,10 +101,12 @@ const posts = [
                 id: 4,
                 src: 'https://c1.staticflickr.com/4/3007/5839421567_c436038175_b.jpg',
             }
-        ]
+        ],
+        comment:[]
     },
     {
         postId: 5,
+        userID: 5,
         username: "",
         fullName: "Nguyễn Trung Hiếu",
         liked: true,
@@ -90,10 +116,12 @@ const posts = [
                 id: 5,
                 src: 'https://c1.staticflickr.com/3/2397/32747864111_4a354d2d7a_b.jpg',
             }
-        ]
+        ],
+        comment:[]
     },
     {
         postId: 6,
+        userID: 6,
         username: "",
         fullName: "Phương Ly",
         liked: true,
@@ -102,6 +130,18 @@ const posts = [
             {
                 id: 5,
                 src: 'https://scontent-hkg3-2.cdninstagram.com/vp/03110991ef1e9ae1a18df1934429bb53/5C66FBE8/t51.2885-15/e35/45607214_1161744457310562_4084931356889979267_n.jpg',
+            }
+        ],
+        comment:[
+            {
+                fullName: "Ngô Kiên Tuấn",
+                avatar: "https://scontent-hkg3-2.cdninstagram.com/vp/6f96e7097d8163ee1fefb6a9b3db7c53/5C64433E/t51.2885-19/10957309_939315289448043_1331377706_a.jpg",
+                content: "Chị Ly xinh quá"
+            },
+            {
+                fullName: "Phương Ly",
+                avatar: "https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-9/23517516_534566840230174_2745494573450495754_n.jpg?_nc_cat=106&_nc_ht=scontent-hkg3-2.xx&oh=be9257a19b9371a1ff182c6fd28a49df&oe=5C831339",
+                content: "Chị cảm ơn em"
             }
         ]
     },

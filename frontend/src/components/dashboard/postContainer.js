@@ -65,7 +65,8 @@ export default class postContainer extends React.Component {
     }
 
     render() {
-        const {postId, fullName, username, avatar, photos} = this.props;
+        const {postId, userId, fullName, username, avatar, photos, comment} = this.props;
+        var link = "#/pts/profile/" + userId
         return (
             <div style={{marginBottom: '10%', marginLeft: '5%', marginRight: '5%'}}>
                 <Card>
@@ -76,7 +77,7 @@ export default class postContainer extends React.Component {
                             </Avatar>
                         }
                         title={
-                            <a href="#/profile/{user_id}"
+                            <a href={link}
                                style={{textDecoration: 'none', color:'black'}}
                             >
                                 <p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>
@@ -120,48 +121,25 @@ export default class postContainer extends React.Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                       <List style={{paddingTop: 'unset', paddingBottom: 'unset', paddingLeft:'15px'}}>
-                        <ListItem style={{borderTop: "1px solid #E1E1E1", paddingLeft: 'unset', paddingRight: 'unset', paddingBottom:'unset'}}>
-                          <Grid container spacing={8}>
-                            <Grid item xs={1} >
-                              <Avatar src={avatar}/>
-                            </Grid>
-                            <Grid item xs={11}>
-                              <ListItemText primary={<span style={{fontWeight: 'bold'}}>{fullName}</span>} secondary="Jan 7, 2014" style={{marginLeft: '25px'}}/>
-                            </Grid>
-                            <Grid item xs={1} >
-                            </Grid>
-                            <Grid item xs={11}>
-                              <CardContent style={{paddingTop:'unset', paddingBottom:'unset'}}>
-                              <Typography paragraph>Ảnh đẹp quá</Typography>
-                              </CardContent>
-                            </Grid>
-                          </Grid>
-                        </ListItem>
-                        <ListItem
-                            style={{
-                                borderTop: "1px solid #E1E1E1",
-                                borderBottom: "1px solid #E1E1E1",
-                                paddingLeft: 'unset',
-                                paddingRight: 'unset',
-                                paddingBottom:'unset'
-                            }}
-                        >
-                          <Grid container spacing={8}>
-                            <Grid item xs={1} >
-                              <Avatar src={avatar}/>
-                            </Grid>
-                            <Grid item xs={11}>
-                              <ListItemText primary={<span style={{fontWeight: 'bold'}}>{fullName}</span>} secondary="Jan 7, 2014" style={{marginLeft: '25px'}}/>
-                            </Grid>
-                            <Grid item xs={1} >
-                            </Grid>
-                            <Grid item xs={11}>
-                              <CardContent style={{paddingTop:'unset', paddingBottom:'unset'}}>
-                              <Typography paragraph>Ảnh đẹp quá</Typography>
-                              </CardContent>
-                            </Grid>
-                          </Grid>
-                        </ListItem>
+                        {comment.map(cmt => (
+                            <ListItem style={{borderTop: "1px solid #E1E1E1", paddingLeft: 'unset', paddingRight: 'unset', paddingBottom:'unset'}}>
+                              <Grid container spacing={8}>
+                                <Grid item xs={1} >
+                                  <Avatar src={cmt.avatar}/>
+                                </Grid>
+                                <Grid item xs={11}>
+                                  <ListItemText primary={<span style={{fontWeight: 'bold'}}>{cmt.fullName}</span>} secondary="Jan 7, 2014" style={{marginLeft: '25px'}}/>
+                                </Grid>
+                                <Grid item xs={1} >
+                                </Grid>
+                                <Grid item xs={11}>
+                                  <CardContent style={{paddingTop:'unset', paddingBottom:'unset'}}>
+                                  <Typography paragraph>{cmt.content}</Typography>
+                                  </CardContent>
+                                </Grid>
+                              </Grid>
+                            </ListItem>
+                        ))}
                         <TextField
                             placeholder="Write your comment..."
                             multiline="true"
