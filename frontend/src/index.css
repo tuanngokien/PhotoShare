@@ -61,24 +61,44 @@ code {
     position: relative;
 }
 
-.dashboard-background {
-    background: #f3f5f6;
+#main-content{
+    background-color: #f3f5f6!important;
 }
 
-.user-page-container {
-    background: linear-gradient(rgba(141, 153, 174, 0.5), rgba(141, 153, 174, 0.3)), url(assets/img/bg1.png);
+.explorer-page-container{
+    margin-top: 10vh!important;
+}
+
+.explorer-container{
+    margin: 5vh 10%;
+}
+
+.explorer-nav-bar{
+    background-color: #ffffff!important;
+    position: fixed!important;
+}
+
+.explorer-nav-bar span{
+    text-transform: capitalize!important;
+    font-size: 1.06em;
+}
+
+.profile-nav-bar, .explorer-nav-bar{
+    box-shadow: none!important;
+    background-color: #ffffff!important;
+    border-bottom: 2px solid hsla(0,0%,54%,.3);
 }
 
 .containerImageList {
     margin-top: 1%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 7%;
+    margin-right: 7%;
     height: 100%;
 }
 
 .main {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 7%;
+    margin-right: 7%;
 }
 
 .search {
@@ -185,3 +205,20 @@ iframe {
     color: white;
 }
 
+.discover-album-small-cards > div{
+    padding: 2px 0;
+}
+
+.explorer-container .page-container > h1{
+    font-size: 2.15em;
+    margin-bottom: 0;
+}
+
+.explorer-container .page-container > p{
+    font-size: 1.15em;
+    margin-top: 5px;
+}
+
+.explorer-container .page-container > .main-content{
+    margin-top: 15px;
+}

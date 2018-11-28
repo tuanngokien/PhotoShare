@@ -40,7 +40,7 @@ export default class Header extends Component {
         return (
             <div>
                 <AppBar position='fixed' id='header' className={"header"}>
-                    <Toolbar className='main'>
+                    <div className={"main"}>
                         <Grid container justify={"space-between"} alignItems={"center"}>
                             <a className="app-logo" href="#/pts/">
                                 <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
@@ -49,7 +49,12 @@ export default class Header extends Component {
                                 <Grid container justify={"flex-start"} alignItems={"flex-end"}
                                       style={{background: "white", borderRadius: "5px", padding: "3px"}}
                                       id={"top-searchbar"}>
-                                    <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent", paddingLeft: "5px", paddingRight: "5px"}}>
+                                    <Grid item style={{
+                                        color: "rgba(21,21,23,.95)",
+                                        background: "transparent",
+                                        paddingLeft: "5px",
+                                        paddingRight: "5px"
+                                    }}>
                                         <Icon>search</Icon>
                                     </Grid>
                                     <Grid>
@@ -66,14 +71,14 @@ export default class Header extends Component {
                                 <IconButton href='#/pts/upload'>
                                     <CloudUpload style={{color: "white", fontSize: "1.2em"}}/>
                                 </IconButton>
-                                <IconButton>
+                                <IconButton href='#/pts/explorer'>
                                     <Explore style={{color: "white", fontSize: "1.2em"}}/>
                                 </IconButton>
                                 <IconButton>
                                     <Notifications style={{color: "white", fontSize: "1.2em"}}/>
                                 </IconButton>
-                                <IconButton onClick={this.handleClick} style={{paddingBottom: "0", paddingTop: "0"}}>
-                                    <Avatar aria-label="Recipe" style={{border: "3px dotted white"}}>
+                                <IconButton onClick={this.handleClick} style={{paddingBottom: "6px", paddingTop: "6px"}}>
+                                    <Avatar aria-label="Recipe" style={{border: "3px solid white"}}>
                                         <img
                                             src={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"}
                                             style={{height: '100%', width: '100%'}} alt="avatar"/>
@@ -96,7 +101,7 @@ export default class Header extends Component {
                                 </Menu>
                             </div>
                         </Grid>
-                    </Toolbar>
+                    </div>
                 </AppBar>
             </div>
         )

@@ -249,7 +249,7 @@ export default class Dashboard extends Component {
         const favourite = this.state.favourite;
         const [postPart1, postPart2] = splitArray(posts);
         return (
-            <div className='dashboard-background'>
+            <div>
                 <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"}>
                     <div>
                         <Grid container direction={"column"} alignItems={"center"}>
