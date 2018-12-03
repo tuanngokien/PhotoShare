@@ -267,3 +267,13 @@ iframe {
 .comment-field::after{
     border-bottom-color: #989898!important;
 }
+
+.control-dots{
+    padding-left: 0;
+}
+
+.slide{
+    background: transparent!important;
+    display: flex;
+    justify-content: center;
+}

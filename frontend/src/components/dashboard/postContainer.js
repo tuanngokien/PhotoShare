@@ -2,7 +2,6 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,6 +9,9 @@ import ImageBox from './../imageBox/ImageBox.js';
 import Collapse from '@material-ui/core/Collapse';
 import {FaRegHeart, FaHeart, FaRegComment, FaRegPaperPlane} from "react-icons/fa";
 import List from '@material-ui/core/List';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import Grid from '@material-ui/core/Grid';
 import Input from "@material-ui/core/es/Input/Input";
 
@@ -81,7 +83,7 @@ export default class postContainer extends React.Component {
     }
 
     handleExpandClick = () => {
-        this.setState(state => ({expanded: !state.expanded}));
+        this.setState(state => ({ expanded: !state.expanded }));
     }
 
     render() {
@@ -96,30 +98,43 @@ export default class postContainer extends React.Component {
                                 <img src={avatar} style={{width: '100%', height: '100%'}}/>
                             </Avatar>
                         }
+                        action={
+                            <IconButton>
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
                         title={
                             <a href={link}
-                               style={{textDecoration: 'none', color: 'black'}}
+                               style={{textDecoration: 'none', color:'black'}}
                             >
                                 <p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>
-                                    {fullName}
+                                {fullName}
                                 </p>
                             </a>}
                         subheader={"September 14, 2018"}
                         style={{paddingBottom: "10px"}}
                         className={"md-line-height"}
                     />
-                    {photos.map(photo => (
-                        <ListItem key={photo.id} dense button style={{padding: 'unset'}}
-                                  onClick={(e) => this.openImgBox(e, photo.id)}>
-                            <img src={photo.src} style={{
-                                width: '100%',
-                                height: '100%',
-                                maxHeight: "70vh",
-                                objectFit: "cover",
-                            }}/>
-                        </ListItem>
-                    ))
-                    }
+                    <Carousel
+                        showStatus = {false}
+                        showArrows={true}
+                        infiniteLoop={true}
+                        showThumbs = {false}
+                        showIndicators = {photos.length === 1 ? false : true}
+                        dynamicHeight = {false}>
+                        {photos.map(photo => (
+                            <ListItem key={photo.id} dense button style={{padding: 'unset'}}
+                                      onClick={(e) => this.openImgBox(e, photo.id)}>
+                                <img src={photo.src} style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    maxHeight: "70vh",
+                                    objectFit: "cover",
+                                }}/>
+                            </ListItem>
+                        ))
+                        }
+                    </Carousel>
                     <ImageBox
                         isOpen={this.state.openImgBox}
                         isClose={this.closeImgBox.bind(this)}
