@@ -19,6 +19,9 @@ import {Col, Row} from 'react-grid-system';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 export default class postContainer extends React.Component {
     constructor(props) {
@@ -76,6 +79,11 @@ export default class postContainer extends React.Component {
                                 <img src={avatar} style={{width: '100%', height: '100%'}}/>
                             </Avatar>
                         }
+                        action={
+                            <IconButton>
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
                         title={
                             <a href={link}
                                style={{textDecoration: 'none', color:'black'}}
@@ -88,18 +96,25 @@ export default class postContainer extends React.Component {
                         style={{paddingBottom: "10px"}}
                         className={"md-line-height"}
                     />
-                    {photos.map(photo => (
-                        <ListItem key={photo.id} dense button style={{padding: 'unset', marginBottom: '1%'}}
-                                  onClick={(e) => this.openImgBox(e, photo.id)}>
-                            <img src={photo.src} style={{
-                                width: '100%',
-                                height: '100%',
-                                maxHeight: "60vh",
-                                objectFit: "cover",
-                            }}/>
-                        </ListItem>
-                    ))
-                    }
+                    <Carousel
+                        showStatus = {false}
+                        showThumbs = {false}
+                        showIndicators = {photos.length === 1 ? false : true}
+                        dynamicHeight = {true}
+                    >
+                        {photos.map(photo => (
+                            <ListItem key={photo.id} dense button style={{padding: 'unset'}}
+                                      onClick={(e) => this.openImgBox(e, photo.id)}>
+                                <img src={photo.src} style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    maxHeight: "60vh",
+                                    objectFit: "cover",
+                                }}/>
+                            </ListItem>
+                        ))
+                        }
+                    </Carousel>
                     <ImageBox
                         isOpen={this.state.openImgBox}
                         isClose={this.closeImgBox.bind(this)}

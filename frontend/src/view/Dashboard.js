@@ -38,6 +38,10 @@ const posts = [
             {
                 id: 1,
                 src: 'https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=683c7e0153887541062433dfe0677dd3&auto=format&fit=crop&w=1324&q=80'
+            },
+            {
+                id: 2,
+                src: 'https://images.unsplash.com/photo-1541985304080-a5e4c227922b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=97c57e7a67165df000ee5b23eba86159&auto=format&fit=crop&w=634&q=80'
             }
         ],
         comment: [
