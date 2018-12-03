@@ -140,7 +140,7 @@ class Profile extends Component {
     };
 
     componentWillMount(){
-        this.setState({id: localStorage.getItem('id')});
+        this.setState({id: localStorage.getItem('id') || 1});
     }
 
     handleChange = (event, value) => {

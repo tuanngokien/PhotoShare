@@ -1,6 +1,6 @@
 import React from "react"
 import Grid from '@material-ui/core/Grid';
-import DiscoverCard from "./DiscoverCard";
+import {DiscoverCard} from "../../components/explorer";
 
 export default class DiscoverContainer extends React.Component {
     state = {

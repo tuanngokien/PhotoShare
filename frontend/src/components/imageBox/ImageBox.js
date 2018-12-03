@@ -44,7 +44,6 @@ export default class ImageBox extends React.Component {
   }
   
   render() {
-    console.log(this.state.lightboxIsOpen);
     return (
       <div>
         <Lightbox

@@ -65,10 +65,6 @@ code {
     background-color: #f3f5f6!important;
 }
 
-.explorer-page-container{
-    margin-top: 10vh!important;
-}
-
 .explorer-container{
     margin: 5vh 10%;
 }
@@ -221,4 +217,53 @@ iframe {
 
 .explorer-container .page-container > .main-content{
     margin-top: 15px;
+}
+
+.people-image-list{
+    display: flex;
+    overflow: hidden;
+    margin: 10px 0 10px 10px;
+    position: relative;
+}
+
+.people-image-list > img{
+    margin-right: 7px;
+}
+
+.people-detail{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(255,255,255,.7);
+    transition: 0.5s;
+}
+
+.people-detail:hover{
+    background: rgba(255,255,255,.85);;
+}
+
+.scroll-button{
+    bottom: 75px!important;
+    width: 38px!important;
+    height: 38px!important;
+    border: none!important;
+    padding: 7px;
+    outline: none !important;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.scroll-button svg{
+    fill: rgba(0,0,0,.54);
+}
+
+.comment-field{
+    width: 100%;
+    font-size: 0.9em!important;
+    border: none!important;
+    margin-left: 10px;
+}
+
+.comment-field::after{
+    border-bottom-color: #989898!important;
 }

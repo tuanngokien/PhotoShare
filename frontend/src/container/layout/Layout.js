@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Dashboard from './../../view/Dashboard.js';
 import routes from './../../routes.js';
 import {Redirect, Route, Switch} from 'react-router-dom';
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 
 export default class Layout extends Component {
     render() {
@@ -24,6 +25,7 @@ export default class Layout extends Component {
                                         )}/>) : (null);
                         })}
                     </Switch>
+                    <ScrollUpButton ContainerClassName="scroll-button"/>
                 </div>
                 <div style={{position: "relative", zIndex: "1"}}>
                     <Footer/>

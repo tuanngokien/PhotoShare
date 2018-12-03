@@ -4,10 +4,8 @@ import 'react-tabs/style/react-tabs.css';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import SwipeableViews from 'react-swipeable-views';
-import Typography from '@material-ui/core/Typography';
 import {Route, Link, Redirect, Switch} from 'react-router-dom'
-import {DiscoverContainer, PopularPhotoContainer} from "../components/explorer";
+import {DiscoverContainer, PopularPhotoContainer, PeopleContainer} from "../container/pages";
 
 const base_route = "/pts/explorer";
 const routes = {
@@ -18,7 +16,9 @@ const routes = {
 
 const StyleTab = props => {
     return (
-        <Tab {...props} style={{fontWeight: "550"}}/>
+        <Link to={props.to}  style={{ textDecoration: 'none', color: "#000000"}}>
+            <Tab {...props} style={{fontWeight: "550"}}/>
+        </Link>
     )
 };
 
@@ -31,23 +31,26 @@ class Explorer extends Component {
         let header = document.getElementById("header");
         let secondaryHeader = document.getElementsByClassName("explorer-nav-bar")[0];
         secondaryHeader.style.top = header.clientHeight + "px";
+        let explorerContainer = document.getElementById("explorer-page-container");
+        explorerContainer.style.marginTop = header.clientHeight + secondaryHeader.clientHeight + "px";
     }
 
     render() {
         const {pathname} = this.props.location;
         return (
             <div>
-                <Grid container className={"explorer-page-container"}>
+                <Grid container id={"explorer-page-container"}>
                     <Grid item xs={12}>
                         <AppBar color="default" className={"explorer-nav-bar"}>
                             <Tabs
                                 centered
+                                fullWidth
                                 style={{margin: "0 7%", color: "black"}}
                                 value={Object.values(routes).indexOf(pathname)}
                                 indicatorColor={"primary"}>
-                                <Link to={routes.collections}  style={{ textDecoration: 'none', color: "#000000"}}><StyleTab label="Discover"/></Link>
-                                <Link to={routes.photos}  style={{ textDecoration: 'none', color: "#000000"}}><StyleTab label="Popular Photos"/></Link>
-                                <StyleTab label="People"/>
+                                <StyleTab to={routes.collections} label="Discover"/>
+                                <StyleTab to={routes.photos} label="Popular Photos"/>
+                                <StyleTab to={routes.people} label="People"/>
                             </Tabs>
                         </AppBar>
                         <div className={"explorer-container"} style={{height: 'auto', position: "relative"}}>
@@ -62,6 +65,10 @@ class Explorer extends Component {
                                 <Route
                                     path={routes.photos}
                                     component={PopularPhotoContainer}
+                                />
+                                <Route
+                                    path={routes.people}
+                                    component={PeopleContainer}
                                 />
                             </Switch>
                                 {/*<TabContainer><DiscoverContainer/></TabContainer>*/}

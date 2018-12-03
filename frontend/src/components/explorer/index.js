@@ -1,4 +1,4 @@
-import DiscoverContainer from "./DiscoverContainer";
-import PopularPhotoContainer from "./PopularPhotoContainer";
+import DiscoverCard from "./DiscoverCard";
+import PeopleCard from "./PeopleCard";
 
-export {DiscoverContainer, PopularPhotoContainer};
+export {DiscoverCard, PeopleCard};

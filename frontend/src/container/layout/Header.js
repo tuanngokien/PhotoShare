@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from "@material-ui/core/IconButton";
 import {Notifications, CloudUpload, Explore} from '@material-ui/icons';
-import IMG_3958 from '../../assets/img/IMG_3958.JPG';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
 import Logo from '../../assets/img/logo3.png';
+import {Link} from "react-router-dom";
 
 export default class Header extends Component {
     state = {
@@ -42,9 +41,9 @@ export default class Header extends Component {
                 <AppBar position='fixed' id='header' className={"header"}>
                     <div className={"main"}>
                         <Grid container justify={"space-between"} alignItems={"center"}>
-                            <a className="app-logo" href="#/pts/">
-                                <img src={Logo} alt="logo" title="logo" style={{width: "100%", height: "auto"}}/>
-                            </a>
+                            <Link className="app-logo" to={"/pts/"}>
+                                <img src={Logo} alt="logo" style={{width: "100%", height: "auto"}}/>
+                            </Link>
                             <div>
                                 <Grid container justify={"flex-start"} alignItems={"flex-end"}
                                       style={{background: "white", borderRadius: "5px", padding: "3px"}}

@@ -6,7 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import {Col, Row} from 'react-grid-system';
 import Collapse from '@material-ui/core/Collapse';
-import Icon from '@material-ui/core/Icon';
 import 'font-awesome/css/font-awesome.min.css'
 
 const currencies = [
