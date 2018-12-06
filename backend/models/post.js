@@ -3,10 +3,11 @@ module.exports = function (sequelize, DataTypes) {
     const Post = sequelize.define('Post');
 
     Post.associate = function (models) {
-        Post.belongsTo(models.User, { foreignKey: { allowNull: false }});
+        Post.belongsTo(models.User, { foreignKey: { allowNull: false } });
         Post.hasMany(models.Photo);
-        Post.belongsToMany(models.User, {through: 'UserPostLikes', as: 'Likes'});
+        Post.belongsToMany(models.User, { through: 'UserPostLikes', as: 'Likes' });
         Post.hasMany(models.Comment);
+        Post.hasMany(models.Bookmark, { foreignKey: 'post_id', as: 'postId' })
     };
     return Post;
 };
