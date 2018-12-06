@@ -102,6 +102,10 @@ code {
     border-radius: 25px;
 }
 
+#header{
+    position: fixed!important;
+}
+
 .header-transparent {
     background: transparent !important;
     box-shadow: none !important;
@@ -276,4 +280,9 @@ iframe {
     background: transparent!important;
     display: flex;
     justify-content: center;
+}
+
+.nav-actions svg{
+    color: white;
+    font-size: 1.1em;
 }

@@ -8,7 +8,6 @@ import Icon from "@material-ui/core/Icon/Icon";
 import Input from '@material-ui/core/Input';
 import StickyBox from "react-sticky-box";
 import InfiniteScroll from '../components/InfiniteScroll';
-import Gallery from "react-photo-gallery";
 
 const splitArray = (array) => {
     const part1 = [];
