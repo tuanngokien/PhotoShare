@@ -1,11 +1,6 @@
 import InfiniteScroll from "react-infinite-scroller";
 import React from "react";
-import LoadingSVG from "../../assets/img/loading.svg";
-
-const loader = <div key={0} style={{textAlign: "center", marginTop: "5px"}}>
-    <img style={{verticalAlign: "middle"}} src={LoadingSVG}/>
-    <span style={{fontSize: "1.5em"}}>Loading ...</span>
-</div>;
+import Loader from "./loader";
 
 export default function ({pageStart, initialLoad, loadMore, hasMore, children}) {
     return (
@@ -14,7 +9,7 @@ export default function ({pageStart, initialLoad, loadMore, hasMore, children}) 
             initialLoad={initialLoad}
             loadMore={loadMore}
             hasMore={hasMore}
-            loader={loader}>
+            loader={<Loader/>}>
             {children}
         </InfiniteScroll>
     )

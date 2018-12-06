@@ -44,7 +44,7 @@ export default function ({rank, fullName, username, avatar, view_count, photos})
                                 </Grid>
                             </Grid>
                             <Grid item xs={1} style={{borderLeft: "5px solid #C4C4C4", height: "10vh"}}></Grid>
-                            <Grid item xs={2}>
+                            <Grid item md={3} lg={2}>
                                 <div>
                                     <div style={{
                                         background: "linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)",
@@ -57,9 +57,9 @@ export default function ({rank, fullName, username, avatar, view_count, photos})
                                     </div>
                                 </div>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item md={5} lg={6}>
                                 <Grid container direction={"column"}>
-                                    <Link to={"/test"} style={{textDecoration: "none", color: "#333333"}}>
+                                    <Link to={"/"} style={{textDecoration: "none", color: "#333333"}}>
                                         <span style={{fontSize: "1.5em", fontWeight: "bold"}}>{fullName}</span>
                                     </Link>
                                     <span style={{fontSize: "1em", fontWeight: "bold", color: "#666"}}>@{username}</span>

@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <div className="App">
                 <MuiThemeProvider theme={theme}>
-                    <HashRouter basename="/" onUpdate={() => window.scrollTo(0, 0)}>
+                    <HashRouter basename="/">
                         <Switch>
                             <Redirect exact from="/" to="/form"/>
                             <Redirect exact from="/pts/" to="/pts/dashboard"/>

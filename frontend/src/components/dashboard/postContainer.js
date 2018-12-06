@@ -80,11 +80,11 @@ export default class postContainer extends React.Component {
 
     onHandleLike = () => {
         this.setState({liked: !this.state.liked})
-    }
+    };
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
-    }
+    };
 
     render() {
         const {postId, userId, fullName, username, avatar, photos, comment} = this.props;
