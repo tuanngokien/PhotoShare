@@ -3,24 +3,8 @@ import Grid from "@material-ui/core/Grid/Grid";
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import {Link} from "react-router-dom";
-import {MdCropFree, MdLastPage, MdFullscreen} from "react-icons/md";
-
-let format_number = (() => {
-    let pow = Math.pow, floor = Math.floor, abs = Math.abs, log = Math.log;
-
-    function round(n, precision) {
-        let prec = Math.pow(10, precision);
-        return Math.round(n * prec) / prec;
-    }
-
-    function format(n) {
-        let base = floor(log(abs(n)) / log(1000));
-        let suffix = 'KMB'[base - 1];
-        return suffix ? round(n / pow(1000, base), 1) + suffix : '' + n;
-    }
-
-    return format;
-})();
+import {MdFullscreen} from "react-icons/md";
+import {formatNumber} from "../../utils";
 
 export default function ({rank, fullName, username, avatar, view_count, photos}) {
     return (
@@ -36,7 +20,7 @@ export default function ({rank, fullName, username, avatar, view_count, photos})
                                         fontSize: "0.85em",
                                         fontWeight: "750",
                                         color: "#666"
-                                    }}>{format_number(view_count)}</span>
+                                    }}>{formatNumber(view_count)}</span>
                                     <span style={{
                                         fontSize: "0.85em",
                                         color: "#666"

@@ -11,9 +11,10 @@ import {FaRegHeart, FaHeart, FaRegComment, FaRegPaperPlane} from "react-icons/fa
 import List from '@material-ui/core/List';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import {Carousel} from 'react-responsive-carousel';
 import Grid from '@material-ui/core/Grid';
 import Input from "@material-ui/core/es/Input/Input";
+import {formatNumber} from "../../utils";
 
 const CommentField = ({avatar}) => {
     return (
@@ -21,7 +22,7 @@ const CommentField = ({avatar}) => {
             paddingLeft: 'unset',
             paddingRight: 'unset',
             paddingBottom: 'unset',
-            marginBottom: "8px"
+            marginBottom: "8px",
         }}>
             <Grid container spacing={40} alignItems={"center"}>
                 <Grid item xs={1}>
@@ -30,10 +31,7 @@ const CommentField = ({avatar}) => {
                 <Grid item xs={11}>
                     <Grid container>
                         <Grid item xs={11}>
-                            <Input placeholder="Write your comment" className={"comment-field"}/>
-                        </Grid>
-                        <Grid item>
-
+                            <Input placeholder="Write your comment" multiline={true} className={"comment-field"}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -83,7 +81,7 @@ export default class postContainer extends React.Component {
     };
 
     handleExpandClick = () => {
-        this.setState(state => ({ expanded: !state.expanded }));
+        this.setState(state => ({expanded: !state.expanded}));
     };
 
     render() {
@@ -100,15 +98,13 @@ export default class postContainer extends React.Component {
                         }
                         action={
                             <IconButton>
-                                <MoreVertIcon />
+                                <MoreVertIcon/>
                             </IconButton>
                         }
                         title={
-                            <a href={link}
-                               style={{textDecoration: 'none', color:'black'}}
-                            >
+                            <a href={link} style={{textDecoration: 'none', color: 'black'}}>
                                 <p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>
-                                {fullName}
+                                    {fullName}
                                 </p>
                             </a>}
                         subheader={"September 14, 2018"}
@@ -116,12 +112,12 @@ export default class postContainer extends React.Component {
                         className={"md-line-height"}
                     />
                     <Carousel
-                        showStatus = {false}
+                        showStatus={false}
                         showArrows={true}
                         infiniteLoop={true}
-                        showThumbs = {false}
-                        showIndicators = {photos.length === 1 ? false : true}
-                        dynamicHeight = {false}>
+                        showThumbs={false}
+                        showIndicators={photos.length === 1 ? false : true}
+                        dynamicHeight={false}>
                         {photos.map(photo => (
                             <ListItem key={photo.id} dense button style={{padding: 'unset'}}
                                       onClick={(e) => this.openImgBox(e, photo.id)}>
@@ -143,16 +139,26 @@ export default class postContainer extends React.Component {
                         // currentImage={this.state.currentImage}
                         images={photos}
                     />
-                    <CardActions disableActionSpacing style={{borderBottom: "1px solid #D2D2D2", padding: "2px 12px"}}>
-                        <IconButton aria-label="Like" onClick={this.onHandleLike}>
-                            {this.state.liked ? <FaHeart style={{color: "#dc3545"}}/> : <FaRegHeart/>}
-                        </IconButton>
-                        <IconButton aria-label="Share" onClick={this.handleExpandClick}>
-                            <FaRegComment/>
-                        </IconButton>
-                        <IconButton aria-label="Share">
-                            <FaRegPaperPlane/>
-                        </IconButton>
+                    <CardActions disableActionSpacing style={{
+                        borderBottom: "1px solid #D2D2D2",
+                        padding: "2px 30px 2px 12px",
+                        justifyContent: "space-between"
+                    }}>
+                        <div>
+                            <IconButton aria-label="Like" onClick={this.onHandleLike}>
+                                {this.state.liked ? <FaHeart style={{color: "#dc3545"}}/> : <FaRegHeart/>}
+                            </IconButton>
+                            <IconButton aria-label="Share" onClick={this.handleExpandClick}>
+                                <FaRegComment/>
+                            </IconButton>
+                            <IconButton aria-label="Share">
+                                <FaRegPaperPlane/>
+                            </IconButton>
+                        </div>
+                        <div className={"post-summary"}>
+                            <span>{formatNumber(32489)} views</span>
+                            <span>{formatNumber(225)} likes</span>
+                        </div>
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <List style={{paddingTop: 'unset', paddingBottom: 'unset', paddingLeft: '15px'}}>
@@ -170,7 +176,12 @@ export default class postContainer extends React.Component {
                                         <Grid item xs={10}>
                                             <Grid container direction={"column"}>
                                                 <Grid item>
-                                                    <div style={{backgroundColor: "#F3F3F3", width: "fit-content", padding: "8px 10px", borderRadius: "18px"}}>
+                                                    <div style={{
+                                                        backgroundColor: "#F3F3F3",
+                                                        width: "fit-content",
+                                                        padding: "8px 10px",
+                                                        borderRadius: "18px"
+                                                    }}>
                                                         <span style={{
                                                             fontWeight: '600',
                                                             fontSize: "0.9em"
@@ -182,7 +193,11 @@ export default class postContainer extends React.Component {
                                                     </div>
                                                 </Grid>
                                                 <Grid item>
-                                                    <span style={{color: "rgba(0, 0, 0, 0.54)", fontSize: "0.85em", paddingLeft: "10px"}}>2 hours ago</span>
+                                                    <span style={{
+                                                        color: "rgba(0, 0, 0, 0.54)",
+                                                        fontSize: "0.85em",
+                                                        paddingLeft: "10px"
+                                                    }}>2 hours ago</span>
                                                 </Grid>
                                             </Grid>
                                         </Grid>

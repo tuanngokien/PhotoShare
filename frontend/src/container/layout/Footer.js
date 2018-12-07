@@ -1,32 +1,21 @@
 import React, {Component} from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
 import {FaFacebook, FaTwitter, FaInstagram} from 'react-icons/fa';
+import {MdCopyright} from "react-icons/md";
 
 export default class Footer extends Component {
     render() {
         return (
-            <AppBar position='static' className='footer'>
-                <Toolbar>
-                    <Grid container justify={"space-between"} alignItems={"center"} style={{margin: "0 10%"}}>
-                        <span style={{fontSize: "0.9em"}}>© 2018 PHOTOSHARE</span>
-                        <div>
-                            <Grid container spacing={32} justify={"flex-start"} alignItems={"center"}>
-                                <Grid item>
-                                    <a href={"/"}><FaFacebook size="1.3em" color="white"/></a>
-                                </Grid>
-                                <Grid item>
-                                    <a href={"/"}><FaInstagram size="1.3em" color="white"/></a>
-                                </Grid>
-                                <Grid item>
-                                    <a href={"/"}><FaTwitter size="1.3em" color="white"/></a>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </Grid>
-                </Toolbar>
-            </AppBar>
+            <div className={"footer"}>
+                <div>
+                    <MdCopyright/>
+                    <span style={{marginLeft: "0.2em", fontWeight: "600"}}>PHOTOSHARE 2018</span>
+                </div>
+                <div>
+                    <a href={"https://www.facebook.com/"}><FaFacebook/></a>
+                    <a href={"https://instagram.com"}><FaInstagram/></a>
+                    <a href={"https://twitter.com/"}><FaTwitter/></a>
+                </div>
+            </div>
         )
     }
 }

@@ -15,7 +15,7 @@ export default class Layout extends Component {
                 <div>
                     <Header/>
                 </div>
-                <div style={{flexGrow: 1}} id={"main-content"}>
+                <div id={"main-content"}>
                     <Switch>
                         {routes.map((route, idx) => {
                             return route.component ?
