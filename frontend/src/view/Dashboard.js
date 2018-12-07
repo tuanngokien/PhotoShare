@@ -4,10 +4,10 @@ import {Col, Row} from 'react-grid-system';
 import PostContainer from '../components/dashboard/postContainer.js';
 import FollowSidebar from '../components/dashboard/followSidebar';
 import SearchTrendingSidebar from '../components/dashboard/searchTrendingSidebar';
-import Icon from "@material-ui/core/Icon/Icon";
 import Input from '@material-ui/core/Input';
 import StickyBox from "react-sticky-box";
 import InfiniteScroll from '../components/InfiniteScroll';
+import {MdSearch} from "react-icons/md";
 
 const splitArray = (array) => {
     const part1 = [];
@@ -116,23 +116,23 @@ export default class Dashboard extends Component {
                             <h3 style={{margin: "10px 0 30px 0"}}>Gifted by the world’s most generous community of
                                 photographers</h3>
                         </Grid>
-                        <Grid container justify={"flex-start"} alignItems={"center"} className={"dashboard-searchbar"}>
+                        <Grid container justify={"flex-start"} alignItems={"flex-end"} className={"dashboard-searchbar"}>
                             <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent",}}>
-                                <Icon>search</Icon>
+                                <MdSearch style={{fontSize: "2.8em", padding: "0 5px"}}/>
                             </Grid>
-                            <Grid>
+                            <Grid item id={"dashboard-search-field"}>
                                 <Input
                                     disableUnderline={true}
                                     style={{
                                         background: "transparent",
-                                        width: "40vw",
+                                        width: "100%",
                                         marginRight: "10px"
                                     }} placeholder={"Photos, people"}/>
                             </Grid>
                         </Grid>
                     </div>
                 </Grid>
-                <div className='container'>
+                <div className='container dashboard-main-content'>
                     <InfiniteScroll
                         pageStart={0}
                         initialLoad={false}
@@ -153,7 +153,7 @@ export default class Dashboard extends Component {
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col xs={12} md={2.8} style={{padding: 0}}>
+                            <Col xs={12} md={2.8} style={{padding: 0}} id={"dashboard-sidebar"}>
                                 <StickyBox offsetTop={100}>
                                     <FollowSidebar followList={follows}/>
                                     <SearchTrendingSidebar keywordList={searches}/>

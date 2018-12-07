@@ -11,7 +11,7 @@ const PRESET = process.env.REACT_APP_PRESET;
 const FOLDER = process.env.REACT_APP_FOLDER;
 
 class Upload extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             success: false,
@@ -46,7 +46,7 @@ class Upload extends Component {
                 if (!error && result.event === "show-completed") {
                     let uploadedPhoto = result.info.items.filter(photo => photo.done);
                     let photos = uploadedPhoto.map(photo => {
-                        let {public_id : publicId, width, height} = photo.uploadInfo;
+                        let {public_id: publicId, width, height} = photo.uploadInfo;
                         return {publicId, width, height};
                     });
                     axios.post('/api/posts',
@@ -57,40 +57,40 @@ class Upload extends Component {
                         })
                         .then(res => {
                             console.log(res);
-                            if(res.data.success){
+                            if (res.data.success) {
                                 //call createNoti function
                             }
                             //todo redirect
                         }).catch(err => {
-                            console.log(err);
+                        console.log(err);
                     });
                 }
             });
         let contentHeight = document.getElementById("main-content").clientHeight;
-        document.getElementById("img-uploader").style.height = `${contentHeight}px`;
+        let imgUploader = document.getElementById("img-uploader");
+        if (contentHeight <= 700) {
+            let header = document.getElementById("header");
+            imgUploader.style.paddingTop = `${header.clientHeight + 10}px`;
+        }
+        imgUploader.style.height = `${contentHeight}px`;
     }
 
     createNotification = (type) => {
-      switch (type) {
-        case 'success':
-          NotificationManager.success('Đăng ảnh thành công', 'Yêu cầu thành công', 4000);
-          break;
-      };
+        switch (type) {
+            case 'success':
+                NotificationManager.success('Đăng ảnh thành công', 'Yêu cầu thành công', 4000);
+                break;
+        }
+        ;
     };
 
     render() {
         return (
             <Grid container
-              direction={"column"}
-              justify={"center"}
-              id={"img-uploader"}
-              style={{
-                paddingTop: '5%',
-                paddingLeft: '20%',
-                paddingRight: '20%'
-              }}
-            >
-            <NotificationContainer/>
+                  direction={"column"}
+                  justify={"center"}
+                  id={"img-uploader"}>
+                <NotificationContainer/>
             </Grid>
         );
     }

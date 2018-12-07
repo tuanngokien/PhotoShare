@@ -28,7 +28,7 @@ const CommentField = ({avatar}) => {
                 <Grid item xs={1}>
                     <Avatar src={avatar}/>
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10} md={11}>
                     <Grid container>
                         <Grid item xs={11}>
                             <Input placeholder="Write your comment" multiline={true} className={"comment-field"}/>
@@ -88,7 +88,7 @@ export default class postContainer extends React.Component {
         const {postId, userId, fullName, username, avatar, photos, comment} = this.props;
         var link = "#/pts/profile/" + userId
         return (
-            <div style={{marginBottom: '10%', marginLeft: '5%', marginRight: '5%'}}>
+            <div className={"dashboard-post"}>
                 <Card>
                     <CardHeader
                         avatar={
@@ -109,7 +109,7 @@ export default class postContainer extends React.Component {
                             </a>}
                         subheader={"September 14, 2018"}
                         style={{paddingBottom: "10px"}}
-                        className={"md-line-height"}
+                        className={"md-line-height dashboard-post-content"}
                     />
                     <Carousel
                         showStatus={false}
@@ -173,7 +173,7 @@ export default class postContainer extends React.Component {
                                         <Grid item xs={1}>
                                             <Avatar src={cmt.avatar}/>
                                         </Grid>
-                                        <Grid item xs={10}>
+                                        <Grid item xs={10} className={"comment-text"}>
                                             <Grid container direction={"column"}>
                                                 <Grid item>
                                                     <div style={{

@@ -13,7 +13,7 @@ export default class PeopleContainer extends React.Component{
 
     render() {
         return (
-            <div className={"explorer-container page-container"}>
+            <div className={"explorer-container page-container people-container"}>
                 <h1>Photographer Leaderboard</h1>
                 <p>Users with the most views of photos uploaded in the last 30 days.</p>
                 <div style={{margin: "30px 0"}} className={"main-content"}>

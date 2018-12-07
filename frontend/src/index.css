@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Niramit|Titillium+Web|Kanit');
+@import url('https://fonts.googleapis.com/css?family=Niramit|Titillium+Web|Kanit|Pacifico');
 
 @font-face {
     font-family: Proxima Nova;
@@ -61,28 +61,28 @@ code {
     position: relative;
 }
 
-#main-content{
-    background-color: #f3f5f6!important;
+#main-content {
+    background-color: #f3f5f6 !important;
 }
 
-.explorer-container{
+.explorer-container {
     margin: 5vh 10%;
 }
 
-.explorer-nav-bar{
-    background-color: #ffffff!important;
-    position: fixed!important;
+.explorer-nav-bar {
+    background-color: #ffffff !important;
+    position: fixed !important;
 }
 
-.explorer-nav-bar span{
-    text-transform: capitalize!important;
+.explorer-nav-bar span {
+    text-transform: capitalize !important;
     font-size: 1.06em;
 }
 
-.profile-nav-bar, .explorer-nav-bar{
-    box-shadow: none!important;
-    background-color: #ffffff!important;
-    border-bottom: 2px solid hsla(0,0%,54%,.3);
+.profile-nav-bar, .explorer-nav-bar {
+    box-shadow: none !important;
+    background-color: #ffffff !important;
+    border-bottom: 2px solid hsla(0, 0%, 54%, .3);
 }
 
 .containerImageList {
@@ -102,8 +102,8 @@ code {
     border-radius: 25px;
 }
 
-#header{
-    position: fixed!important;
+#header {
+    position: fixed !important;
 }
 
 .header-transparent {
@@ -124,8 +124,8 @@ code {
     font-size: 0.9em;
 }
 
-.footer{
-    padding: 10px 10%;
+.footer {
+    padding: 10px 7%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -133,16 +133,16 @@ code {
     color: white;
 }
 
-.footer a{
+.footer a {
     margin-left: 25px;
 }
 
-.footer > div{
+.footer > div {
     display: flex;
     align-items: center;
 }
 
-.footer svg{
+.footer svg {
     color: white;
     font-size: 1.3em;
 }
@@ -155,8 +155,9 @@ code {
     align-content: space-between;
 }
 
-.app-logo img {
-    height: 35px;
+.app-logo {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 iframe {
@@ -169,19 +170,19 @@ iframe {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .5) 100%), radial-gradient(50% 120%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .7) 100%), url(./assets/img/bg2.jpeg);
 }
 
-.sm-line-height > div > span{
+.sm-line-height > div > span {
     line-height: 1em !important;
 }
 
-.md-line-height > div > span{
+.md-line-height > div > span {
     line-height: 1.4em !important;
 }
 
-#top-searchbar div::before{
+#top-searchbar div::before {
     display: none;
 }
 
-#top-searchbar div::after{
+#top-searchbar div::after {
     border-bottom-color: #989898;
 }
 
@@ -230,94 +231,210 @@ iframe {
     color: white;
 }
 
-.discover-album-small-cards > div{
+.discover-album-small-cards > div {
     padding: 2px 0;
 }
 
-.explorer-container .page-container > h1{
+.explorer-container .page-container > h1 {
     font-size: 2.15em;
     margin-bottom: 0;
 }
 
-.explorer-container .page-container > p{
+.explorer-container .page-container > p {
     font-size: 1.15em;
     margin-top: 5px;
 }
 
-.explorer-container .page-container > .main-content{
+.explorer-container .page-container > .main-content {
     margin-top: 15px;
 }
 
-.people-image-list{
+.people-image-list {
     display: flex;
     overflow: hidden;
     margin: 10px 0 10px 10px;
     position: relative;
 }
 
-.people-image-list > img{
+.people-image-list > img {
     margin-right: 7px;
 }
 
-.people-detail{
+.people-detail {
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
-    background: rgba(255,255,255,.7);
+    background: rgba(255, 255, 255, .7);
     transition: 0.5s;
 }
 
-.people-detail:hover{
-    background: rgba(255,255,255,.85);;
+.people-detail:hover {
+    background: rgba(255, 255, 255, .85);;
 }
 
-.scroll-button{
-    bottom: 60px!important;
-    width: 38px!important;
-    height: 38px!important;
-    border: none!important;
+.scroll-button {
+    bottom: 60px !important;
+    width: 38px !important;
+    height: 38px !important;
+    border: none !important;
     padding: 7px;
     outline: none !important;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-.scroll-button svg{
-    fill: rgba(0,0,0,.54);
+.scroll-button svg {
+    fill: rgba(0, 0, 0, .54);
 }
 
-.comment-field{
+.comment-field {
     width: 100%;
-    font-size: 0.9em!important;
-    border: none!important;
+    font-size: 0.9em !important;
+    border: none !important;
     margin-left: 10px;
 }
 
-.comment-field::after{
-    border-bottom-color: #989898!important;
+.comment-field::after {
+    border-bottom-color: #989898 !important;
 }
 
-.control-dots{
+.control-dots {
     padding-left: 0;
 }
 
-.slide{
-    background: transparent!important;
+.slide {
+    background: transparent !important;
     display: flex;
     justify-content: center;
 }
 
-.nav-actions svg{
+.nav-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-actions svg {
     color: white;
     font-size: 1.1em;
 }
-.post-summary{
+
+.post-summary {
     display: flex;
     font-size: 0.8em;
     color: #b3b3b3;
     font-weight: 600;
 }
 
-.post-summary > span{
+.post-summary > span {
     margin-left: 10px;
+}
+
+.dashboard-post {
+    margin: 0 5% 10% 5%;
+}
+
+.dashboard-main-content .infinite-scroll {
+    margin-top: -5vh !important;
+}
+
+#dashboard-search-field {
+    width: 40vw;
+}
+
+.people-card:first-child{
+    border-radius: 10px 10px 0 0;
+}
+
+.people-card:last-child{
+    border-radius: 0 0 10px 10px;
+}
+
+.people-card:not(:first-child):not(:last-child){
+    border-radius: 0!important;
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #main-logo {
+        margin-left: 10px;
+    }
+
+    .footer {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .footer a {
+        margin-left: 15px;
+    }
+
+    #dashboard-search-field {
+        width: 80%;
+    }
+
+    .jumbotron {
+        font-size: 0.6em;
+        height: 400px;
+    }
+
+    .jumbotron .dashboard-searchbar {
+        align-items: center;
+    }
+
+    .jumbotron .dashboard-searchbar input {
+        padding: 12px 0;
+    }
+
+    .container {
+        margin-left: 2%;
+        margin-right: 4%;
+    }
+
+    #dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-main-content .infinite-scroll {
+        margin-top: -10% !important;
+    }
+
+    .dashboard-post {
+        margin: 0 0 10% 0;
+    }
+
+    .dashboard-post-content {
+    }
+
+    .explorer-container {
+        margin: 5vh 5%;
+    }
+
+    .explorer-container .page-container {
+        font-size: 0.7em;
+    }
+
+    .people-image-container{
+        display: none!important;
+    }
+
+    .people-avatar{
+        width: 2.8em!important;
+        height: 2.8em!important;
+    }
+
+    .people-container{
+        font-size: 0.8em!important;
+    }
+
+    .divider{
+        height: 13vw!important;
+    }
+
+    .comment-text{
+        margin-left: 8px!important;
+    }
 }

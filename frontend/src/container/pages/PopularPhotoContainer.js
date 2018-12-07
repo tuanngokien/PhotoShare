@@ -43,7 +43,7 @@ export default class PopularPhotoContainer extends React.Component {
                         initialLoad={false}
                         loadMore={this.loadMore}
                         hasMore={this.state.hasMorePhotos}>
-                        <Gallery columns={4} photos={this.state.visiblePhotos}/>
+                        <Gallery photos={this.state.visiblePhotos}/>
                     </InfiniteScroll>
                 </Grid>
             </div>

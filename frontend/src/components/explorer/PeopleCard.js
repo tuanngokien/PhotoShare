@@ -8,10 +8,10 @@ import {formatNumber} from "../../utils";
 
 export default function ({rank, fullName, username, avatar, view_count, photos}) {
     return (
-        <Paper>
+        <Paper className={"people-card"}>
             <Grid item xs={12}>
                 <Grid container alignItems={"center"}>
-                    <Grid item xs={5}>
+                    <Grid item xs={12} md={5}>
                         <Grid container alignItems={"center"}>
                             <Grid item xs={3}>
                                 <Grid container direction={"column"} alignItems={"center"}>
@@ -27,21 +27,19 @@ export default function ({rank, fullName, username, avatar, view_count, photos})
                                     }}>Views</span>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={1} style={{borderLeft: "5px solid #C4C4C4", height: "10vh"}}></Grid>
-                            <Grid item md={3} lg={2}>
+                            <Grid item xs={1} style={{borderLeft: "5px solid #C4C4C4", height: "10vh"}} className={"divider"}></Grid>
+                            <Grid item xs={3} lg={2}>
                                 <div>
                                     <div style={{
                                         background: "linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)",
                                         borderRadius: "50%",
                                         padding: "3px",
-                                        width: "fit-content"
-                                    }}>
-                                        <Avatar style={{width: "3.1em", height: "3.1em", border: "2px solid white"}}
-                                                src={avatar}/>
+                                        width: "fit-content"}}>
+                                        <Avatar style={{width: "3.1em", height: "3.1em", border: "2px solid white"}} className={"people-avatar"} src={avatar}/>
                                     </div>
                                 </div>
                             </Grid>
-                            <Grid item md={5} lg={6}>
+                            <Grid item xs={5} lg={6}>
                                 <Grid container direction={"column"}>
                                     <Link to={"/"} style={{textDecoration: "none", color: "#333333"}}>
                                         <span style={{fontSize: "1.5em", fontWeight: "bold"}}>{fullName}</span>
@@ -51,7 +49,7 @@ export default function ({rank, fullName, username, avatar, view_count, photos})
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={7}>
+                    <Grid item xs={7} className={"people-image-container"}>
                         <div className={"people-image-list"}>
                             {photos.map((p, i) => <img key={i} src={p} style={{maxHeight: "150px", width: "auto"}}/>)}
                             <div className={"people-detail"}>

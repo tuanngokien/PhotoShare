@@ -9,7 +9,7 @@ export default function ({pageStart, initialLoad, loadMore, hasMore, children}) 
             initialLoad={initialLoad}
             loadMore={loadMore}
             hasMore={hasMore}
-            loader={<Loader/>}>
+            loader={<Loader key={0}/>}>
             {children}
         </InfiniteScroll>
     )
