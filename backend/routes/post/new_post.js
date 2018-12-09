@@ -1,17 +1,7 @@
 const cloudinary = require('cloudinary');
-const cloudinaryStorage = require("multer-storage-cloudinary");
-const multer = require('multer');
-const router = require("../user/user");
+const {getNewRouter} = require("./base");
+const router = getNewRouter();
 const {sequelize, Photo, Tag} = require("../../models");
-// const storage = cloudinaryStorage({
-//     cloudinary: cloudinary,
-//     folder: 'photos',
-//     allowedFormats: ['jpg', 'png', 'jpeg'],
-//     params: {
-//         categorization: "google_tagging",
-//         auto_tagging: 0.6
-//     }
-// });
 
 let secure = true;
 

@@ -4,11 +4,12 @@ Mạng xã hội chia sẻ ảnh
 
 ## Công nghệ sử dụng
 
-- Front-end: ReactJS + Redux + Bootstrap
+- Front-end: ReactJS + Redux + Material UI
 - Backend: Express.js
 - Search engine: Elasticsearch
-- Microsoft Cognitive Face API Service
-- MySQL, Firebase
+- Storage: Cloudinary, MySQL
+- Google Auto Tagging, Rekognition Auto Tagging, Rekognition AI Moderation
+- Facebook SDK
 
 ### Cài đặt
 Sửa cấu hình kết nối DB tại ./config/config.json

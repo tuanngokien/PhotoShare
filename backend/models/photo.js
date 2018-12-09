@@ -41,7 +41,7 @@ module.exports = function (sequelize, DataTypes) {
 
     Photo.associate = function (models) {
         Photo.belongsTo(models.Post);
-        Photo.belongsToMany(models.Tag, {through: 'PhotoTags', timestamps: false});
+        Photo.belongsToMany(models.Tag, {through: models.PhotoTag, timestamps: false});
     };
     return Photo;
 };

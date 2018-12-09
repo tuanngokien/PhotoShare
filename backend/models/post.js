@@ -13,6 +13,11 @@ module.exports = function (sequelize, DataTypes) {
             values: Object.values(postPrivacy),
             allowNull: false,
             defaultValue: postPrivacy.PRIVATE,
+        },
+        viewCount: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+            defaultValue: 0,
         }
     });
 

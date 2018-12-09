@@ -1,64 +1,95 @@
 const {getNewRouter} = require("./base");
 const router = getNewRouter();
-const {Post, Photo, Comment, Tag} = require("../../models");
-const {Op} = require("sequelize");
+const {Op, fn, literal} = require("sequelize");
+const {User, Post, Photo, Comment, Tag, PhotoTag, follow} = require("../../models");
 
 router.get("/", function (req, res) {
-    req.user.getFollowBy({
-        attributes: [
-            'follow_to'
+    let trendingSearchesFetcher = PhotoTag.findAll({
+        group: ['TagId'],
+        attributes: [[fn('COUNT', 'TagId'), 'tagCount']],
+        order: [
+            [literal("tagCount"), "DESC"]
         ],
-    }).then(users => {
-        let ids = [req.user.id];
-        for (user of users) {
-            let following_id = user.dataValues.follow_to;
-            ids.push(following_id);
-        }
-        Post.findAll({
-            where: {
-                [Op.or]: [
-                    {privacy: Post.postPrivacy.PUBLIC},
-                    {
-                        UserId: {
-                            [Op.in]: ids,
-                        },
-                        privacy: Post.postPrivacy.FRIEND
-                    }]
-            },
-            order: [
-                ['privacy', 'ASC'],
-                ['createdAt', 'DESC']
-            ],
-            include: [
-                {
-                    model: Photo,
-                    include: [{
-                        model: Tag,
-                        attributes: ["name"],
-                        through: {
-                            attributes: []
-                        }
-                    }]
-                },
-                {model: Comment}
-            ]
-        }).then(posts => {
-            Promise.all([...posts.map(function (post) {
-                return post.countLikes();
-            })]).then(function (reactions) {
-                let postsWithLikes = posts.map(function (post, index) {
-                    post.dataValues.likes = reactions[index];
-                    post.dataValues.photoCount = post.Photos.length;
-                    return post;
-                });
-                res.json({success: true, posts: postsWithLikes});
-            }).catch(err => {
-                throw err;
-            });
+        include: [
+            {model: Tag, attributes: ["name"]}
+        ],
+        limit: 6
+    }).then(tagsWithCount => {
+        let tags = tagsWithCount.map(e => {
+            return e.dataValues.Tag.dataValues.name;
         });
-        return null;
-    }).catch(err => {
-        res.json({success: false})
+        return tags;
+    });
+    let followsFetcher = follow.findAll({
+        where: {
+            follow_to: {
+                [Op.notIn]: req.user.getAllRelationalIds()
+            },
+        },
+        attributes: [[fn('COUNT', 'follow_to'), 'followerCount']],
+        group: ['follow_to'],
+        order: [
+            [literal("followerCount"), "DESC"]
+        ],
+        include: [
+            {model: User, as: "follow_to_user"}
+        ],
+        limit: 5
+    }).then(rows => {
+        let follows = rows.map(row => {
+            let {followerCount, follow_to_user: user} = row.dataValues;
+            return {...user.toJSON(), followerCount};
+        });
+        return follows
+    });
+    let postFetcher = Post.findAll({
+        where: {
+            [Op.or]: [
+                {privacy: Post.postPrivacy.PUBLIC},
+                {
+                    [Op.and]: [
+                        {privacy: Post.postPrivacy.FRIEND},
+                        {
+                            UserId: {
+                                [Op.in]: req.user.getAllRelationalIds()
+                            }
+                        }
+                    ]
+                },
+                {UserId: req.user.id}
+            ]
+        },
+        order: [
+            ['createdAt', 'DESC'],
+        ],
+        include: [
+            {
+                model: Photo,
+                include: [{
+                    model: Tag,
+                    attributes: ["name"],
+                    through: {
+                        attributes: []
+                    }
+                }]
+            },
+            {model: Comment}
+        ]
+    }).then(posts => {
+        return Promise.all([...posts.map(function (post) {
+            return post.countLikes();
+        })]).then(function (reactions) {
+            let postsWithLikes = posts.map(function (post, index) {
+                post.dataValues.likes = reactions[index];
+                post.dataValues.photoCount = post.Photos.length;
+                return post;
+            });
+            return postsWithLikes
+        });
+    });
+    Promise.all([postFetcher, followsFetcher, trendingSearchesFetcher]).then(results => {
+        let [posts, follows, searches] = results;
+        res.send({posts, follows, searches});
     });
 });
 

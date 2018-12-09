@@ -33,31 +33,36 @@ module.exports = (sequelize, DataTypes) => {
                 }
             }
         },
+        avatar: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: "https://uphinhnhanh.com/images/2018/12/09/10354686_10150004552801856_220367501106153455_n-1.jpg"
+        },
         firstName: {
             type: DataTypes.STRING(30),
             allowNull: false,
-            validate: {
-                is: {
-                    args: ["^[a-zA-Z ]+$", 'i'],
-                    msg: "Invalid first name, must contain only alpha characters"
-                }
-            }
+            // validate: {
+            //     is: {
+            //         args: ["^(\w )+$", 'i'],
+            //         msg: "Invalid first name, must contain only alpha characters"
+            //     }
+            // }
         },
         lastName: {
             type: DataTypes.STRING(30),
             allowNull: false,
-            validate: {
-                is: {
-                    args: ["^[a-zA-Z ]+$", 'i'],
-                    msg: "Invalid first name, must contain only alpha characters"
-                }
-            }
+            // validate: {
+            //     is: {
+            //         args: ["^(\w )+$", 'i'],
+            //         msg: "Invalid last name, must contain only alpha characters"
+            //     }
+            // }
         },
     }, {
         hooks: {
-            beforeCreate: (user, options) => {
+            afterValidate: (user, options) => {
                 user.password = generateHash(user.password);
-            }
+            },
         },
     });
 
@@ -77,9 +82,18 @@ module.exports = (sequelize, DataTypes) => {
         return this.firstName + " " + this.lastName
     };
 
+    User.prototype.getAllRelationalIds = function(){
+        let {id: selfId, FollowBy: followingUser} = this.dataValues;
+        let followingUserIds = followingUser.map(user => {
+           return user.dataValues.follow_to;
+        });
+        return [selfId, ...followingUserIds];
+    };
+
     User.prototype.toJSON = function () {
-        let {id, email, firstName, lastName, createdAt} = this.dataValues;
-        return {id, email, firstName, lastName, joined: createdAt.getFullYear()};
+        let {id, email, avatar, firstName, lastName, createdAt} = this.dataValues;
+        let username = email.substring(0, email.lastIndexOf("@"));
+        return {id, email, username, avatar, firstName, lastName, joined: createdAt.getFullYear()};
     };
 
     return User;

@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Tag.associate = function (models) {
-        Tag.belongsToMany(models.Photo, {through: 'PhotoTags', timestamps: false});
+        Tag.belongsToMany(models.Photo, {through: models.PhotoTag, timestamps: false});
     };
     return Tag;
 };

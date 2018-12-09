@@ -1,7 +1,27 @@
 const {Post} = require("../models");
+const {Op} = require("sequelize");
 
 const postDetailMiddleware = (req, res, next) => {
-    Post.findByPk(req.params.postID).then(function (post) {
+    Post.findOne({
+        where: {
+            [Op.and]: [{id: req.params.postID}, {
+                [Op.or]: [
+                    {privacy: Post.postPrivacy.PUBLIC},
+                    {
+                        [Op.and]: [
+                            {privacy: Post.postPrivacy.FRIEND},
+                            {
+                                UserId: {
+                                    [Op.in]: req.user.getAllRelationalIds()
+                                }
+                            }
+                        ]
+                    },
+                    {UserId: req.user.id}
+                ]
+            }]
+        }
+    }).then(function (post) {
         if (post) {
             req.post = post;
             next();

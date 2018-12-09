@@ -10,7 +10,8 @@ router.post('/signup', (req, res, next) => {
         if (!user) {
             res.json({"errors": error});
         } else {
-            res.json({success: true, "email": user.email});
+            let token = jwt.sign({id: user.id}, secretOrKey);
+            res.json({success: true, "id": user.id, token});
         }
     })(req, res, next);
 });
@@ -21,7 +22,7 @@ router.post('/login', (req, res, next) => {
             res.json({"errors": error});
         } else {
             let token = jwt.sign({id: user.id}, secretOrKey);
-            res.json({success: true, token, "id": user.id})
+            res.json({success: true, "id": user.id, token})
         }
     })(req, res, next);
 });
