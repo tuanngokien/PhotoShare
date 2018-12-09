@@ -1,8 +1,8 @@
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require("multer-storage-cloudinary");
 const multer = require('multer');
-const router = require("./user");
-const {sequelize, Photo, Tag} = require("../models");
+const router = require("../user/user");
+const {sequelize, Photo, Tag} = require("../../models");
 // const storage = cloudinaryStorage({
 //     cloudinary: cloudinary,
 //     folder: 'photos',

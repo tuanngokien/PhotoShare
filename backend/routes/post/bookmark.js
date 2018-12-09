@@ -1,5 +1,6 @@
-const router = require('./user');
-const { Bookmark, User, Post } = require('../models');
+const {getNewRouter} = require("./base");
+const router = getNewRouter();
+const { Bookmark, User, Post } = require('../../models');
 
 router.get('/', (req, res) => {
   let userId = req.user.id;
@@ -19,11 +20,11 @@ router.get('/', (req, res) => {
     console.log(err);
     res.json({ success: false });
   })
-})
+});
 
 router.route("/:postId")
   .post((req, res) => {
-    let postId = req.params.postId
+    let postId = req.params.postId;
     let userId = req.user.id;
     Bookmark.findOrCreate({
       where: {

@@ -1,5 +1,6 @@
-const router = require("./user");
-const {User, Post, Photo, Comment, Tag, follow} = require("../models");
+const {getNewRouter} = require("./base");
+const router = getNewRouter();
+const {User, Post, Photo, Comment, Tag} = require("../../models");
 
 router.route("/:userID/posts")
     .get(function (req, res) {

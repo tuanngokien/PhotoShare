@@ -1,6 +1,7 @@
-const router = require("./user");
+const {getNewRouter} = require("./base");
+const router = getNewRouter();
 const {Op} = require("sequelize");
-const {follow, User} = require('../models');
+const {follow, User} = require('../../models');
 
 
 router.route('/:userID/follows')

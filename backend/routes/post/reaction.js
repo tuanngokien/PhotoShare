@@ -1,25 +1,9 @@
-const express = require('express');
-const router = require("./user");
-
-const {Post, Comment} = require("../models");
+const {getPostDetailRouter} = require("./base");
+const router = getPostDetailRouter();
+const {Comment} = require("../../models");
 
 const LIKE_ROUTE_PATH = "/:postID/likes";
 const COMMENT_ROUTE_PATH = "/:postID/comments";
-
-router.use("/:postID/", function (req, res, next) {
-    Post.findByPk(req.params.postID).then(function (post) {
-        if (post) {
-            req.post = post;
-            next();
-            return null;
-        } else {
-            res.status(404).send("Not found");
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).send("Something went wrong");
-    });
-});
 
 router.route(LIKE_ROUTE_PATH)
     .get(function (req, res) {
