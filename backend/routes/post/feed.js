@@ -73,7 +73,8 @@ router.get("/", function (req, res) {
                     }
                 }]
             },
-            {model: Comment}
+            {model: Comment},
+            {model: User, attributes: ["id", "email", "avatar", "firstName", "lastName"]}
         ]
     }).then(posts => {
         return Promise.all([...posts.map(function (post) {
