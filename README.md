@@ -21,8 +21,7 @@ npm start
 - [api.md](api.md)
 ## Thành viên
 
-1. Nguyễn Trung Hiếu - 16020958 - K61-CD
-2. Đỗ Tuấn Anh - 16020831 - K61-C-CLC
-3. Ngô Kiên Tuấn - 16021211 - K61-C-CLC
-4. Nguyễn Minh Phương - 17020968 - K62-CQ-CF
-5. Trần Mạnh Tùng - 16021226 - K61-C-CLC
+1. Đỗ Tuấn Anh - 16020831 - K61-C-CLC
+2. Ngô Kiên Tuấn - 16021211 - K61-C-CLC
+3. Nguyễn Minh Phương - 17020968 - K62-CQ-CF
+4. Trần Mạnh Tùng - 16021226 - K61-C-CLC

@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const app = express();
 const cors = require('cors');
+const {jsonKeysToCamelMiddleware} = require("./middleware");
 
 require('./auth');
 // view engine setup
@@ -21,6 +22,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'frontend_build')));
+app.use("/api", jsonKeysToCamelMiddleware);
 app.use('/api', indexRouter);
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/frontend_build/index.html'));
