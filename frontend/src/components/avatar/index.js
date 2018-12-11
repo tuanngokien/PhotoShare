@@ -15,7 +15,7 @@ const HeaderAvatar = () => {
 
 export default class DropdownAvatar extends React.Component {
     render() {
-        let {fullName, username}= {fullName: "Ngô Kiên Tuấn", username: "ngokientuan"};
+        let {fullName, username}= {fullname:localStorage.getItem('name'), username:localStorage.getItem('username')};
         return (
             <Dropdown trigger={<HeaderAvatar/>} className={"dropdown-avatar"} direction={"left"} floating>
                 <Dropdown.Menu>
@@ -30,7 +30,7 @@ export default class DropdownAvatar extends React.Component {
                     />
                     <Dropdown.Item as={"a"} href={"/#/pts/profile/1"} text={"Profile"} icon={"user outline"}/>
                     <Dropdown.Item as={"a"} href={"/#/pts/settings"}text={"Settings"} icon={"setting"}/>
-                    <Dropdown.Item as={"a"} href={"/#/pts/signout"}text={"Sign Out"} icon={"sign out"}/>
+                    <Dropdown.Item as={"a"} href={"/#/form"}text={"Sign Out"} icon={"sign out"}/>
                 </Dropdown.Menu>
             </Dropdown>
         )

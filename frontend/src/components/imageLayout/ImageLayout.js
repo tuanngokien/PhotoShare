@@ -26,7 +26,7 @@ export default class imageLayout extends React.Component {
     }
 
     postIndex = async () => {
-        var user_id = localStorage.getItem('id');
+        var user_id = this.props.params.id;
         var headers = {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -35,7 +35,7 @@ export default class imageLayout extends React.Component {
         await axios.get('/api/' + user_id + '/posts', {headers: headers})
             .then(function (res) {
               console.log(res.data.posts);
-              res.data.posts.map(photo => photo.Photos.map(img => (
+              res.data.posts.map(photo => photo.photos.map(img => (
                   com.setState({photos: [...com.state.photos, {
                       'index': ++temp,
                       'src': img.postImage,
@@ -43,9 +43,15 @@ export default class imageLayout extends React.Component {
                       'height': img.height
                   }]})
               )));
+              com.props.userName(res.data.user.username);
+              com.props.firstName(res.data.user.firstName);
+              com.props.lastName(res.data.user.lastName);
+              //com.props.avatar(res.data.user.avatar);
               com.props.postsCount(res.data.user.postCount);
               com.props.photosCount(res.data.user.photoCount);
               com.props.joined(res.data.user.joined);
+              com.props.following(res.data.user.followingCount);
+              com.props.followers(res.data.user.followerCount);
             }).catch(function (error) {
                 console.log(error);
             });

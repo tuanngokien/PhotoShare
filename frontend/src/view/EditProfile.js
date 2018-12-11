@@ -6,7 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import {Col, Row} from 'react-grid-system';
 import Collapse from '@material-ui/core/Collapse';
-import 'font-awesome/css/font-awesome.min.css'
+import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
 
 const currencies = [
   {
@@ -23,10 +24,14 @@ class EditProfile extends Component {
     super(props);
 
     this.state = {
-       currency: "Male",
-    expanded: false
+      currency: "Male",
+      expanded: false,
+      currentPass: '',
+      newPass: '',
+      reNewPass: ''
     };
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmitChangePass = this.handleSubmitChangePass.bind(this);
   }
 
   handleExpandClick = () => {
@@ -38,7 +43,29 @@ class EditProfile extends Component {
       [name]: event.target.value
     });
   };
+
+  handleSubmitChangePass() {
+    const {currentPass, newPass, reNewPass} = this.state;
+    var headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
+    var data = {
+      current_password: currentPass,
+      new_password: newPass,
+      re_new_password: reNewPass
+    }
+    axios.patch('/api/profile/password', data, {headers: headers})
+    .then(function(res){
+      console.log(res.data);
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+  }
+
   render() {
+    var name = localStorage.getItem('name');
+    var email = localStorage.getItem('email');
     return (
       <div className="container" style={{paddingTop:'3%'}}>
           <Row>
@@ -47,7 +74,7 @@ class EditProfile extends Component {
               <CardHeader
                 style = {{borderBottomWidth: 0.5}}
                 avatar = {<Avatar alt="Remy Sharp"
-                      src="https://c2.staticflickr.com/6/5495/buddyicons/12673279@N07_r.jpg?1483401053#12673279@N07"
+                      src= {localStorage.getItem('avatar')}
                       style={{width: 120, height: 120}}
                 />}
                 style={{marginLeft: '32%'}}
@@ -70,7 +97,7 @@ class EditProfile extends Component {
                     required
                     id="outlined-name"
                     label="Name"
-                    defaultValue="Tuan Ngo Kien"
+                    defaultValue= {name}
                     margin="normal"
                     variant="outlined"
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
@@ -121,7 +148,7 @@ class EditProfile extends Component {
                     id="outlined-email-input"
                     label="Email"
                     type="email"
-                    defaultValue="ngokientuan@gmail.com"
+                    defaultValue= {email}
                     autoComplete="email"
                     margin="normal"
                     variant="outlined"
@@ -151,6 +178,7 @@ class EditProfile extends Component {
                 label="Current Password"
                 type="password"
                 autoComplete="current-password"
+                onChange={this.handleChange("currentPass")}
                 margin="normal"
                 variant="outlined"
                 style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
@@ -159,7 +187,7 @@ class EditProfile extends Component {
                 id="outlined-password-input"
                 label="New Password"
                 type="password"
-                autoComplete="current-password"
+                onChange={this.handleChange("newPass")}
                 margin="normal"
                 variant="outlined"
                 style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
@@ -168,12 +196,18 @@ class EditProfile extends Component {
                 id="outlined-password-input"
                 label="Retype New Password"
                 type="password"
-                autoComplete="current-password"
+                onChange={this.handleChange("reNewPass")}
                 margin="normal"
                 variant="outlined"
                 style={{width: '95%', marginRight: '2%', marginLeft: '2%', marginBottom: '2%'}}
               />
-              <Button variant="outlined" style={{marginLeft: '2%', marginBottom: '2%'}}>Submit</Button>
+              <Button
+                variant="outlined"
+                style={{marginLeft: '2%', marginBottom: '2%'}}
+                onClick={this.handleSubmitChangePass}
+              >
+                Submit
+              </Button>
             </Card>
           </Col>
         </Row>

@@ -14,31 +14,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import Grid from '@material-ui/core/Grid';
 import Input from "@material-ui/core/es/Input/Input";
+import Button from "@material-ui/core/Button";
 import {formatNumber} from "../../utils";
-
-const CommentField = ({avatar}) => {
-    return (
-        <ListItem style={{
-            paddingLeft: 'unset',
-            paddingRight: 'unset',
-            paddingBottom: 'unset',
-            marginBottom: "8px",
-        }}>
-            <Grid container spacing={40} alignItems={"center"}>
-                <Grid item xs={1}>
-                    <Avatar src={avatar}/>
-                </Grid>
-                <Grid item xs={10} md={11}>
-                    <Grid container>
-                        <Grid item xs={11}>
-                            <Input placeholder="Write your comment" multiline={true} className={"comment-field"}/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </ListItem>
-    );
-};
+import axios from 'axios';
+import CommentField from './commentField';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import DropdownPostContainer from './dropDownPostContainer.js';
 
 export default class postContainer extends React.Component {
     constructor(props) {
@@ -48,11 +30,13 @@ export default class postContainer extends React.Component {
             openImgBox: false,
             expanded: true,
             liked: this.props.liked,
+            anchorEl: null,
         };
         this.openImgBox = this.openImgBox.bind(this);
         this.closeImgBox = this.closeImgBox.bind(this);
         this.gotoPrevious = this.gotoPrevious.bind(this);
         this.gotoNext = this.gotoNext.bind(this);
+        this.JSClock = this.JSClock.bind(this);
     }
 
     openImgBox = (e, index) => {
@@ -76,38 +60,84 @@ export default class postContainer extends React.Component {
         });
     }
 
-    onHandleLike = () => {
-        this.setState({liked: !this.state.liked})
+    onHandleLike = async (postId) => {
+        console.log(postId)
+        this.setState({liked: !this.state.liked});
+        var headers = {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/x-www-form-urlencoded',
+        };
+        if(this.state.liked){
+            await axios.delete('/api/posts/' + postId + '/likes', {headers: headers})
+            .then(function(res){
+                console.log("unliked")
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+        }
+        else{
+            await axios.post('/api/posts/' + postId + '/likes', null, {headers: headers})
+            .then(function(res){
+                console.log("liked")
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+        }
     };
 
     handleExpandClick = () => {
         this.setState(state => ({expanded: !state.expanded}));
     };
 
+    handleClick = event => {
+        this.setState({anchorEl: event.currentTarget});
+    };
+
+    handleClose = () => {
+        this.setState({anchorEl: null});
+    };
+
+    JSClock = ( date ) =>{
+        var time = new Date(date);
+        var hour = time.getHours();
+        var minute = time.getMinutes();
+        var temp = ((hour < 10) ? '0' : ' ') + hour;
+        temp += ((minute < 10) ? ':0' : ':') + minute;
+        temp += ' ' +time.getDate()+'/' + time.getMonth() +'/' + time.getFullYear()
+        return temp;
+    };
+
+    linkProfileCmtUser = (user_id) => {
+        var link = "#/pts/profile/" + user_id
+        return link;
+    }
     render() {
-        const {postId, userId, fullName, username, avatar, photos, comment} = this.props;
-        var link = "#/pts/profile/" + userId
+        const {id, user, userId, photos, comments, updatedAt} = this.props;
+        const anchorEl = this.state.anchorEl;
+        var link = "#/pts/profile/" + userId;
         return (
             <div className={"dashboard-post"}>
                 <Card>
                     <CardHeader
                         avatar={
                             <Avatar aria-label="Recipe" style={{width: "2.3em", height: "2.3em"}}>
-                                <img src={avatar} style={{width: '100%', height: '100%'}}/>
+                                <img src={user.avatar} style={{width: '100%', height: '100%'}}/>
                             </Avatar>
                         }
                         action={
-                            <IconButton>
-                                <MoreVertIcon/>
+                            <IconButton onClick={this.handleClick}>
+                                <DropdownPostContainer/>
                             </IconButton>
                         }
                         title={
                             <a href={link} style={{textDecoration: 'none', color: 'black'}}>
                                 <p style={{margin: 0, fontWeight: "bold", fontSize: "1.15em"}}>
-                                    {fullName}
+                                    {user.firstName} {user.lastName}
                                 </p>
                             </a>}
-                        subheader={"September 14, 2018"}
+                        subheader={this.JSClock(updatedAt)}
                         style={{paddingBottom: "10px"}}
                         className={"md-line-height dashboard-post-content"}
                     />
@@ -117,11 +147,11 @@ export default class postContainer extends React.Component {
                         infiniteLoop={true}
                         showThumbs={false}
                         showIndicators={photos.length === 1 ? false : true}
-                        dynamicHeight={false}>
+                        dynamicHeight={true}>
                         {photos.map(photo => (
                             <ListItem key={photo.id} dense button style={{padding: 'unset'}}
                                       onClick={(e) => this.openImgBox(e, photo.id)}>
-                                <img src={photo.src} style={{
+                                <img src={photo.postImage} style={{
                                     width: '100%',
                                     height: '100%',
                                     maxHeight: "70vh",
@@ -145,7 +175,7 @@ export default class postContainer extends React.Component {
                         justifyContent: "space-between"
                     }}>
                         <div>
-                            <IconButton aria-label="Like" onClick={this.onHandleLike}>
+                            <IconButton aria-label="Like" onClick={() => this.onHandleLike(id)}>
                                 {this.state.liked ? <FaHeart style={{color: "#dc3545"}}/> : <FaRegHeart/>}
                             </IconButton>
                             <IconButton aria-label="Share" onClick={this.handleExpandClick}>
@@ -162,7 +192,7 @@ export default class postContainer extends React.Component {
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <List style={{paddingTop: 'unset', paddingBottom: 'unset', paddingLeft: '15px'}}>
-                            {comment.map((cmt, i) => (
+                            {comments.map((cmt, i) => (
                                 <ListItem key={i} style={{
                                     paddingLeft: 'unset',
                                     paddingRight: 'unset',
@@ -171,7 +201,7 @@ export default class postContainer extends React.Component {
                                 }}>
                                     <Grid container spacing={40}>
                                         <Grid item xs={1}>
-                                            <Avatar src={cmt.avatar}/>
+                                            <Avatar src={cmt.user.avatar}/>
                                         </Grid>
                                         <Grid item xs={10} className={"comment-text"}>
                                             <Grid container direction={"column"}>
@@ -184,12 +214,22 @@ export default class postContainer extends React.Component {
                                                     }}>
                                                         <span style={{
                                                             fontWeight: '600',
-                                                            fontSize: "0.9em"
-                                                        }}>{cmt.fullName}</span>
+                                                            fontSize: "0.9em",
+                                                            color: 'black'
+                                                        }}>
+                                                            <a href={this.linkProfileCmtUser(cmt.user.id)}
+                                                               style={{
+                                                                textDecoration: 'none',
+                                                                color: 'black'
+                                                                }}
+                                                            >
+                                                                {cmt.user.firstName} {cmt.user.lastName}
+                                                            </a>
+                                                        </span>
                                                         <span style={{
                                                             marginLeft: "7px",
                                                             fontSize: "0.9em",
-                                                        }}>{cmt.content}</span>
+                                                        }}>{cmt.text}</span>
                                                     </div>
                                                 </Grid>
                                                 <Grid item>
@@ -197,7 +237,7 @@ export default class postContainer extends React.Component {
                                                         color: "rgba(0, 0, 0, 0.54)",
                                                         fontSize: "0.85em",
                                                         paddingLeft: "10px"
-                                                    }}>2 hours ago</span>
+                                                    }}>{this.JSClock(cmt.createdAt)}</span>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -205,7 +245,9 @@ export default class postContainer extends React.Component {
                                 </ListItem>
                             ))}
                             <CommentField
-                                avatar={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"}/>
+                                avatar= {user.avatar}
+                                postId= {id}
+                            />
                         </List>
                     </Collapse>
                 </Card>

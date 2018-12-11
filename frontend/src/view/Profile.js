@@ -19,6 +19,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
+import axios from 'axios';
 
 function TabContainer({children, dir}) {
     return (
@@ -82,32 +83,33 @@ const TimelineProfile = withStyles(styles)((props) => {
                     <Grid container direction="row" justify="flex-start" alignItems="center"
                           className={classes.timeline}>
                         <Avatar alt="Remy Sharp"
-                                src="https://c2.staticflickr.com/6/5495/buddyicons/12673279@N07_r.jpg?1483401053#12673279@N07"
+                                src= {localStorage.getItem('avatar')}
                                 className={classNames(classes.avatar, classes.bigAvatar)}/>
                         <div>
                             <Grid container direction={"row"} justify={"flex-start"} alignItems={"center"}>
-                                <h1 style={{marginRight: "15px"}}>Tuan Ngo Kien</h1>
-                                {/*<Button variant="outlined"
+                                <h1 style={{marginRight: "15px"}}>{props.firstName} {props.lastName}</h1>
+                                {props.current_user_id === props.params.id ?
+                                    (<IconButton styles={{color: 'white'}} >
+                                        <a href={link}>
+                                            <Icon style={{color: 'white'}}>edit</Icon>
+                                        </a>
+                                    </IconButton>):
+                                    (<Button variant="outlined"
                                         style={{borderColor: "white", color: "white", padding: "0 15px"}}>
-                                    <Grid container justify={"center"} alignItems={"center"}>
-                                        <Icon style={{marginRight: "5px"}}>add_plus</Icon>
-                                        <span>Follow</span>
-                                    </Grid>
-                                </Button>*/}
-                                <IconButton styles={{color: 'white'}} >
-                                    <a href={link}>
-                                        <Icon style={{color: 'white'}}>edit</Icon>
-                                    </a>
-                                </IconButton>
+                                        <Grid container justify={"center"} alignItems={"center"}>
+                                            <span>Follow</span>
+                                        </Grid>
+                                    </Button>)
+                                }
                             </Grid>
                             <Grid container direction="row"
                                   justify="space-between"
                                   alignItems="center">
-                                <span style={{marginRight: "20px",}}>@ngokientuan</span>
+                                <span style={{marginRight: "20px",}}>@{props.userName}</span>
                                 <span style={{marginRight: "20px"}}>
-                                  <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>12.5K Followers</a>
+                                  <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>{props.followers} Followers</a>
                                 </span>
-                                <span><a href='#/pts/following' style={{textDecoration:'none', color:'white'}}>6K Following</a></span>
+                                <span><a href='#/pts/following' style={{textDecoration:'none', color:'white'}}>{props.following} Following</a></span>
                             </Grid>
                         </div>
                     </Grid>
@@ -136,11 +138,38 @@ class Profile extends Component {
         postsCount: 0,
         photosCount: 0,
         joined: null,
-        id: null
+        id: null,
+        firstName: null,
+        lastName: null,
+        following: null,
+        followers: null,
+        userName: null
     };
 
     componentWillMount(){
         this.setState({id: localStorage.getItem('id') || 1});
+        this.getUserProfile();
+    }
+
+    getUserProfile = async () => {
+        var headers = {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+        var com = this;
+        await axios.get('/api/me', {headers: headers})
+            .then(function (res) {
+                console.log(res.data);
+                com.setState({
+                    firstName: res.data.firstName,
+                    lastName: res.data.lastName
+                })
+                localStorage.setItem('name', com.state.firstName + " " + com.state.lastName);
+                localStorage.setItem('email', res.data.email);
+                localStorage.setItem('avatar', res.data.avatar);
+                localStorage.setItem('username', res.data.username);
+            }).catch(function (error) {
+                console.log(error);
+            });
     }
 
     handleChange = (event, value) => {
@@ -163,6 +192,30 @@ class Profile extends Component {
         this.setState({joined: joined});
     };
 
+    setFollowing = (following) => {
+        this.setState({following: following});
+    };
+
+    setFollowers = (followers) => {
+        this.setState({followers: followers});
+    };
+
+    setUserName = (userName) => {
+        this.setState({userName: userName});
+    };
+
+    setFirstName = (firstName) => {
+        this.setState({firstName: firstName});
+    };
+
+    setLastName = (lastName) => {
+        this.setState({lastName: lastName});
+    };
+
+    setJoined = (joined) => {
+        this.setState({joined: joined});
+    };
+
     render() {
         const {classes} = this.props;
         return (
@@ -174,6 +227,12 @@ class Profile extends Component {
                         photos = {this.state.photosCount}
                         joined = {this.state.joined}
                         current_user_id = {this.state.id}
+                        firstName = {this.state.firstName}
+                        lastName = {this.state.lastName}
+                        following = {this.state.following}
+                        followers = {this.state.followers}
+                        userName = {this.state.userName}
+                        params = {this.props.match.params}
                     />
                     <Grid item xs={12}>
                         <AppBar position="static" color="default" className={"profile-nav-bar"}>
@@ -201,7 +260,13 @@ class Profile extends Component {
                                     <ImageLayout
                                         postsCount = {this.setPostsCount.bind(this)}
                                         photosCount = {this.setPhotosCount.bind(this)}
-                                        joined = {this.setJoined.bind(this)}/>
+                                        joined = {this.setJoined.bind(this)}
+                                        following = {this.setFollowing.bind(this)}
+                                        followers = {this.setFollowers.bind(this)}
+                                        userName = {this.setUserName.bind(this)}
+                                        firstName = {this.setFirstName.bind(this)}
+                                        lastName = {this.setLastName.bind(this)}
+                                        params = {this.props.match.params}/>
                                 </TabContainer>
                                 <TabContainer>
                                     <ImageGridList/>

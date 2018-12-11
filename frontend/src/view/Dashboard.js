@@ -9,6 +9,7 @@ import StickyBox from "react-sticky-box";
 import InfiniteScroll from '../components/InfiniteScroll';
 import {MdSearch} from "react-icons/md";
 import {splitArray} from "../utils";
+import axios from 'axios';
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ export default class Dashboard extends Component {
             hasMorePosts: true,
             follows: [],
             searches: [],
+            data: [],
         };
         this.onHandleLike = this.onHandleLike.bind(this);
         this.openImgBox = this.openImgBox.bind(this);
@@ -39,9 +41,22 @@ export default class Dashboard extends Component {
         }
     };
 
-    loadData() {
-        let data = require("../container/pages/data/dashboard");
-        return data
+    loadData = async() =>{
+        var headers = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+        let data;
+        var com = this;
+        await axios.get('/api/feed', {headers: headers})
+        .then(function(res){
+            com.setState({data: res.data.posts});
+            com.setState({searches: res.data.searches});
+            console.log(com.state.data);
+            console.log(res.data.posts)
+        })
+        .catch(function (error) {
+        console.log(error);
+      });
+        //let data = require("../container/pages/data/dashboard");
+        //return data
     }
 
     loadMore = (page) => {
@@ -58,10 +73,14 @@ export default class Dashboard extends Component {
         }, 1000);
     };
 
+    async componentWillMount() {
+        await this.loadData();
+        let visiblePosts = this.state.data.slice(0, 8);
+        console.log(this.state.data);
+        this.setState({visiblePosts: visiblePosts});
+    }
+
     componentDidMount() {
-        let data = this.loadData();
-        let visiblePosts = data.posts.slice(0, 8);
-        this.setState({...data, visiblePosts});
         this.headerClassList = document.getElementById("header").classList;
         this.headerClassList.remove("header");
         this.headerClassList.add("header-transparent");
@@ -139,12 +158,12 @@ export default class Dashboard extends Component {
                                 <Row>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart1.map(post => {
-                                            return <PostContainer key={post.postId} {...post}/>
+                                            return <PostContainer key={post.id} {...post}/>
                                         })}
                                     </Col>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart2.map(post => {
-                                            return <PostContainer key={post.postId} {...post}/>
+                                            return <PostContainer key={post.id} {...post}/>
                                         })}
                                     </Col>
                                 </Row>
