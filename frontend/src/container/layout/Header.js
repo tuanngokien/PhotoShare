@@ -6,12 +6,11 @@ import {Notifications, CloudUpload, Explore} from '@material-ui/icons';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
 import LogoSm from '../../assets/img/logo2.png';
-import {MdSearch} from "react-icons/md";
 import {Link} from "react-router-dom";
 import {withStyles} from '@material-ui/core/styles';
-
+import SearchBar from "../../components/searchbar";
+import DropdownAvatar from "../../components/avatar";
 const styles = theme => ({
     responsiveVisible: {
         [theme.breakpoints.down('sm')]: {
@@ -23,39 +22,16 @@ const styles = theme => ({
     },
     img: {
         [theme.breakpoints.down('sm')]: {
-            width: "80%!important"
+            width: "2.6em!important"
         },
         [theme.breakpoints.up('md')]: {
-            display: "10%!important"
+            width: "2.6em!important"
         },
     },
 });
 
 class Header extends Component {
-    state = {
-        anchorEl: null,
-    };
-
-    handleClick = event => {
-        this.setState({anchorEl: event.currentTarget});
-    };
-
-    handleClose = () => {
-        this.setState({anchorEl: null});
-    };
-
-    logout = () => {
-        this.handleClose();
-        window.location.replace("#/form");
-    };
-
-    redirectProfile = () => {
-        this.handleClose();
-        window.location.replace("#/pts/profile/" + localStorage.getItem('id'));
-    };
-
     render() {
-        const {anchorEl} = this.state;
         const {classes} = this.props;
         return (
             <div>
@@ -64,47 +40,32 @@ class Header extends Component {
                         <Grid container justify={"space-between"} alignItems={"center"}>
                             <Grid item xs={2}>
                                 <Link to={"/pts/"} className="app-logo">
-                                    <div style={{display: "flex"}}>
+                                    <div style={{display: "flex", alignItems: "center"}}>
                                         <img src={LogoSm} alt="logo" className={classes.img}
-                                             style={{width: "20%", height: "100%"}} id={"main-logo"}/>
-                                        <div style={{padding: "5px 0", margin: "0 10px"}}>
-                                            <div style={{
-                                                width: "3px",
-                                                height: "100%",
-                                                background: "#FFFFFF",
-                                                borderRadius: "15px"
-                                            }}
-                                                 className={classes.responsiveVisible}>
-                                            </div>
+                                             style={{height: "100%"}} id={"main-logo"}/>
+                                        <div style={{
+                                            width: "3px",
+                                            height: "100%",
+                                            background: "#FFFFFF",
+                                            borderRadius: "15px",
+                                            padding: "2px 0",
+                                            margin: "0 10px"
+                                        }}
+                                             className={classes.responsiveVisible}>|
                                         </div>
                                         <div style={{display: "flex", alignItems: "center"}}
                                              className={classes.responsiveVisible}>
-                                            <h2 style={{margin: "0", fontFamily: "Pacifico"}}>PhotoShare</h2>
+                                            <h2 style={{
+                                                margin: "0",
+                                                fontFamily: "Pacifico",
+                                                fontSize: "1.5em"
+                                            }}>PhotoShare</h2>
                                         </div>
                                     </div>
                                 </Link>
                             </Grid>
                             <Grid item xs={3} className={classes.responsiveVisible}>
-                                <Grid container justify={"flex-start"} alignItems={"flex-end"}
-                                      style={{background: "white", borderRadius: "5px", padding: "3px"}}
-                                      id={"top-searchbar"}>
-                                    <Grid item xs={1} style={{
-                                        color: "rgba(21,21,23,.95)",
-                                        background: "transparent",
-                                        paddingLeft: "5px",
-                                        paddingRight: "5px"
-                                    }}>
-                                        <MdSearch style={{fontSize: "1.5em"}}/>
-                                    </Grid>
-                                    <Grid item xs={11}>
-                                        <Input
-                                            style={{
-                                                background: "transparent",
-                                                width: "100%",
-                                                marginRight: "10px",
-                                            }} placeholder={"Photos, people"}/>
-                                    </Grid>
-                                </Grid>
+                                <SearchBar/>
                             </Grid>
                             <Grid item xs={9} md={2} className={"nav-actions"}>
                                 <IconButton href='#/pts/upload'>
@@ -113,33 +74,13 @@ class Header extends Component {
                                 <IconButton href='#/pts/explorer'>
                                     <Explore/>
                                 </IconButton>
-                                <IconButton>
+                                <IconButton href='#/pts/'>
                                     <Notifications/>
                                 </IconButton>
                                 <IconButton onClick={this.handleClick}
-                                            style={{paddingBottom: "3px", paddingTop: "3px"}}>
-                                    <Avatar style={{border: "3px solid white"}}>
-                                        <img
-                                            src={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"}
-                                            style={{height: '100%', width: 'auto'}}
-                                            alt="avatar"/>
-                                    </Avatar>
+                                            style={{paddingBottom: "2px", paddingTop: "2px"}}>
+                                    <DropdownAvatar/>
                                 </IconButton>
-                                <Menu
-                                    id="simple-menu"
-                                    anchorEl={anchorEl}
-                                    open={Boolean(anchorEl)}
-                                    onClose={this.handleClose}
-                                    PaperProps={{
-                                        style: {
-                                            width: 120,
-                                            paddingTop: 0,
-                                            paddingBottom: 0
-                                        }
-                                    }}>
-                                    <MenuItem onClick={this.redirectProfile}>Profile</MenuItem>
-                                    <MenuItem onClick={this.logout}>Logout</MenuItem>
-                                </Menu>
                             </Grid>
                         </Grid>
                     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Loadable from 'react-loadable';
 import Layout from './container/layout/Layout.js';
 import Profile from './view/Profile.js';
-import UpLoad from'./view/UpLoad.js';
+import Upload from './view/Upload.js';
 import Following from'./view/Following.js';
 import Followers from'./view/Followers.js';
 import EditProfile from './view/EditProfile.js'
@@ -25,6 +25,11 @@ const Explorer = Loadable({
   loading: Loading
 });
 
+const Search = Loadable({
+  loader: () => import('./view/Search'),
+  loading: Loading
+});
+
 const Chat = Loadable({
   loader: () => import('./view/Chat.js'),
   loading: Loading
@@ -38,8 +43,9 @@ const routes = [
   {path:'/pts/followers', name: 'Followers', component: Followers},
   {path:'/pts/profile/:id', name: 'Profile', component: Profile},
   {path:'/pts/edit/:id', name: 'EditProfile', component: EditProfile},
-  {path: '/pts/upload', name: 'UpLoad', component: UpLoad},
+  {path: '/pts/upload', name: 'Upload', component: Upload},
   {path: '/pts/explorer', name: 'Explorer', component: Explorer},
+  {path: '/pts/search', name: 'Search', component: Search},
 ];
 
 export default routes;

@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.6.2",
+    "query-string": "^6.2.0",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-tabs": "^1.0.2",
@@ -22,6 +23,7 @@
     "react-loadable": "^5.5.0",
     "react-notifications": "^1.4.3",
     "react-photo-gallery": "^6.2.1",
+    "react-responsive": "^6.0.1",
     "react-responsive-carousel": "^3.1.43",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
@@ -29,7 +31,9 @@
     "react-sticky-box": "^0.7.5",
     "react-swipeable-views": "^0.13.0",
     "react-tabs": "^2.3.0",
-    "reactstrap": "^6.3.1"
+    "reactstrap": "^6.3.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.84.0"
   },
   "scripts": {
     "start": "react-scripts start",

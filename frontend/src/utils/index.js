@@ -14,4 +14,17 @@ const formatNumber = (() => {
     return format;
 })();
 
-export {formatNumber}
+const splitArray = (array, size) => {
+    const container = [];
+    for(let i = 0; i < size; i++){
+        container.push([]);
+    }
+    let i = 0;
+    array.map(e => {
+        container[i%size].push(e);
+        i++;
+    });
+    return container;
+};
+
+export {formatNumber, splitArray}

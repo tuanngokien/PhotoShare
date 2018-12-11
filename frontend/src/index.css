@@ -69,9 +69,14 @@ code {
     margin: 5vh 10%;
 }
 
+.search-container {
+    margin: 0 7% !important;
+}
+
 .explorer-nav-bar {
     background-color: #ffffff !important;
     position: fixed !important;
+    z-index: 1000 !important;
 }
 
 .explorer-nav-bar span {
@@ -102,10 +107,6 @@ code {
     border-radius: 25px;
 }
 
-#header {
-    position: fixed !important;
-}
-
 .header-transparent {
     background: transparent !important;
     box-shadow: none !important;
@@ -116,7 +117,7 @@ code {
 }
 
 .header {
-    box-shadow: 1px 1px 50px 3px #888888 !important;
+    box-shadow: none !important;
     transition: background-color 1s;
 }
 
@@ -155,7 +156,8 @@ code {
     align-content: space-between;
 }
 
-.app-logo {
+.app-logo * {
+    outline: none !important;
     text-decoration: none;
     color: #ffffff;
 }
@@ -207,6 +209,51 @@ iframe {
     padding: 3px;
 }
 
+.dropdown-avatar * {
+    font-family: "Proxima Nova", sans-serif;
+    font-size: 1em;
+}
+
+.dropdown-avatar .dropdown.icon {
+    display: none;
+}
+
+.dropdown-avatar h5, .dropdown-avatar p{
+    margin: 5px!important;
+}
+
+.dropdown-avatar #avatar-header{
+    padding-right: 3em!important;
+}
+
+.dropdown-avatar #avatar-header{
+    border-bottom: 1px solid rgba(34,36,38,.15)!important;
+    padding-top: 0.5em!important;
+    padding-bottom: 0.5em!important;
+}
+
+.dropdown-avatar #avatar-header p{
+    color: rgba(0,0,0,.4);
+}
+
+.dropdown-avatar .menu:before {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    right: 11px;
+    top: -15px;
+    margin-top: 7px;
+    background: #fff;
+    border-radius: 2px;
+    border-top: 2px solid rgba(34,36,38,.15);
+    border-left: 2px solid rgba(34,36,38,.15);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: -2;
+}
+
 .dashboard-searchbar input {
     font-size: 1.2em;
     padding: 15px 0;
@@ -235,12 +282,12 @@ iframe {
     padding: 2px 0;
 }
 
-.explorer-container .page-container > h1 {
+.page-container > h1 {
     font-size: 2.15em;
     margin-bottom: 0;
 }
 
-.explorer-container .page-container > p {
+.page-container > p {
     font-size: 1.15em;
     margin-top: 5px;
 }
@@ -341,16 +388,78 @@ iframe {
     width: 40vw;
 }
 
-.people-card:first-child{
+.search-query-header:first-letter{
+    text-transform: capitalize;
+}
+
+.related-search-keyword{
+    color: black!important;
+    text-decoration: underline;
+    margin-left: 7px;
+}
+
+.people-card:first-child {
     border-radius: 10px 10px 0 0;
 }
 
-.people-card:last-child{
+.people-card:last-child {
     border-radius: 0 0 10px 10px;
 }
 
-.people-card:not(:first-child):not(:last-child){
-    border-radius: 0!important;
+.people-card:not(:first-child):not(:last-child) {
+    border-radius: 0 !important;
+}
+
+#top-searchbar {
+    background: white;
+    border-radius: 5px;
+    padding: 0.7em;
+    padding-left: 2.3em !important;
+    margin: 6px 0;
+}
+
+#top-searchbar .text {
+    font-size: 0.9em;
+}
+
+
+#top-searchbar *:not(i) {
+    font-family: "Proxima Nova", sans-serif;
+}
+
+#top-searchbar i {
+    background: white;
+}
+
+#top-searchbar input {
+    padding-right: 0;
+}
+
+#top-searchbar .description {
+    display: block;
+    font-size: 0.9em;
+}
+
+#top-searchbar .menu {
+    z-index: 1200;
+}
+
+.search-image {
+    width: 100%;
+}
+
+.nav-actions {
+    align-items: center;
+}
+
+.nav-actions > a {
+    padding: 6px 12px !important;
+}
+
+@media only screen and (max-width: 1280px) {
+    #top-searchbar .description {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -413,28 +522,32 @@ iframe {
         margin: 5vh 5%;
     }
 
+    .search-container {
+        margin: 0 5%;
+    }
+
     .explorer-container .page-container {
         font-size: 0.7em;
     }
 
-    .people-image-container{
-        display: none!important;
+    .people-image-container {
+        display: none !important;
     }
 
-    .people-avatar{
-        width: 2.8em!important;
-        height: 2.8em!important;
+    .people-avatar {
+        width: 2.8em !important;
+        height: 2.8em !important;
     }
 
-    .people-container{
-        font-size: 0.8em!important;
+    .people-container {
+        font-size: 0.8em !important;
     }
 
-    .divider{
-        height: 13vw!important;
+    .divider {
+        height: 13vw !important;
     }
 
-    .comment-text{
-        margin-left: 8px!important;
+    .comment-text {
+        margin-left: 8px !important;
     }
 }

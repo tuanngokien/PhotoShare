@@ -8,21 +8,7 @@ import Input from '@material-ui/core/Input';
 import StickyBox from "react-sticky-box";
 import InfiniteScroll from '../components/InfiniteScroll';
 import {MdSearch} from "react-icons/md";
-
-const splitArray = (array) => {
-    const part1 = [];
-    const part2 = [];
-    let track = true;
-    array.map(e => {
-        if (track) {
-            part1.push(e);
-        } else {
-            part2.push(e);
-        }
-        track = !track;
-    });
-    return [part1, part2];
-};
+import {splitArray} from "../utils";
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -104,9 +90,15 @@ export default class Dashboard extends Component {
         this.setState({isOpenImgBox: false});
     };
 
+    onSearch = (event) => {
+        event.preventDefault();
+        let query = this.searchInput.value;
+        window.location.href = `/#/pts/search?q=${query}`;
+    };
+
     render() {
         const {visiblePosts, follows, searches} = this.state;
-        const [postPart1, postPart2] = splitArray(visiblePosts);
+        const [postPart1, postPart2] = splitArray(visiblePosts, 2);
         return (
             <div>
                 <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"}>
@@ -116,18 +108,22 @@ export default class Dashboard extends Component {
                             <h3 style={{margin: "10px 0 30px 0"}}>Gifted by the world’s most generous community of
                                 photographers</h3>
                         </Grid>
-                        <Grid container justify={"flex-start"} alignItems={"flex-end"} className={"dashboard-searchbar"}>
+                        <Grid container justify={"flex-start"} alignItems={"flex-end"}
+                              className={"dashboard-searchbar"}>
                             <Grid item style={{color: "rgba(21,21,23,.95)", background: "transparent",}}>
                                 <MdSearch style={{fontSize: "2.8em", padding: "0 5px"}}/>
                             </Grid>
                             <Grid item id={"dashboard-search-field"}>
-                                <Input
-                                    disableUnderline={true}
-                                    style={{
-                                        background: "transparent",
-                                        width: "100%",
-                                        marginRight: "10px"
-                                    }} placeholder={"Photos, people"}/>
+                                <form onSubmit={this.onSearch}>
+                                    <Input
+                                        disableUnderline={true}
+                                        inputRef={e => this.searchInput = e}
+                                        style={{
+                                            background: "transparent",
+                                            width: "100%",
+                                            marginRight: "10px"
+                                        }} placeholder={"Search high-resolution photos"}/>
+                                </form>
                             </Grid>
                         </Grid>
                     </div>

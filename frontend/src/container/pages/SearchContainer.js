@@ -1,8 +1,17 @@
 import React from "react";
-import Gallery from "react-photo-gallery";
 import Grid from '@material-ui/core/Grid';
 import InfiniteScroll from '../../components/InfiniteScroll';
+import {splitArray} from "../../utils";
 import MediaQuery from 'react-responsive';
+
+const PhotoContainer = ({photos}) => {
+    return (
+        <Grid item xs={12} md={4} lg={3}>
+            {photos.map((e, i) => <Grid key={i} container spacing={8}><Grid item xs={12}><img src={e.src}
+                                                                                              className={"search-image"}/></Grid></Grid>)}
+        </Grid>
+    );
+};
 
 export default class PopularPhotoContainer extends React.Component {
     state = {
@@ -29,27 +38,33 @@ export default class PopularPhotoContainer extends React.Component {
                 hasMorePhotos = false;
             }
             this.setState({visiblePhotos, hasMorePhotos});
-        }, 1000);
+        }, 200);
 
     };
 
     render() {
+        let {query} = this.props;
+        let relatedSearches = ["nature", "birds", "dog", "lion"];
         return (
-            <div className={"page-container"}>
-                <h1>Popular Photos</h1>
-                <p>Images with the most views uploaded in the last 30 days.</p>
+            <div className={"page-container"} style={{marginTop: "50px"}}>
+                <h1 className={"search-query-header"}>{query} pictures</h1>
+                <p>Related search:
+                    {relatedSearches.map((e, i) => <a key={e} href={"#"} className={"related-search-keyword"}>{e}</a>)}
+                </p>
                 <Grid style={{margin: "30px 0"}} className={"main-content"}>
                     <InfiniteScroll
                         pageStart={0}
                         initialLoad={false}
                         loadMore={this.loadMore}
                         hasMore={this.state.hasMorePhotos}>
-                        <MediaQuery minDeviceWidth={1824}>
-                            <Gallery columns={4} photos={this.state.visiblePhotos}/>
-                        </MediaQuery>
-                        <MediaQuery maxDeviceWidth={1824}>
-                            <Gallery photos={this.state.visiblePhotos}/>
-                        </MediaQuery>
+                        <Grid container spacing={8}>
+                            <MediaQuery minDeviceWidth={1280}>
+                                {splitArray(this.state.visiblePhotos, 4).map((photos, i) => <PhotoContainer key={i} photos={photos}/>)}
+                            </MediaQuery>
+                            <MediaQuery maxDeviceWidth={1280}>
+                                {splitArray(this.state.visiblePhotos, 3).map((photos, i) => <PhotoContainer key={i} photos={photos}/>)}
+                            </MediaQuery>
+                        </Grid>
                     </InfiniteScroll>
                 </Grid>
             </div>

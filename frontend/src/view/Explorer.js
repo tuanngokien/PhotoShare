@@ -71,9 +71,6 @@ class Explorer extends Component {
                                     component={PeopleContainer}
                                 />
                             </Switch>
-                                {/*<TabContainer><DiscoverContainer/></TabContainer>*/}
-                                {/*<TabContainer><PopularPhotoContainer/></TabContainer>*/}
-                                {/*<TabContainer>Tagged</TabContainer>*/}
                         </div>
                     </Grid>
                 </Grid>
