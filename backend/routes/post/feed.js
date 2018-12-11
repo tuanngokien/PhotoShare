@@ -77,11 +77,13 @@ router.get("/", function (req, res) {
             {model: User, attributes: ["id", "email", "avatar", "firstName", "lastName"]}
         ]
     }).then(posts => {
-        return Promise.all([...posts.map(function (post) {
-            return post.countLikes();
-        })]).then(function (reactions) {
+        return Promise.all(posts.map(function (post) {
+            return Promise.all([post.countLikes(), post.countLikes({where: {id: req.user.id}})]);
+        })).then(function (reactions) {
             let postsWithLikes = posts.map(function (post, index) {
-                post.dataValues.likes = reactions[index];
+                let currentPostReactions = reactions[index];
+                post.dataValues.likes = currentPostReactions[0];
+                post.dataValues.liked = currentPostReactions[1] > 0;
                 post.dataValues.photoCount = post.Photos.length;
                 return post;
             });

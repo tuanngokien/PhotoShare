@@ -50,11 +50,13 @@ router.route("/:postID")
         }).then((user) => {
             let posts = user.Posts;
             Promise.all([...posts.map(function (post) {
-                return post.countLikes();
+                return Promise.all([post.countLikes(), post.countLikes({where: {id: req.user.id}})]);
             }), user.getFollowTo()]).then(function (result) {
                 let reactions = result.slice(0, -1);
                 let postsWithLikes = posts.map(function (post, index) {
-                    post.dataValues.likes = reactions[index];
+                    let currentPostReactions = reactions[index];
+                    post.dataValues.likes = currentPostReactions[0];
+                    post.dataValues.liked = currentPostReactions[1] > 0;
                     post.dataValues.photoCount = post.Photos.length;
                     return post;
                 });
