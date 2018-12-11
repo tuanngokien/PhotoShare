@@ -32,8 +32,8 @@ router.route(COMMENT_ROUTE_PATH)
         req.post.createComment({
             UserId: req.user.id,
             text: req.body.text,
-        }).then(result => {
-            res.json({id: result.id});
+        }).then(comment => {
+            res.json({success: true, comment: comment});
         });
     });
 
@@ -42,8 +42,8 @@ router.route(`${COMMENT_ROUTE_PATH}/:commentID`)
         Comment.update(
             {text: req.body.text},
             {where: {id: req.params.commentID, userId: req.user.id, postId: req.post.id}}
-        ).then(result => {
-            res.json({success: Boolean(result)});
+        ).then(comment => {
+            res.json({success: Boolean(comment)});
         })
     })
     .delete(function (req, res) {
