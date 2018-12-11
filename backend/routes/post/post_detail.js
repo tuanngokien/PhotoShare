@@ -40,7 +40,10 @@ router.route("/:postID")
                                 }
                             }]
                         },
-                        {model: Comment},
+                        {
+                            model: Comment,
+                            include: [{model: User, attributes: ["id", "email", "avatar", "firstName", "lastName"]}]
+                        },
                     ],
                 },
             ],
