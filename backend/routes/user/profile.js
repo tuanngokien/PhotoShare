@@ -2,7 +2,7 @@ const {getNewRouter} = require("./base");
 const router = getNewRouter();
 
 const cloudinary = require('cloudinary');
-const {sequelize, Photo} = require("../../models");
+const {User} = require("../../models");
 
 router.patch("/avatar", function (req, res) {
     let avatarPublicId = req.body.public_id;
@@ -47,7 +47,6 @@ router.patch("/basic", function (req, res) {
 
 router.patch("/password", function (req, res) {
     let {current_password: currentPassword, new_password: newPassword, re_new_password: reNewPassword} = req.body;
-    console.log(newPassword, reNewPassword);
     if (!newPassword || !reNewPassword || !currentPassword) {
         res.json({errors: {fields: "Some required fields are missing"}});
     } else if (newPassword !== reNewPassword) {
@@ -67,7 +66,7 @@ router.patch("/password", function (req, res) {
                     res.json({errors});
                 });
             } else {
-                res.json({error: "Current password is invalid"})
+                res.json({errors: {current_password: "Current password is invalid"}})
             }
         })
     }
