@@ -60,7 +60,11 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {
         hooks: {
-            afterValidate: (user, options) => {
+            beforeCreate: (user, options) => {
+                user.password = generateHash(user.password);
+            },
+            beforeUpdate: (user, options) => {
+                options.validate = false;
                 user.password = generateHash(user.password);
             },
         },

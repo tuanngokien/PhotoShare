@@ -10,6 +10,16 @@ import InfiniteScroll from '../components/InfiniteScroll';
 import {MdSearch} from "react-icons/md";
 import {splitArray} from "../utils";
 import axios from 'axios';
+import landingImg1 from "../assets/img/landing1.jpeg";
+import landingImg2 from "../assets/img/landing2.jpeg";
+import landingImg4 from "../assets/img/landing4.jpeg";
+
+const backgroundImageList = [landingImg1, landingImg2, landingImg4];
+
+const getJumbotronBackgroundStyle = (backgroundImage) => {
+    return `linear-gradient(180deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, .38) 3.5%, rgba(0, 0, 0, .379) 7%, rgba(0, 0, 0, .377) 10.35%, rgba(0, 0, 0, .375) 13.85%, rgba(0, 0, 0, .372) 17.35%, rgba(0, 0, 0, .369) 20.85%, rgba(0, 0, 0, .366) 24.35%, rgba(0, 0, 0, .364) 27.85%, rgba(0, 0, 0, .361) 31.35%, rgba(0, 0, 0, .358) 34.85%, rgba(0, 0, 0, .355) 38.35%, rgba(0, 0, 0, .353) 41.85%, rgba(0, 0, 0, .351) 45.35%, rgba(0, 0, 0, .35) 48.85%, rgba(0, 0, 0, .353) 52.35%, rgba(0, 0, 0, .36) 55.85%, rgba(0, 0, 0, .371) 59.35%, rgba(0, 0, 0, .385) 62.85%, rgba(0, 0, 0, .402) 66.35%, rgba(0, 0, 0, .42) 69.85%, rgba(0, 0, 0, .44) 73.35%, rgba(0, 0, 0, .46) 76.85%, rgba(0, 0, 0, .48) 80.35%, rgba(0, 0, 0, .498) 83.85%, rgba(0, 0, 0, .515) 87.35%, rgba(0, 0, 0, .529) 90.85%, rgba(0, 0, 0, .54) 94.35%, rgba(0, 0, 0, .547) 97.85%, rgba(0, 0, 0, .55)), url("${backgroundImage}") no-repeat`
+};
+
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -25,6 +35,8 @@ export default class Dashboard extends Component {
             follows: [],
             searches: [],
             data: [],
+            backgroundImage: null,
+            img: []
         };
         this.onHandleLike = this.onHandleLike.bind(this);
         this.openImgBox = this.openImgBox.bind(this);
@@ -45,24 +57,26 @@ export default class Dashboard extends Component {
         var headers = {Authorization: 'Bearer ' + localStorage.getItem('token')};
         let data;
         var com = this;
+        var temp = -1;
         await axios.get('/api/feed', {headers: headers})
         .then(function(res){
             com.setState({data: res.data.posts});
             com.setState({searches: res.data.searches});
-            console.log(com.state.data);
-            console.log(res.data.posts)
+            com.setState({visiblePosts: com.state.data.slice(0, 8)});
+            //console.log(res.data.posts)
         })
         .catch(function (error) {
         console.log(error);
       });
         //let data = require("../container/pages/data/dashboard");
         //return data
+        this.forceUpdate()
     }
 
     loadMore = (page) => {
         setTimeout(() => {
             let hasMorePosts = true;
-            let allPosts = this.state.posts;
+            let allPosts = this.state.data;
             let visiblePosts = this.state.visiblePosts;
             let newPosts = allPosts.slice(page * 8, (page + 1) * 8);
             visiblePosts.push(...newPosts);
@@ -75,12 +89,11 @@ export default class Dashboard extends Component {
 
     async componentWillMount() {
         await this.loadData();
-        let visiblePosts = this.state.data.slice(0, 8);
-        console.log(this.state.data);
-        this.setState({visiblePosts: visiblePosts});
     }
 
     componentDidMount() {
+        let backgroundImage = backgroundImageList[Math.floor(Math.random() * backgroundImageList.length)];
+        this.setState({backgroundImage});
         this.headerClassList = document.getElementById("header").classList;
         this.headerClassList.remove("header");
         this.headerClassList.add("header-transparent");
@@ -116,11 +129,12 @@ export default class Dashboard extends Component {
     };
 
     render() {
-        const {visiblePosts, follows, searches} = this.state;
+        const {visiblePosts, follows, searches, backgroundImage} = this.state;
         const [postPart1, postPart2] = splitArray(visiblePosts, 2);
+        const backgroundStyle = getJumbotronBackgroundStyle(backgroundImage);
         return (
             <div>
-                <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"}>
+                <Grid container justify={"center"} alignItems={"center"} className={"jumbotron"} style={{background: backgroundStyle}}>
                     <div>
                         <Grid container direction={"column"} alignItems={"center"}>
                             <h1 style={{fontWeight: "900", margin: 0, fontSize: "3em"}}>PHOTOSHARE</h1>
@@ -158,12 +172,12 @@ export default class Dashboard extends Component {
                                 <Row>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart1.map(post => {
-                                            return <PostContainer key={post.id} {...post}/>
+                                            return <PostContainer key={post.id} {...post} loadData = {this.loadData.bind(this)}/>
                                         })}
                                     </Col>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart2.map(post => {
-                                            return <PostContainer key={post.id} {...post}/>
+                                            return <PostContainer key={post.id} {...post} loadData = {this.loadData.bind(this)}/>
                                         })}
                                     </Col>
                                 </Row>

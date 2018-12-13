@@ -87,7 +87,7 @@ const TimelineProfile = withStyles(styles)((props) => {
                                 className={classNames(classes.avatar, classes.bigAvatar)}/>
                         <div>
                             <Grid container direction={"row"} justify={"flex-start"} alignItems={"center"}>
-                                <h1 style={{marginRight: "15px"}}>{props.firstName} {props.lastName}</h1>
+                                <h1 style={{marginRight: "15px"}}>{localStorage.getItem('name')}</h1>
                                 {props.current_user_id === props.params.id ?
                                     (<IconButton styles={{color: 'white'}} >
                                         <a href={link}>
@@ -105,7 +105,7 @@ const TimelineProfile = withStyles(styles)((props) => {
                             <Grid container direction="row"
                                   justify="space-between"
                                   alignItems="center">
-                                <span style={{marginRight: "20px",}}>@{props.userName}</span>
+                                <span style={{marginRight: "20px",}}>@{localStorage.getItem('username')}</span>
                                 <span style={{marginRight: "20px"}}>
                                   <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>{props.followers} Followers</a>
                                 </span>
@@ -148,28 +148,6 @@ class Profile extends Component {
 
     componentWillMount(){
         this.setState({id: localStorage.getItem('id') || 1});
-        this.getUserProfile();
-    }
-
-    getUserProfile = async () => {
-        var headers = {
-            Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-        var com = this;
-        await axios.get('/api/me', {headers: headers})
-            .then(function (res) {
-                console.log(res.data);
-                com.setState({
-                    firstName: res.data.firstName,
-                    lastName: res.data.lastName
-                })
-                localStorage.setItem('name', com.state.firstName + " " + com.state.lastName);
-                localStorage.setItem('email', res.data.email);
-                localStorage.setItem('avatar', res.data.avatar);
-                localStorage.setItem('username', res.data.username);
-            }).catch(function (error) {
-                console.log(error);
-            });
     }
 
     handleChange = (event, value) => {
@@ -204,14 +182,6 @@ class Profile extends Component {
         this.setState({userName: userName});
     };
 
-    setFirstName = (firstName) => {
-        this.setState({firstName: firstName});
-    };
-
-    setLastName = (lastName) => {
-        this.setState({lastName: lastName});
-    };
-
     setJoined = (joined) => {
         this.setState({joined: joined});
     };
@@ -227,11 +197,8 @@ class Profile extends Component {
                         photos = {this.state.photosCount}
                         joined = {this.state.joined}
                         current_user_id = {this.state.id}
-                        firstName = {this.state.firstName}
-                        lastName = {this.state.lastName}
                         following = {this.state.following}
                         followers = {this.state.followers}
-                        userName = {this.state.userName}
                         params = {this.props.match.params}
                     />
                     <Grid item xs={12}>
@@ -264,8 +231,6 @@ class Profile extends Component {
                                         following = {this.setFollowing.bind(this)}
                                         followers = {this.setFollowers.bind(this)}
                                         userName = {this.setUserName.bind(this)}
-                                        firstName = {this.setFirstName.bind(this)}
-                                        lastName = {this.setLastName.bind(this)}
                                         params = {this.props.match.params}/>
                                 </TabContainer>
                                 <TabContainer>

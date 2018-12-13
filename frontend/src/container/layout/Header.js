@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from "@material-ui/core/IconButton";
 import {Notifications, CloudUpload, Explore} from '@material-ui/icons';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import LogoSm from '../../assets/img/logo2.png';
 import {Link} from "react-router-dom";
@@ -58,7 +55,8 @@ class Header extends Component {
                                             <h2 style={{
                                                 margin: "0",
                                                 fontFamily: "Pacifico",
-                                                fontSize: "1.5em"
+                                                fontSize: "1.5em",
+                                                fontWeight: "bold"
                                             }}>PhotoShare</h2>
                                         </div>
                                     </div>

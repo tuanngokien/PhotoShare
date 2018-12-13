@@ -21,6 +21,7 @@ import CommentField from './commentField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import DropdownPostContainer from './dropDownPostContainer.js';
+import DropdownComment from './dropDownComment.js';
 
 export default class postContainer extends React.Component {
     constructor(props) {
@@ -31,12 +32,28 @@ export default class postContainer extends React.Component {
             expanded: true,
             liked: this.props.liked,
             anchorEl: null,
+            comments: this.props.comments,
+            likes: this.props.likes,
+            isHovering: false,
+            currentImage: 0,
         };
         this.openImgBox = this.openImgBox.bind(this);
         this.closeImgBox = this.closeImgBox.bind(this);
         this.gotoPrevious = this.gotoPrevious.bind(this);
         this.gotoNext = this.gotoNext.bind(this);
         this.JSClock = this.JSClock.bind(this);
+    }
+
+    async componentWillReceiveProps(nextProps) {
+        if(this.props.comments !== nextProps.comments)
+        {
+            await this.setState(state => ({
+                comments: nextProps.comments,
+            }));
+        }
+        await this.setState(state => ({
+            likes: nextProps.likes,
+        }));
     }
 
     openImgBox = (e, index) => {
@@ -61,16 +78,14 @@ export default class postContainer extends React.Component {
     }
 
     onHandleLike = async (postId) => {
-        console.log(postId)
         this.setState({liked: !this.state.liked});
         var headers = {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
-            'Content-Type': 'application/x-www-form-urlencoded',
         };
         if(this.state.liked){
             await axios.delete('/api/posts/' + postId + '/likes', {headers: headers})
             .then(function(res){
-                console.log("unliked")
+                //console.log("unliked")
             })
             .catch(function(err){
                 console.log(err)
@@ -79,24 +94,17 @@ export default class postContainer extends React.Component {
         else{
             await axios.post('/api/posts/' + postId + '/likes', null, {headers: headers})
             .then(function(res){
-                console.log("liked")
+                //console.log("liked")
             })
             .catch(function(err){
                 console.log(err)
             })
         }
+        await this.props.loadData();
     };
 
     handleExpandClick = () => {
         this.setState(state => ({expanded: !state.expanded}));
-    };
-
-    handleClick = event => {
-        this.setState({anchorEl: event.currentTarget});
-    };
-
-    handleClose = () => {
-        this.setState({anchorEl: null});
     };
 
     JSClock = ( date ) =>{
@@ -114,8 +122,9 @@ export default class postContainer extends React.Component {
         return link;
     }
     render() {
-        const {id, user, userId, photos, comments, updatedAt} = this.props;
-        const anchorEl = this.state.anchorEl;
+        const {id, user, userId, photos, updatedAt, privacy} = this.props;
+        const comments = this.state.comments;
+        const likes = this.state.likes;
         var link = "#/pts/profile/" + userId;
         return (
             <div className={"dashboard-post"}>
@@ -128,7 +137,7 @@ export default class postContainer extends React.Component {
                         }
                         action={
                             <IconButton onClick={this.handleClick}>
-                                <DropdownPostContainer/>
+                                <DropdownPostContainer postId={id} privacy={privacy} loadFeed={this.props.loadData}/>
                             </IconButton>
                         }
                         title={
@@ -166,7 +175,7 @@ export default class postContainer extends React.Component {
                         isClose={this.closeImgBox.bind(this)}
                         gotoPrevious={this.gotoPrevious.bind(this)}
                         gotoNext={this.gotoNext.bind(this)}
-                        // currentImage={this.state.currentImage}
+                        currentImage={this.state.currentImage}
                         images={photos}
                     />
                     <CardActions disableActionSpacing style={{
@@ -186,8 +195,8 @@ export default class postContainer extends React.Component {
                             </IconButton>
                         </div>
                         <div className={"post-summary"}>
-                            <span>{formatNumber(32489)} views</span>
-                            <span>{formatNumber(225)} likes</span>
+                            <span>{formatNumber(likes)} likes</span>
+                            <span>{formatNumber(225)} comments</span>
                         </div>
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
@@ -203,9 +212,9 @@ export default class postContainer extends React.Component {
                                         <Grid item xs={1}>
                                             <Avatar src={cmt.user.avatar}/>
                                         </Grid>
-                                        <Grid item xs={10} className={"comment-text"}>
+                                        <Grid item xs={10} className={"comment-text"} style={{paddingLeft: '30px'}}>
                                             <Grid container direction={"column"}>
-                                                <Grid item>
+                                                <Grid item direction={"row"}>
                                                     <div style={{
                                                         backgroundColor: "#F3F3F3",
                                                         width: "fit-content",
@@ -242,11 +251,19 @@ export default class postContainer extends React.Component {
                                             </Grid>
                                         </Grid>
                                     </Grid>
+                                    <DropdownComment
+                                        userCommentId= {cmt.userId}
+                                        userId= {userId}
+                                        commentId = {cmt.id}
+                                        postId = {id}
+                                        loadFeed = {this.props.loadData}
+                                    />
                                 </ListItem>
                             ))}
                             <CommentField
                                 avatar= {user.avatar}
                                 postId= {id}
+                                loadFeed = {this.props.loadData}
                             />
                         </List>
                     </Collapse>

@@ -11,27 +11,35 @@ export default class CommentField extends React.Component{
       super(props);
 
       this.state = {
-        content: null
+        content: null,
       };
     }
 
     handleOnChange = (event) => {
-        this.setState ({content: event.target.value})
+        this.setState ({
+            content: event.target.value,
+        })
     }
 
-    comment = async (postId) => {
+
+    comment = async (postId, e) => {
         var headers = {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         };
-        let data = {
+        if(this.state.content !== null){
+            let data = {
             "text": this.state.content
-        };
-        await axios.post('/api/posts/' + postId + '/comments', data, {headers: headers})
-        .then(res => {
-            console.log(res.data);
-        }).catch(err => {
-            console.log(err);
-        })
+            };
+            await axios.post('/api/posts/' + postId + '/comments', data, {headers: headers})
+            .then(res => {
+                console.log(res.data);
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        //document.getElementById("field").reset();
+        this.props.loadFeed();
+        this.setState({content: ''});
     }
 
     render(){
@@ -41,7 +49,9 @@ export default class CommentField extends React.Component{
                 paddingLeft: 'unset',
                 paddingRight: 'unset',
                 paddingBottom: 'unset',
-                marginBottom: "8px",
+                marginBottom: "10px",
+                paddingBottom: "10px",
+                marginTop: "12px"
             }}>
                 <Grid container spacing={40} alignItems={"center"}>
                     <Grid item xs={1}>
@@ -50,10 +60,22 @@ export default class CommentField extends React.Component{
                     <Grid item xs={10} md={11}>
                         <Grid container>
                             <Grid item xs={9}>
-                                <Input placeholder="Write your comment" multiline={true} className={"comment-field"} onChange={this.handleOnChange}/>
+                                <Input
+                                    id="field"
+                                    placeholder="Write your comment"
+                                    multiline={true}
+                                    className={"comment-field"}
+                                    value={this.state.content}
+                                    onChange={this.handleOnChange}
+                                />
                             </Grid>
                             <Grid items xs={3}>
-                                <Button onClick = {() => this.comment(postId)}>Post</Button>
+                                <Button
+                                    onClick = {() => this.comment(postId)}
+                                    style = {{marginLeft: '20%'}}
+                                >
+                                    Post
+                                </Button>
                             </Grid>
                         </Grid>
                     </Grid>

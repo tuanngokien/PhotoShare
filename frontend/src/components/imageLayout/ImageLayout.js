@@ -44,8 +44,6 @@ export default class imageLayout extends React.Component {
                   }]})
               )));
               com.props.userName(res.data.user.username);
-              com.props.firstName(res.data.user.firstName);
-              com.props.lastName(res.data.user.lastName);
               //com.props.avatar(res.data.user.avatar);
               com.props.postsCount(res.data.user.postCount);
               com.props.photosCount(res.data.user.photoCount);

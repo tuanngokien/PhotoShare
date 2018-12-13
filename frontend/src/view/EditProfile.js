@@ -65,6 +65,7 @@ class EditProfile extends Component {
 
   render() {
     var name = localStorage.getItem('name');
+    var username = '@' + localStorage.getItem('username');
     var email = localStorage.getItem('email');
     return (
       <div className="container" style={{paddingTop:'3%'}}>
@@ -108,7 +109,7 @@ class EditProfile extends Component {
                     required
                     id="outlined-username-input"
                     label="UserName"
-                    defaultValue="@ngokientuan"
+                    defaultValue={username}
                     margin="normal"
                     variant="outlined"
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
