@@ -82,6 +82,7 @@ class EditProfile extends Component {
     .then(function(res){
       localStorage.setItem('firstName', res.data.user.firstName);
       localStorage.setItem('lastName', res.data.user.lastName);
+      localStorage.setItem('name', res.data.user.firstName + res.data.user.lastName);
       localStorage.setItem('email', res.data.user.email);
       console.log(res.data);
     })

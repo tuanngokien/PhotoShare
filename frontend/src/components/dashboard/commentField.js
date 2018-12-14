@@ -5,18 +5,19 @@ import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/es/Input/Input";
 import Avatar from '@material-ui/core/Avatar';
 import axios from "axios";
+import IconButton from "@material-ui/core/IconButton";
 
-export default class CommentField extends React.Component{
+export default class CommentField extends React.Component {
     constructor(props) {
-      super(props);
+        super(props);
 
-      this.state = {
-        content: null,
-      };
+        this.state = {
+            content: null,
+        };
     }
 
     handleOnChange = (event) => {
-        this.setState ({
+        this.setState({
             content: event.target.value,
         })
     }
@@ -26,29 +27,28 @@ export default class CommentField extends React.Component{
         var headers = {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         };
-        if(this.state.content !== null){
+        if (this.state.content !== null) {
             let data = {
-            "text": this.state.content
+                "text": this.state.content
             };
             await axios.post('/api/posts/' + postId + '/comments', data, {headers: headers})
-            .then(res => {
-                console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
+                .then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                    console.log(err);
+                })
         }
         //document.getElementById("field").reset();
         this.props.loadFeed();
         this.setState({content: ''});
     }
 
-    render(){
+    render() {
         const {avatar, postId} = this.props;
         return (
             <ListItem style={{
                 paddingLeft: 'unset',
                 paddingRight: 'unset',
-                paddingBottom: 'unset',
                 marginBottom: "10px",
                 paddingBottom: "10px",
                 marginTop: "12px"
@@ -57,9 +57,9 @@ export default class CommentField extends React.Component{
                     <Grid item xs={1}>
                         <Avatar src={avatar}/>
                     </Grid>
-                    <Grid item xs={10} md={11}>
+                    <Grid item xs={9}>
                         <Grid container>
-                            <Grid item xs={9}>
+                            <Grid item xs={12}>
                                 <Input
                                     id="field"
                                     placeholder="Write your comment"
@@ -69,15 +69,14 @@ export default class CommentField extends React.Component{
                                     onChange={this.handleOnChange}
                                 />
                             </Grid>
-                            <Grid items xs={3}>
-                                <Button
-                                    onClick = {() => this.comment(postId)}
-                                    style = {{marginLeft: '20%'}}
-                                >
-                                    Post
-                                </Button>
-                            </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid items xs={"auto"}>
+                        <Button
+                            onClick={() => this.comment(postId)}
+                            className={"comment-action"}>
+                            Post
+                        </Button>
                     </Grid>
                 </Grid>
             </ListItem>

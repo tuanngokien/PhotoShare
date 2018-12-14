@@ -638,6 +638,12 @@ iframe {
     min-width: initial;
 }
 
+.comment-action{
+    background-color: #128fdc!important;
+    color: white!important;
+    font-weight: bold!important;
+}
+
 @media only screen and (max-width: 1280px) {
     #top-searchbar .description {
         display: none;
