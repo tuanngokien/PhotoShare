@@ -72,9 +72,9 @@ class Header extends Component {
                                 <IconButton href='#/pts/explorer'>
                                     <Explore/>
                                 </IconButton>
-                                <IconButton href='#/pts/'>
-                                    <Notifications/>
-                                </IconButton>
+                                {/*<IconButton href='#/pts/'>*/}
+                                    {/*<Notifications/>*/}
+                                {/*</IconButton>*/}
                                 <IconButton onClick={this.handleClick}
                                             style={{paddingBottom: "2px", paddingTop: "2px"}}>
                                     <DropdownAvatar/>

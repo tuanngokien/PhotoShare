@@ -41,7 +41,6 @@ class Upload extends Component {
                 }
             },
             function (error, result) {
-                var com = this;
                 if (!error && result.event === "show-completed") {
                     let uploadedPhoto = result.info.items.filter(photo => photo.done);
                     let photos = uploadedPhoto.map(photo => {

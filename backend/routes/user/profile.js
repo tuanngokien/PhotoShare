@@ -9,8 +9,8 @@ router.patch("/avatar", function (req, res) {
     if (avatarPublicId) {
         let avatar = cloudinary.url(avatarPublicId, {
             secure: true,
-            width: 300,
-            height: 300,
+            width: 350,
+            height: 350,
             gravity: "face",
             crop: "thumb"
         });

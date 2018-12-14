@@ -12,7 +12,7 @@ export default class CommentField extends React.Component {
         super(props);
 
         this.state = {
-            content: null,
+            content: "",
         };
     }
 
@@ -71,7 +71,7 @@ export default class CommentField extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid items xs={2} className={"comment-button"}>
+                    <Grid item xs={2} className={"comment-button"}>
                         <Button
                             onClick={() => this.comment(postId)}
                             className={"comment-action"}>

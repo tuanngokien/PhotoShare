@@ -82,7 +82,7 @@ const TimelineProfile = withStyles(styles)((props) => {
         <Grid item xs={12}>
             <Card>
                 <CardMedia
-                    image='http://farm2.staticflickr.com/1861/coverphoto/60475224@N05_h.jpg?1537188632#60475224@N05'
+                    image='http://farm5.staticflickr.com/4119/coverphoto/35928550@N02_h.jpg?1498949394#35928550@N02'
                     style={{padding: '10vh 0 0 0'}}>
                     <Grid container direction="row" justify="flex-start" alignItems="center"
                           className={classes.timeline}>

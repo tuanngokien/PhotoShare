@@ -6,22 +6,30 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-const SearchKeyword = ({keyword, color}) => {
-    return (
-        <Grid item xs={5} style={{marginRight: "10px", marginBottom: "10px"}}>
-            <Button variant="contained" fullWidth style={{
-                padding: "0px 10px",
-                fontSize: "0.9em",
-                backgroundColor: color,
-                color: "white",
-                fontWeight: "bold",
-                textTransform: "lowercase"
-            }}>
-                {keyword}
-            </Button>
-        </Grid>
-    );
-};
+class SearchKeyword extends React.Component {
+    onClick = (e) => {
+       let keyword = e.target.innerText;
+       window.location.href = `/#/pts/search?q=${keyword}`;
+    };
+
+    render() {
+        const {keyword, color} = this.props;
+        return (
+            <Grid item xs={5} style={{marginRight: "10px", marginBottom: "10px"}}>
+                <Button variant="contained" fullWidth style={{
+                    padding: "0px 10px",
+                    fontSize: "0.9em",
+                    backgroundColor: color,
+                    color: "white",
+                    fontWeight: "bold",
+                    textTransform: "lowercase"}}
+                    onClick={this.onClick}>
+                    {keyword}
+                </Button>
+            </Grid>
+        );
+    }
+}
 
 class SearchTrendingSidebar extends React.Component {
     render() {

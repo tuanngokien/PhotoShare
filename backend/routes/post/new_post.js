@@ -55,15 +55,12 @@ router.route("/")
                                             return null;
                                         }).catch(error => {
                                             console.log(error);
-                                            return null;
                                         });
                                     }
                                 }, AUTO_TAGGING_OPTION);
                             }
-                            return null;
                         }).catch(err => {
                             console.log(err);
-                            return null;
                         });
                         res.json({success: true, post});
                         return null;

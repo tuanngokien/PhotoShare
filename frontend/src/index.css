@@ -162,9 +162,8 @@ code {
     color: #ffffff;
 }
 
-iframe {
-    z-index: 0 !important;
-    display: block !important;
+.change-avatar-container .notification-container{
+    z-index: 1000000000;
 }
 
 #img-uploader {

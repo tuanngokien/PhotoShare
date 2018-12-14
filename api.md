@@ -26,6 +26,18 @@
 | Delete post comment      | /api/posts/{postId}/comments/{commentId} | DELETE ||||
 | Update post privacy      | /api/posts/{postId}/privacy | PATCH |Content-Type:application/x-www-form-urlencoded|type|["1","2","3"] (PRIVATE, FRIEND, PUBLIC)|
 
+## **EXPLORER**
+##### *Required header* :
+```Authorization: Bearer {access_token}```
+
+
+| Action        | URL           | Method  |Header| Body | Note
+| ------------- |:----------:| :-----:| :-----:|:-----:|:-----:|
+| Collections         | /api/explorer/collections| GET |||
+| Photos         | /api/explorer/photos| GET |||
+| People         | /api/explorer/people| GET |||
+
+
 ## **USER - PROFILE UPDATE**
 ##### *Required header* :
 ```Authorization: Bearer {access_token}```

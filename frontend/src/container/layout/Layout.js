@@ -6,6 +6,13 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 
 export default class Layout extends Component {
+    componentDidMount() {
+        if(!localStorage.getItem("token")){
+            window.localStorage.clear();
+            window.location.href="/#/form";
+        }
+    }
+
     render() {
         return (
             <div className='main-container'>

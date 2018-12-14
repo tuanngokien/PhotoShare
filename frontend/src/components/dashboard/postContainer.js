@@ -175,14 +175,6 @@ export default class postContainer extends React.Component {
                             </ListItem>
                         ))}
                     </Carousel>
-                    <ImageBox
-                        isOpen={this.state.openImgBox}
-                        isClose={this.closeImgBox.bind(this)}
-                        gotoPrevious={this.gotoPrevious.bind(this)}
-                        gotoNext={this.gotoNext.bind(this)}
-                        currentImage={this.state.currentImage}
-                        images={['src': photos.postImage, 'width': photos.width, 'height':photos.height]}
-                    />
                     <CardActions disableActionSpacing style={{
                         borderBottom: "1px solid #D2D2D2",
                         padding: "2px 30px 2px 12px",
@@ -219,7 +211,7 @@ export default class postContainer extends React.Component {
                                         </Grid>
                                         <Grid item xs={10} className={"comment-text"} style={{paddingLeft: '30px'}}>
                                             <Grid container direction={"column"}>
-                                                <Grid item direction={"row"}>
+                                                <Grid item>
                                                     <div style={{
                                                         backgroundColor: "#F3F3F3",
                                                         width: "fit-content",
