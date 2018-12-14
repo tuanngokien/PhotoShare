@@ -33,7 +33,10 @@ router.route(COMMENT_ROUTE_PATH)
             UserId: req.user.id,
             text: req.body.text,
         }).then(comment => {
-            res.json({success: true, comment: comment});
+            comment.getUser().then(user => {
+                comment.dataValues.user = user;
+                res.json({success: true, comment});
+            })
         });
     });
 

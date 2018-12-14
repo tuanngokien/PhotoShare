@@ -128,8 +128,7 @@ export default class postContainer extends React.Component {
                                     objectFit: "cover",
                                 }}/>
                             </ListItem>
-                        ))
-                        }
+                        ))}
                     </Carousel>
                     <ImageBox
                         isOpen={this.state.openImgBox}
@@ -180,8 +179,7 @@ export default class postContainer extends React.Component {
                                                         backgroundColor: "#F3F3F3",
                                                         width: "fit-content",
                                                         padding: "8px 10px",
-                                                        borderRadius: "18px"
-                                                    }}>
+                                                        borderRadius: "18px"}}>
                                                         <span style={{
                                                             fontWeight: '600',
                                                             fontSize: "0.9em"

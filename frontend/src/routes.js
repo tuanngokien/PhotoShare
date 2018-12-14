@@ -30,15 +30,14 @@ const Search = Loadable({
   loading: Loading
 });
 
-const Chat = Loadable({
-  loader: () => import('./view/Chat.js'),
+const PostDetail = Loadable({
+  loader: () => import('./view/PostDetail'),
   loading: Loading
 });
 
 const routes = [
   {path: '/pts', exact: true, name: 'Home', component: Layout },
   {path:'/pts/dashboard', name: 'Dashboard', component: Dashboard},
-  {path:'/pts/chat', name: 'Chat', component: Chat},
   {path:'/pts/following', name: 'Following', component: Following},
   {path:'/pts/followers', name: 'Followers', component: Followers},
   {path:'/pts/profile/:id', name: 'Profile', component: Profile},
@@ -46,6 +45,7 @@ const routes = [
   {path: '/pts/upload', name: 'Upload', component: Upload},
   {path: '/pts/explorer', name: 'Explorer', component: Explorer},
   {path: '/pts/search', name: 'Search', component: Search},
+  {path: '/pts/posts/:id', name: 'Post Detail', component: PostDetail},
 ];
 
 export default routes;

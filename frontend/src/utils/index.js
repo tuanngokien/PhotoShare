@@ -27,4 +27,17 @@ const splitArray = (array, size) => {
     return container;
 };
 
-export {formatNumber, splitArray}
+const humanPrivacyMode = (privacy) => {
+    switch (privacy) {
+        case "1":
+            return "Private";
+        case "2":
+            return "Friend";
+        case "3":
+            return "Public";
+        default:
+            return ""
+    }
+};
+
+export {formatNumber, splitArray, humanPrivacyMode}

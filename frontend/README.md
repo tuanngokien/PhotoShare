@@ -1368,7 +1368,7 @@ Now you can write a smoke test with it:
 ```js
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import App from PostDetail;
 
 it('renders without crashing', () => {
   shallow(<App />);

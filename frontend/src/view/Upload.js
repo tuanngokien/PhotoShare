@@ -16,7 +16,6 @@ class Upload extends Component {
         this.state = {
             success: false,
         }
-        this.createNotification = this.createNotification.bind(this);
     }
 
     componentDidMount() {
@@ -58,12 +57,12 @@ class Upload extends Component {
                         .then(res => {
                             console.log(res);
                             if (res.data.success) {
-                                //call createNoti function
+                                const postId = res.data.post.id;
+                                window.location.href = `#/pts/posts/${postId}`;
                             }
-                            //todo redirect
                         }).catch(err => {
-                        console.log(err);
-                    });
+                            console.log(err);
+                        });
                 }
             });
         let contentHeight = document.getElementById("main-content").clientHeight;
@@ -75,22 +74,12 @@ class Upload extends Component {
         imgUploader.style.height = `${contentHeight}px`;
     }
 
-    createNotification = (type) => {
-        switch (type) {
-            case 'success':
-                NotificationManager.success('Đăng ảnh thành công', 'Yêu cầu thành công', 4000);
-                break;
-        }
-        ;
-    };
-
     render() {
         return (
             <Grid container
                   direction={"column"}
                   justify={"center"}
                   id={"img-uploader"}>
-                <NotificationContainer/>
             </Grid>
         );
     }

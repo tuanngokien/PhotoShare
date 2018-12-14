@@ -28,7 +28,7 @@ router.route("/")
                 let thumbnail = cloudinary.url(publicId, PHOTO_PROPERTIES.THUMBNAIL);
                 photos.push({publicId, width, height, originalImage, postImage, thumbnail});
             }
-            sequelize.transaction(t => {
+            sequelize.transaction({autocommit: false}).then(t => {
                 return req.user.createPost({
                     Photos: photos,
                 }, {
@@ -52,12 +52,21 @@ router.route("/")
                                             })
                                         })).then(tags => {
                                             photo.setTags(tags.map(tag => tag[0]));
+                                            return null;
+                                        }).catch(error => {
+                                            console.log(error);
+                                            return null;
                                         });
                                     }
                                 }, AUTO_TAGGING_OPTION);
                             }
+                            return null;
+                        }).catch(err => {
+                            console.log(err);
+                            return null;
                         });
                         res.json({success: true, post});
+                        return null;
                     });
                 }).catch(err => {
                     // console.log(err);

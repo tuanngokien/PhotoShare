@@ -12,8 +12,9 @@ import {splitArray} from "../utils";
 import landingImg1 from "../assets/img/landing1.jpeg";
 import landingImg2 from "../assets/img/landing2.jpeg";
 import landingImg4 from "../assets/img/landing4.jpeg";
+import landingImg5 from "../assets/img/landing5.jpeg";
 
-const backgroundImageList = [landingImg1, landingImg2, landingImg4];
+const backgroundImageList = [landingImg1, landingImg2, landingImg4, landingImg5];
 
 const getJumbotronBackgroundStyle = (backgroundImage) => {
     return `linear-gradient(180deg, rgba(0, 0, 0, .38) 0, rgba(0, 0, 0, .38) 3.5%, rgba(0, 0, 0, .379) 7%, rgba(0, 0, 0, .377) 10.35%, rgba(0, 0, 0, .375) 13.85%, rgba(0, 0, 0, .372) 17.35%, rgba(0, 0, 0, .369) 20.85%, rgba(0, 0, 0, .366) 24.35%, rgba(0, 0, 0, .364) 27.85%, rgba(0, 0, 0, .361) 31.35%, rgba(0, 0, 0, .358) 34.85%, rgba(0, 0, 0, .355) 38.35%, rgba(0, 0, 0, .353) 41.85%, rgba(0, 0, 0, .351) 45.35%, rgba(0, 0, 0, .35) 48.85%, rgba(0, 0, 0, .353) 52.35%, rgba(0, 0, 0, .36) 55.85%, rgba(0, 0, 0, .371) 59.35%, rgba(0, 0, 0, .385) 62.85%, rgba(0, 0, 0, .402) 66.35%, rgba(0, 0, 0, .42) 69.85%, rgba(0, 0, 0, .44) 73.35%, rgba(0, 0, 0, .46) 76.85%, rgba(0, 0, 0, .48) 80.35%, rgba(0, 0, 0, .498) 83.85%, rgba(0, 0, 0, .515) 87.35%, rgba(0, 0, 0, .529) 90.85%, rgba(0, 0, 0, .54) 94.35%, rgba(0, 0, 0, .547) 97.85%, rgba(0, 0, 0, .55)), url("${backgroundImage}") no-repeat`

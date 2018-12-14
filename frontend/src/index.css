@@ -455,6 +455,188 @@ iframe {
     padding: 6px 12px !important;
 }
 
+#post-detail-container .name-inline > *{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#viewer-container {
+    width: 100%;
+    height: 80vh;
+    margin: 0 auto;
+}
+
+.post-detail-action {
+    background: rgba(21, 21, 23, .815) !important;
+    padding: 12px 5px 5px 15px;
+    font-size: 0.9em;
+}
+
+.post-detail-action a {
+    color: rgba(255, 255, 255, .7);
+}
+
+.post-detail-action a:hover {
+    color: #ffffff;
+}
+
+.post-detail-action a * {
+    vertical-align: middle;
+}
+
+#viewer-container .react-viewer {
+    background: rgba(21, 21, 23, .75) !important;
+}
+
+#viewer-container .react-viewer .react-viewer-list{
+    display: flex!important;
+    margin: 0!important;
+    justify-content: center;
+}
+
+#viewer-container .react-viewer .react-viewer-list > li {
+    width: auto;
+}
+
+.post-info-container{
+    margin: 20px 22%;
+}
+
+.post-info-container h3{
+    font-size: 1.1em;
+    margin-top: 0;
+}
+
+.post-info-container a{
+    font-weight: 700;
+}
+
+.post-info-container .post-aggr-item{
+    font-size: 0.95em;
+}
+
+.post-info-container .additional-info{
+    font-size: 0.95em;
+}
+
+.post-info-container .additional-info > div{
+    margin-bottom: 10px;
+}
+
+.post-info-container .additional-info span > *{
+    vertical-align: middle;
+}
+
+.post-info-container .additional-info span > svg{
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+
+.post-info-container .tags button{
+    padding: 5px 12px;
+    margin: 5px;
+    background-color: #cfd6d9;
+    font-size: 0.95em;
+    border-radius: 8px;
+    text-transform: initial;
+    min-height: fit-content;
+}
+
+
+.post-info-container .tags button span:first-letter{
+    text-transform: uppercase!important;
+}
+
+.tab-divider{
+    margin: 1em 0;
+    height: 2px;
+    background-color: #cfd6d9;
+}
+
+.post-info-container .post-header{
+    margin-bottom: 10px;
+}
+
+.post-info-container .liked-users button{
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.post-info-container .liked-users .liked-list{
+    display: flex;
+    align-items: center;
+}
+
+.post-info-container .liked-users .liked-list{
+    font-size: 0.9em;
+}
+
+.post-info-container .comments{
+    font-size: 0.9em;
+}
+
+.post-info-container .comments > div{
+    margin-bottom: 15px;
+}
+
+.post-info-container .comments .comment-user span{
+    margin-left: 5px;
+    color: #898989;
+    font-weight: 400;
+}
+.post-info-container .comments .comment-form > textarea{
+    box-sizing: border-box;
+    resize: none;
+    font-family: "Proxima Nova", sans-serif;
+    font-size: 0.9em;
+}
+
+.post-info-container .comments .comment-form > textarea:focus{
+    border: 1px solid #008ddf;
+}
+
+.post-info-container .comments .comment-form:before{
+    display: block;
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 15px;
+    left: -8px;
+    top: 5px;
+    margin-top: 7px;
+    background: #fff;
+    border-radius: 2px;
+    border-bottom: 1px solid rgba(34,36,38,.15);
+    border-left: 1px solid rgba(34,36,38,.15);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+.post-info-container .comments .comment-form.focus:before{
+    border-bottom-color: #008ddf;
+    border-left-color: #008ddf;
+}
+
+.post-info-container .action-button{
+    margin-left: 10px;
+    background-color: #128fdc!important;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.post-info-container .action-button > span > span{
+    color: #ffffff;
+    font-size: 0.6em;
+    padding: 5px 0;
+    font-weight: bold;
+    margin-right: 3px;
+}
+.post-info-container .ui.selection.dropdown{
+    min-height: initial;
+    min-width: initial;
+}
+
 @media only screen and (max-width: 1280px) {
     #top-searchbar .description {
         display: none;

@@ -87,13 +87,6 @@ const TimelineProfile = withStyles(styles)((props) => {
                         <div>
                             <Grid container direction={"row"} justify={"flex-start"} alignItems={"center"}>
                                 <h1 style={{marginRight: "15px"}}>Tuan Ngo Kien</h1>
-                                {/*<Button variant="outlined"
-                                        style={{borderColor: "white", color: "white", padding: "0 15px"}}>
-                                    <Grid container justify={"center"} alignItems={"center"}>
-                                        <Icon style={{marginRight: "5px"}}>add_plus</Icon>
-                                        <span>Follow</span>
-                                    </Grid>
-                                </Button>*/}
                                 <IconButton styles={{color: 'white'}} >
                                     <a href={link}>
                                         <Icon style={{color: 'white'}}>edit</Icon>
