@@ -26,7 +26,7 @@ export default class imageLayout extends React.Component {
     }
 
     postIndex = async () => {
-        var user_id = localStorage.getItem('id');
+        var user_id = this.props.params.id;
         var headers = {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -34,18 +34,24 @@ export default class imageLayout extends React.Component {
         var temp = -1;
         await axios.get('/api/' + user_id + '/posts', {headers: headers})
             .then(function (res) {
-              console.log(res.data.posts);
-              res.data.posts.map(photo => photo.Photos.map(img => (
-                  com.setState({photos: [...com.state.photos, {
-                      'index': ++temp,
-                      'src': img.postImage,
-                      'width': img.width,
-                      'height': img.height
-                  }]})
-              )));
-              com.props.postsCount(res.data.user.postCount);
-              com.props.photosCount(res.data.user.photoCount);
-              com.props.joined(res.data.user.joined);
+                com.props.setUser(res.data.user);
+                res.data.posts.map(photo => photo.photos.map(img => (
+                    com.setState({
+                        photos: [...com.state.photos, {
+                            'index': ++temp,
+                            'src': img.postImage,
+                            'width': img.width,
+                            'height': img.height
+                        }]
+                    })
+                )));
+                com.props.userName(res.data.user.username);
+                //com.props.avatar(res.data.user.avatar);
+                com.props.postsCount(res.data.user.postCount);
+                com.props.photosCount(res.data.user.photoCount);
+                com.props.joined(res.data.user.joined);
+                com.props.following(res.data.user.followingCount);
+                com.props.followers(res.data.user.followerCount);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -72,25 +78,25 @@ export default class imageLayout extends React.Component {
     }
 
     handleClick(e, index) {
-      this.setState({
-        openImgBox: true,
-        currentImage: index
-      })
+        this.setState({
+            openImgBox: true,
+            currentImage: index
+        })
     }
 
     render() {
-      return (
-          <div>
-              <Gallery photos={this.state.photos} onClick={(e) => this.handleClick(e, 0)}/>
-              <ImageBox
-                  isOpen={this.state.openImgBox}
-                  isClose={this.closeImgBox.bind(this)}
-                  gotoPrevious={this.gotoPrevious.bind(this)}
-                  gotoNext={this.gotoNext.bind(this)}
-                  currentImage={this.state.currentImage}
-                  images={this.state.photos}
-              />
-          </div>
-      )
+        return (
+            <div>
+                <Gallery photos={this.state.photos} onClick={(e) => this.handleClick(e, 0)}/>
+                <ImageBox
+                    isOpen={this.state.openImgBox}
+                    isClose={this.closeImgBox.bind(this)}
+                    gotoPrevious={this.gotoPrevious.bind(this)}
+                    gotoNext={this.gotoNext.bind(this)}
+                    currentImage={this.state.currentImage}
+                    images={this.state.photos}
+                />
+            </div>
+        )
     }
 }

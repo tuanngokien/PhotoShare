@@ -338,6 +338,7 @@ iframe {
     font-size: 0.9em !important;
     border: none !important;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .comment-field::after {

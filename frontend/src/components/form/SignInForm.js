@@ -10,7 +10,8 @@ class SignInForm extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            login: false,
         };
 
         this.signInRequest = this.signInRequest.bind(this);
@@ -22,13 +23,14 @@ class SignInForm extends React.Component {
             email: this.state.email,
             password: this.state.password,
         };
+        var com = this;
         await axios.post('/api/login', data)
             .then(function (response) {
                 let data = response.data;
                 if (data.success) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('id', data.id);
-                    window.location.href = "#/pts/dashboard";
+                    com.setState({login: true})
                 } else {
                     let errors = data.errors;
                     for (const field of Object.keys(errors)) {
@@ -39,6 +41,29 @@ class SignInForm extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+      if(this.state.login){
+        await com.getUserProfile();
+        window.location.replace("/#/pts/dashboard");
+      }
+    }
+
+    getUserProfile = async () => {
+      var headers = {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+      var com = this;
+      await axios.get('/api/me', {headers: headers})
+      .then(function (res) {
+        console.log(res.data);
+        localStorage.setItem('firstName', res.data.firstName);
+        localStorage.setItem('lastName', res.data.lastName);
+        localStorage.setItem('name', res.data.firstName + " " + res.data.lastName);
+        localStorage.setItem('email', res.data.email);
+        localStorage.setItem('avatar', res.data.avatar);
+        localStorage.setItem('username', res.data.username);
+      }).catch(function (error) {
+          console.log(error);
+      });
     }
 
     inputEmail = (e) => {

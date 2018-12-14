@@ -9,6 +9,7 @@ import StickyBox from "react-sticky-box";
 import InfiniteScroll from '../components/InfiniteScroll';
 import {MdSearch} from "react-icons/md";
 import {splitArray} from "../utils";
+import axios from 'axios';
 import landingImg1 from "../assets/img/landing1.jpeg";
 import landingImg2 from "../assets/img/landing2.jpeg";
 import landingImg4 from "../assets/img/landing4.jpeg";
@@ -34,7 +35,9 @@ export default class Dashboard extends Component {
             hasMorePosts: true,
             follows: [],
             searches: [],
+            data: [],
             backgroundImage: null,
+            img: []
         };
         this.onHandleLike = this.onHandleLike.bind(this);
         this.openImgBox = this.openImgBox.bind(this);
@@ -51,15 +54,31 @@ export default class Dashboard extends Component {
         }
     };
 
-    loadData() {
-        let data = require("../container/pages/data/dashboard");
-        return data
+    loadData = async() =>{
+        var headers = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+        let data;
+        var com = this;
+        var temp = -1;
+        await axios.get('/api/feed', {headers: headers})
+        .then(function(res){
+            com.setState({data: res.data.posts});
+            com.setState({searches: res.data.searches});
+            com.setState({visiblePosts: com.state.data.slice(0, 8)});
+            com.setState({follows: res.data.follows});
+            //console.log(res.data.posts)
+        })
+        .catch(function (error) {
+        console.log(error);
+      });
+        //let data = require("../container/pages/data/dashboard");
+        //return data
+        this.forceUpdate()
     }
 
     loadMore = (page) => {
         setTimeout(() => {
             let hasMorePosts = true;
-            let allPosts = this.state.posts;
+            let allPosts = this.state.data;
             let visiblePosts = this.state.visiblePosts;
             let newPosts = allPosts.slice(page * 8, (page + 1) * 8);
             visiblePosts.push(...newPosts);
@@ -70,12 +89,13 @@ export default class Dashboard extends Component {
         }, 1000);
     };
 
+    async componentWillMount() {
+        await this.loadData();
+    }
+
     componentDidMount() {
         let backgroundImage = backgroundImageList[Math.floor(Math.random() * backgroundImageList.length)];
         this.setState({backgroundImage});
-        let data = this.loadData();
-        let visiblePosts = data.posts.slice(0, 8);
-        this.setState({...data, visiblePosts});
         this.headerClassList = document.getElementById("header").classList;
         this.headerClassList.remove("header");
         this.headerClassList.add("header-transparent");
@@ -154,12 +174,12 @@ export default class Dashboard extends Component {
                                 <Row>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart1.map(post => {
-                                            return <PostContainer key={post.postId} {...post}/>
+                                            return <PostContainer key={post.id} {...post} loadData = {this.loadData.bind(this)}/>
                                         })}
                                     </Col>
                                     <Col xs={12} md={6} style={{padding: 0}}>
                                         {postPart2.map(post => {
-                                            return <PostContainer key={post.postId} {...post}/>
+                                            return <PostContainer key={post.id} {...post} loadData = {this.loadData.bind(this)}/>
                                         })}
                                     </Col>
                                 </Row>

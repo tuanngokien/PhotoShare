@@ -14,23 +14,28 @@ const HeaderAvatar = () => {
 };
 
 export default class DropdownAvatar extends React.Component {
+
+    logout = () => {
+        window.localStorage.clear()
+    }
+
     render() {
-        let {fullName, username}= {fullName: "Ngô Kiên Tuấn", username: "ngokientuan"};
+        console.log("duma");
+        let linkProfile = "/#/pts/profile/" + localStorage.getItem('id');
         return (
             <Dropdown trigger={<HeaderAvatar/>} className={"dropdown-avatar"} direction={"left"} floating>
                 <Dropdown.Menu>
                     <Dropdown.Item
                         as={"a"}
-                        href={"/#/pts/profile/1"}
+                        href={linkProfile}
                         text={<div>
-                            <h5><strong style={{fontSize: "1.2em"}}>{fullName}</strong></h5>
-                            <p>@{username}</p>
+                            <h5><strong style={{fontSize: "1.2em"}}>{localStorage.getItem('name')}</strong></h5>
+                            <p>@{localStorage.getItem('username')}</p>
                         </div>}
                         id={"avatar-header"}
                     />
-                    <Dropdown.Item as={"a"} href={"/#/pts/profile/1"} text={"Profile"} icon={"user outline"}/>
-                    <Dropdown.Item as={"a"} href={"/#/pts/settings"}text={"Settings"} icon={"setting"}/>
-                    <Dropdown.Item as={"a"} href={"/#/pts/signout"}text={"Sign Out"} icon={"sign out"}/>
+                    <Dropdown.Item as={"a"} href={"/#/pts/edit"}text={"Settings"} icon={"setting"}/>
+                    <Dropdown.Item as={"a"} href={"/#/form"} text={"Sign Out"} icon={"sign out"} onClick={this.logout}/>
                 </Dropdown.Menu>
             </Dropdown>
         )

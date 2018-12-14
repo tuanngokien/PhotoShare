@@ -41,7 +41,7 @@ const routes = [
   {path:'/pts/following', name: 'Following', component: Following},
   {path:'/pts/followers', name: 'Followers', component: Followers},
   {path:'/pts/profile/:id', name: 'Profile', component: Profile},
-  {path:'/pts/edit/:id', name: 'EditProfile', component: EditProfile},
+  {path:'/pts/edit', name: 'EditProfile', component: EditProfile},
   {path: '/pts/upload', name: 'Upload', component: Upload},
   {path: '/pts/explorer', name: 'Explorer', component: Explorer},
   {path: '/pts/search', name: 'Search', component: Search},

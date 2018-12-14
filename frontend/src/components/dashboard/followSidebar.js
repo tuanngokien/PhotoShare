@@ -24,8 +24,8 @@ const UserFollowListItem = ({avatarSrc, username, fullName}) => {
                 <Avatar src={avatarSrc} style={{border: "2px solid white", width: "2.3em", height: "2.3em"}}/>
             </div>
             <Card style={{boxShadow: "none"}}>
-                <CardHeader title={<span style={{fontSize: "0.65em", fontWeight: "bold"}}>{username}</span>}
-                            subheader={<span style={{fontSize: "0.9em"}}>{fullName}</span>}
+                <CardHeader title={<span style={{fontSize: "0.65em", fontWeight: "bold"}}>{fullName}</span>}
+                            subheader={<span style={{fontSize: "0.9em"}}>@{username}</span>}
                             style={{paddingLeft: "8px",paddingTop: "0", paddingBottom: "0"}}
                             className={"sm-line-height"}
                 />
@@ -54,7 +54,7 @@ class FollowSideBar extends React.Component {
                             key={i}
                             avatarSrc={user.avatar}
                             username={user.username}
-                            fullName={user.fullName}
+                            fullName={`${user.firstName} ${user.lastName}`}
                         />
                     )}
                 </List>
