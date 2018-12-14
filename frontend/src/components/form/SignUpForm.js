@@ -36,10 +36,10 @@ class SignUpForm extends Component {
                 if (data.success) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('id', data.id);
-                    NotificationManager.success("You have signed up successfully", "Photoshare", 1500);
+                    NotificationManager.success("You have signed up successfully", "Photoshare", 2000);
                     setTimeout(() => {
-                        window.location.href = "#/pts/dashboard";
-                    }, 1500);
+                        window.location.href = "#/form";
+                    }, 2000);
                 } else {
                     let errors = data.errors;
                     for (const field of Object.keys(errors)) {

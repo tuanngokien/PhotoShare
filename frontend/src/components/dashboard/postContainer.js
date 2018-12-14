@@ -131,6 +131,7 @@ export default class postContainer extends React.Component {
         const comments = this.state.comments;
         const likes = this.state.likes;
         var link = "#/pts/profile/" + userId;
+        var linkPostDetail = '#/pts/posts/' + id
         return (
             <div className={"dashboard-post"}>
                 <Card>
@@ -164,7 +165,7 @@ export default class postContainer extends React.Component {
                         dynamicHeight={true}>
                         {photos.map(photo => (
                             <ListItem key={photo.id} dense button style={{padding: 'unset'}}
-                                      onClick={(e) => this.openImgBox(e, photo.id)}>
+                                      onClick={() => {window.location.replace(linkPostDetail)}}>
                                 <img src={photo.originalImage} style={{
                                     width: '100%',
                                     height: '100%',

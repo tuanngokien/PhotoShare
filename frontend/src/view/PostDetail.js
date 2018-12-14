@@ -128,7 +128,7 @@ class PostDetail extends Component {
             <div id={"post-detail-container"}>
                 <div className={"viewer"}>
                     <div className={"post-detail-action"}>
-                        <Link to={"/"}><MdArrowBack/> <span>Back to photostream</span></Link>
+                        <a href={"#/pts/"}><MdArrowBack/> <span>Back to photostream</span></a>
                     </div>
                     <div id="viewer-container"/>
                 </div>

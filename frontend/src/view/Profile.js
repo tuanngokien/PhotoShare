@@ -20,6 +20,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import { MdModeEdit } from "react-icons/md";
+import axios from 'axios';
 
 function TabContainer({children, dir}) {
     return (
@@ -74,6 +75,8 @@ const styles = {
 const TimelineProfile = withStyles(styles)((props) => {
     const {classes} = props;
     var link = "#/pts/edit/";
+    var link1 = '#/pts/followers/' + props.user_id;
+    var link2 = '#/pts/following/' + props.user_id;
     const user = props.user;
     return (
         <Grid item xs={12}>
@@ -95,12 +98,23 @@ const TimelineProfile = withStyles(styles)((props) => {
                                             <MdModeEdit style={{color: 'white'}}/>
                                         </a>
                                     </IconButton>):
-                                    (<Button variant="outlined"
-                                        style={{borderColor: "white", color: "white", padding: "0 15px"}}>
-                                        <Grid container justify={"center"} alignItems={"center"}>
-                                            <span>Follow</span>
-                                        </Grid>
-                                    </Button>)
+                                    (props.fl ? (
+                                        <Button variant="outlined"
+                                            onClick={() => props.unfollow()}
+                                            style={{borderColor: "white", color: "white", padding: "0 15px"}}>
+                                            <Grid container justify={"center"} alignItems={"center"}>
+                                                <span>Following</span>
+                                            </Grid>
+                                        </Button>
+                                        ):(
+                                        <Button variant="outlined"
+                                            onClick={() => props.follow()}
+                                            style={{borderColor: "white", color: "white", padding: "0 15px"}}>
+                                            <Grid container justify={"center"} alignItems={"center"}>
+                                                <span>Follow</span>
+                                            </Grid>
+                                        </Button>)
+                                    )
                                 }
                             </Grid>
                             <Grid container direction="row"
@@ -108,9 +122,9 @@ const TimelineProfile = withStyles(styles)((props) => {
                                   alignItems="center">
                                 <span style={{marginRight: "20px",}}>@{user.username}</span>
                                 <span style={{marginRight: "20px"}}>
-                                  <a href='#/pts/followers' style={{textDecoration:'none', color:'white'}}>{props.followers} Followers</a>
+                                  <a href={link1} style={{textDecoration:'none', color:'white'}}>{props.followers} Followers</a>
                                 </span>
-                                <span><a href='#/pts/following' style={{textDecoration:'none', color:'white'}}>{props.following} Following</a></span>
+                                <span><a href={link2} style={{textDecoration:'none', color:'white'}}>{props.following} Following</a></span>
                             </Grid>
                         </div>
                     </Grid>
@@ -146,10 +160,57 @@ class Profile extends Component {
         followers: null,
         userName: null,
         user: {},
+        fl: false,
+        data: []
     };
 
     componentWillMount(){
+        var headers = {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+        var com = this;
         this.setState({id: localStorage.getItem('id') || 1});
+        axios.get('/api/' + localStorage.getItem('id') + '/follows', {headers: headers})
+        .then(function(res) {
+            console.log(res.data);
+            res.data.following.map(fl => {
+                console.log(fl.id.toString())
+                console.log(com.props.match.params.id)
+                if(fl.id.toString() === com.props.match.params.id){
+                    com.setState({fl: true})
+                }
+            })
+        }).catch(function(err) {
+            console.log(err);
+        })
+    }
+
+    follow = async () => {
+        var headers = {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+        var com = this;
+        this.setState({fl: true})
+        await axios.post('/api/' + this.props.match.params.id + '/follows', null, {headers: headers})
+        .then(function(res) {
+            console.log(res.data);
+        }).catch(function(err) {
+            console.log(err);
+        })
+    }
+
+    unfollow = async () => {
+        var headers = {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+        var com = this;
+        this.setState({fl: false})
+        await axios.delete('/api/' + this.props.match.params.id + '/follows', {headers: headers})
+        .then(function(res) {
+            console.log(res.data);
+        }).catch(function(err) {
+            console.log(err);
+        })
     }
 
     handleChange = (event, value) => {
@@ -206,7 +267,11 @@ class Profile extends Component {
                         following = {this.state.following}
                         followers = {this.state.followers}
                         params = {this.props.match.params}
-                        user={this.state.user}
+                        user = {this.state.user}
+                        user_id = {this.props.match.params.id}
+                        fl = {this.state.fl}
+                        follow = {this.follow.bind(this)}
+                        unfollow = {this.unfollow.bind(this)}
                     />
                     <Grid item xs={12}>
                         <AppBar position="static" color="default" className={"profile-nav-bar"}>

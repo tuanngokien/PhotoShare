@@ -57,7 +57,7 @@ export default class CommentField extends React.Component {
                     <Grid item xs={1}>
                         <Avatar src={avatar}/>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={8}>
                         <Grid container>
                             <Grid item xs={12}>
                                 <Input
@@ -71,7 +71,7 @@ export default class CommentField extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid items xs={"auto"}>
+                    <Grid items xs={2} className={"comment-button"}>
                         <Button
                             onClick={() => this.comment(postId)}
                             className={"comment-action"}>

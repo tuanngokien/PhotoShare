@@ -6,7 +6,7 @@ const HeaderAvatar = () => {
     return (
         <Avatar style={{border: "3px solid white", width: "38px", height: "38px"}}>
             <img
-                src={"https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/29597226_601217733565084_99387188199077288_n.jpg?_nc_cat=1&_nc_ht=scontent.fhan2-3.fna&oh=5447367bdf5e22e371ddc90574e776fc&oe=5C446BCC"}
+                src={localStorage.getItem('avatar')}
                 style={{height: '100%', width: 'auto'}}
                 alt="avatar"/>
         </Avatar>
@@ -20,7 +20,6 @@ export default class DropdownAvatar extends React.Component {
     }
 
     render() {
-        console.log("duma");
         let linkProfile = "/#/pts/profile/" + localStorage.getItem('id');
         return (
             <Dropdown trigger={<HeaderAvatar/>} className={"dropdown-avatar"} direction={"left"} floating>

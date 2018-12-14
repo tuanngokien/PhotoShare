@@ -62,9 +62,8 @@ export default class Following extends Component{
       var headers = {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
       };
-      var user_id = localStorage.getItem('id')
       var com = this
-      axios.get('/api/' + user_id + '/follows', {headers: headers})
+      axios.get('/api/' + this.props.match.params.id + '/follows', {headers: headers})
       .then(function(res){
         console.log(res.data);
         com.setState({followList: res.data.following})

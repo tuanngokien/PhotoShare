@@ -17,14 +17,17 @@ const styles = theme => ({
     },
 });
 
-const UserFollowListItem = ({avatarSrc, username, fullName}) => {
+const UserFollowListItem = ({avatarSrc, username, fullName, user_id}) => {
+    let link = "#/pts/profile/" + user_id;
     return (
         <ListItem style={{borderBottom: "1px solid #E1E1E1"}}>
             <div style={{background: "linear-gradient(to right, #40e0d0, #ff8c00, #ff0080)", borderRadius: "50%", padding: "2.5px"}}>
                 <Avatar src={avatarSrc} style={{border: "2px solid white", width: "2.3em", height: "2.3em"}}/>
             </div>
             <Card style={{boxShadow: "none"}}>
-                <CardHeader title={<span style={{fontSize: "0.65em", fontWeight: "bold"}}>{fullName}</span>}
+                <CardHeader title={<a href={link} style={{color: "black"}}>
+                                <span style={{fontSize: "0.65em", fontWeight: "bold"}}>{fullName}</span>
+                            </a>}
                             subheader={<span style={{fontSize: "0.9em"}}>@{username}</span>}
                             style={{paddingLeft: "8px",paddingTop: "0", paddingBottom: "0"}}
                             className={"sm-line-height"}
@@ -55,6 +58,7 @@ class FollowSideBar extends React.Component {
                             avatarSrc={user.avatar}
                             username={user.username}
                             fullName={`${user.firstName} ${user.lastName}`}
+                            user_id={user.id}
                         />
                     )}
                 </List>

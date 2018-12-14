@@ -642,6 +642,11 @@ iframe {
     background-color: #128fdc!important;
     color: white!important;
     font-weight: bold!important;
+    margin-left: 12px;
+}
+
+.comment-button{
+    margin-left: 12px;
 }
 
 @media only screen and (max-width: 1280px) {

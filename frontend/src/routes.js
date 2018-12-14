@@ -39,8 +39,8 @@ const PostDetail = Loadable({
 const routes = [
   {path: '/pts', exact: true, name: 'Home', component: Layout },
   {path:'/pts/dashboard', name: 'Dashboard', component: Dashboard},
-  {path:'/pts/following', name: 'Following', component: Following},
-  {path:'/pts/followers', name: 'Followers', component: Followers},
+  {path:'/pts/following/:id', name: 'Following', component: Following},
+  {path:'/pts/followers/:id', name: 'Followers', component: Followers},
   {path:'/pts/profile/:id', name: 'Profile', component: Profile},
   {path:'/pts/edit', name: 'EditProfile', component: EditProfile},
   {path: '/pts/upload', name: 'Upload', component: Upload},
