@@ -28,10 +28,14 @@ class EditProfile extends Component {
       expanded: false,
       currentPass: '',
       newPass: '',
-      reNewPass: ''
+      reNewPass: '',
+      email: '',
+      firstName: '',
+      lastName: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmitChangePass = this.handleSubmitChangePass.bind(this);
+    this.handleSubmitChangeInfo = this.handleSubmitChangeInfo.bind(this);
   }
 
   handleExpandClick = () => {
@@ -63,8 +67,31 @@ class EditProfile extends Component {
     })
   }
 
+  handleSubmitChangeInfo() {
+    const {email, firstName, lastName} = this.state;
+    var headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
+    var data = {
+      email: email,
+      first_name: firstName,
+      last_name: lastName
+    }
+    axios.patch('/api/profile/basic', data, {headers: headers})
+    .then(function(res){
+      localStorage.setItem('firstName', res.data.user.firstName);
+      localStorage.setItem('lastName', res.data.user.lastName);
+      localStorage.setItem('email', res.data.user.email);
+      console.log(res.data);
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+  }
+
   render() {
-    var name = localStorage.getItem('name');
+    var firstname = localStorage.getItem('firstName');
+    var lastname = localStorage.getItem('lastName');
     var username = '@' + localStorage.getItem('username');
     var email = localStorage.getItem('email');
     return (
@@ -97,21 +124,36 @@ class EditProfile extends Component {
                   <TextField
                     required
                     id="outlined-name"
-                    label="Name"
-                    defaultValue= {name}
+                    label="FirstName"
+                    defaultValue= {firstname}
                     margin="normal"
                     variant="outlined"
+                    onChange={this.handleChange("firstName")}
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
                   />
                 </div>
                 <div>
                   <TextField
                     required
-                    id="outlined-username-input"
+                    id="outlined-lastname-input"
+                    label="LastName"
+                    defaultValue={lastname}
+                    margin="normal"
+                    variant="outlined"
+                    onChange={this.handleChange("lastName")}
+                    style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="ooutlined-read-only-input"
                     label="UserName"
                     defaultValue={username}
                     margin="normal"
                     variant="outlined"
+                    InputProps={{
+                      readOnly: true,
+                    }}
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
                   />
                 </div>
@@ -133,7 +175,13 @@ class EditProfile extends Component {
                   ))}
                   </TextField>
                 </div>
-                <Button variant="outlined" style={{marginLeft: '2%', marginBottom: '5%'}}>Submit</Button>
+                <Button
+                  variant="outlined"
+                  style={{marginLeft: '2%', marginBottom: '5%'}}
+                  onClick={this.handleSubmitChangeInfo}
+                >
+                Submit
+                </Button>
               </form>
             </Card>
           </Col>
@@ -153,6 +201,7 @@ class EditProfile extends Component {
                     autoComplete="email"
                     margin="normal"
                     variant="outlined"
+                    onChange={this.handleChange("email")}
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%'}}
                   />
                 </div>
@@ -166,7 +215,13 @@ class EditProfile extends Component {
                     style={{width: '95%', marginRight: '2%', marginLeft: '2%', marginBottom: '2%'}}
                   />
                 </div>
-              <Button variant="outlined" style={{marginLeft: '2%', marginBottom: '2%'}}>Submit</Button>
+              <Button
+                variant="outlined"
+                style={{marginLeft: '2%', marginBottom: '2%'}}
+                onClick={this.handleSubmitChangeInfo}
+              >
+              Submit
+              </Button>
             </form>
           </Card>
           <Card style={{marginBottom: '2%'}}>
