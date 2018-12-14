@@ -36,6 +36,9 @@ export default class postContainer extends React.Component {
             likes: this.props.likes,
             isHovering: false,
             currentImage: 0,
+            src: '',
+            width: '',
+            height: ''
         };
         this.openImgBox = this.openImgBox.bind(this);
         this.closeImgBox = this.closeImgBox.bind(this);
@@ -176,7 +179,7 @@ export default class postContainer extends React.Component {
                         gotoPrevious={this.gotoPrevious.bind(this)}
                         gotoNext={this.gotoNext.bind(this)}
                         currentImage={this.state.currentImage}
-                        images={photos}
+                        images={['src': photos.postImage, 'width': photos.width, 'height':photos.height]}
                     />
                     <CardActions disableActionSpacing style={{
                         borderBottom: "1px solid #D2D2D2",

@@ -60,7 +60,7 @@ class Upload extends Component {
                             if (res.data.success) {
                                 //call createNoti function
                             }
-                            //todo redirect
+                            setTimeout(window.location.replace('/#/pts/'),2000);
                         }).catch(err => {
                         console.log(err);
                     });
