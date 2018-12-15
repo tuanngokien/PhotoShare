@@ -172,10 +172,7 @@ class Profile extends Component {
         this.setState({id: localStorage.getItem('id') || 1});
         axios.get('/api/' + localStorage.getItem('id') + '/follows', {headers: headers})
         .then(function(res) {
-            console.log(res.data);
             res.data.following.map(fl => {
-                console.log(fl.id.toString())
-                console.log(com.props.match.params.id)
                 if(fl.id.toString() === com.props.match.params.id){
                     com.setState({fl: true})
                 }
