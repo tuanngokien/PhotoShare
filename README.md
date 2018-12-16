@@ -56,7 +56,7 @@ Collections             |  People | Search |
 
 Profile Photos             |  Profile Albums | Post detail|
 :-------------------------:|:-------------------------: |:-------------------------:
-![Alt text](/screenshot/profile_photos.png "photos")  |   ![Alt text 2](/screenshot/profile_album.png "albums") | ![Alt text 2](/screenshot/post_detail.png "post detail")
+![Alt text](/screenshot/profile_photos.png "photos")  |   ![Alt text 2](/screenshot/profile_albums.png "albums") | ![Alt text 2](/screenshot/post_detail.png "post detail")
 
 ## Thành viên
 
