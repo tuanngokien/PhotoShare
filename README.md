@@ -12,13 +12,14 @@ Mạng xã hội chia sẻ ảnh
 - Facebook SDK
 
 ### Cài đặt
-Sửa cấu hình kết nối DB tại ./config/config.json
-#####[Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
+##### [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
 ```bash
 $ cd admin
 $ python import_search.py
 ```
-#####Development
+
+Sửa cấu hình kết nối DB tại ./config/config.json
+##### Development
 ```bash
 $ cd backend
 $ npm install
@@ -30,7 +31,7 @@ $ npm install
 $ npm start
 ```
 
-#####Production
+##### Production
 ```bash
 $ cd frontend 
 $ npm build
