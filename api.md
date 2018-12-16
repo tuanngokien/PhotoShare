@@ -18,6 +18,7 @@
 | Get all user's posts| /api/{userId}/posts  | GET |Content-Type:application/x-www-form-urlencoded|type| ["recent", "popular"]||
 | New post      | /api/posts | POST |Content-Type:multipart/form-data|photos||
 | Post detail      | /api/posts/{postId} | GET ||||
+| Delete post      | /api/posts/{postId} | DELETE ||||
 | Get users liked post      | /api/posts/{postId}/likes | GET |Content-Type:application/x-www-form-urlencoded|||
 | Like post      | /api/posts/{postId}/likes | POST ||||
 | Unlike post      | /api/posts/{postId}/likes | DELETE ||||

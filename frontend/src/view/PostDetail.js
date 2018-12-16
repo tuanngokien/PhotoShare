@@ -215,7 +215,7 @@ class PostDetail extends Component {
                                     <h3>Tags</h3>
                                     <Grid container>
                                         <Grid item xs={12} md={10} xl={8}>
-                                            {currentTags.map(t => <Button key={t}>{t}</Button>)}
+                                            {currentTags.map(t => <Button key={t} onClick={() => {window.location.href=`/#/pts/search?q=${t}`}}>{t}</Button>)}
                                         </Grid>
                                     </Grid>
                                 </Grid>

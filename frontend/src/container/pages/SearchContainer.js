@@ -3,12 +3,20 @@ import Grid from '@material-ui/core/Grid';
 import InfiniteScroll from '../../components/InfiniteScroll';
 import {splitArray} from "../../utils";
 import MediaQuery from 'react-responsive';
+import axios from "axios";
 
 const PhotoContainer = ({photos}) => {
     return (
         <Grid item xs={12} md={4} lg={3}>
-            {photos.map((e, i) => <Grid key={i} container spacing={8}><Grid item xs={12}><img src={e.src}
-                                                                                              className={"search-image"}/></Grid></Grid>)}
+            {photos.map((e, i) => {
+                return (
+                    <Grid key={i} container spacing={8}>
+                        <Grid item xs={12}>
+                            <a href={`/#/pts/posts/${e.postId}`}><img src={e.src} className={"search-image"}/></a>
+                        </Grid>
+                    </Grid>
+                )
+            })}
         </Grid>
     );
 };
@@ -20,8 +28,21 @@ export default class PopularPhotoContainer extends React.Component {
         hasMorePhotos: true,
     };
 
-    componentDidMount() {
-        let photos = require("./data/popular_photos");
+    search = async (searchQuery) => {
+        var headers = {Authorization: 'Bearer ' + localStorage.getItem('token')};
+        const res = await axios.get(`/api/search/photos?q=${searchQuery}`, {headers: headers});
+        return res.data.photos;
+    };
+
+    async componentDidMount() {
+        const query = this.props.query;
+        const searchedPhotos = await this.search(query);
+        const photos = searchedPhotos.map(p => ({
+            width: p.width,
+            height: p.height,
+            src: p.postImage,
+            postId: p.postId
+        }));
         this.setState({photos});
         let visiblePhotos = photos.slice(0, 20);
         this.setState({visiblePhotos});
@@ -44,7 +65,7 @@ export default class PopularPhotoContainer extends React.Component {
 
     render() {
         let {query} = this.props;
-        let relatedSearches = ["nature", "birds", "dog", "lion"];
+        let relatedSearches = ["sky", "birds", "dog", "lion"];
         return (
             <div className={"page-container"} style={{marginTop: "50px"}}>
                 <h1 className={"search-query-header"}>{query} pictures</h1>
@@ -59,10 +80,12 @@ export default class PopularPhotoContainer extends React.Component {
                         hasMore={this.state.hasMorePhotos}>
                         <Grid container spacing={8}>
                             <MediaQuery minDeviceWidth={1280}>
-                                {splitArray(this.state.visiblePhotos, 4).map((photos, i) => <PhotoContainer key={i} photos={photos}/>)}
+                                {splitArray(this.state.visiblePhotos, 4).map((photos, i) => <PhotoContainer key={i}
+                                                                                                            photos={photos}/>)}
                             </MediaQuery>
                             <MediaQuery maxDeviceWidth={1280}>
-                                {splitArray(this.state.visiblePhotos, 3).map((photos, i) => <PhotoContainer key={i} photos={photos}/>)}
+                                {splitArray(this.state.visiblePhotos, 3).map((photos, i) => <PhotoContainer key={i}
+                                                                                                            photos={photos}/>)}
                             </MediaQuery>
                         </Grid>
                     </InfiniteScroll>

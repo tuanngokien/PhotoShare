@@ -3,13 +3,47 @@ from .models import Users, Follows, Comments, Phototags, Photos, Posts, Tags, Us
 
 admin.site.site_title = 'PhotoShare Admin'
 admin.site.site_header = 'PhotoShare Admin'
-admin.site.register(Users)
-admin.site.register(Follows)
-admin.site.register(Comments)
+
+
+@admin.register(Users)
+class UsersAdmin(admin.ModelAdmin):
+    list_display = ["id", "email", "firstname", "lastname"]
+
+
+@admin.register(Posts)
+class PostsAdmin(admin.ModelAdmin):
+    list_display = ["id", "userid", "privacy", "viewcount", "createdat", "updatedat"]
+
+
+@admin.register(Tags)
+class TagsAdmin(admin.ModelAdmin):
+    list_display = ["id", "name"]
+
+
+@admin.register(Follows)
+class FollowsAdmin(admin.ModelAdmin):
+    list_display = ["id", "follow_by", "follow_to", "createdat"]
+
+
+@admin.register(Comments)
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ["id", "userid", "postid", "text"]
+
+
+@admin.register(Photos)
+class PhotosAdmin(admin.ModelAdmin):
+    list_display = ("publicid", "width", "height", "originalimage", "postid")
+
+
+@admin.register(Userpostlikes)
+class UserPostLikes(admin.ModelAdmin):
+    list_display = ["userid", "postid", "createdat"]
+
+
+@admin.register(Bookmarks)
+class BookmarkAdmins(admin.ModelAdmin):
+    list_display = ["id", "bookmark_by", "post"]
+
+
 admin.site.register(Phototags)
-admin.site.register(Photos)
-admin.site.register(Posts)
-admin.site.register(Tags)
-admin.site.register(Userpostlikes)
-admin.site.register(Bookmarks)
 admin.site.register(Albums)

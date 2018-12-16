@@ -9,6 +9,7 @@ class Bookmarks(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "bookmarks"
         db_table = 'Bookmarks'
 
 
@@ -21,6 +22,7 @@ class Comments(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "Comments"
         db_table = 'Comments'
 
 
@@ -31,6 +33,7 @@ class Phototags(models.Model):
     class Meta:
         managed = False
         db_table = 'PhotoTags'
+        verbose_name_plural = "PhotoTags"
         unique_together = (('photoid', 'tagid'),)
 
 
@@ -45,6 +48,7 @@ class Photos(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "Photos"
         db_table = 'Photos'
 
 
@@ -57,14 +61,18 @@ class Posts(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "Posts"
         db_table = 'Posts'
 
+    def __str__(self):
+        return str(self.id)
 
 class Tags(models.Model):
     name = models.TextField()
 
     class Meta:
         managed = False
+        verbose_name_plural = "Tags"
         db_table = 'Tags'
 
 
@@ -77,6 +85,7 @@ class Userpostlikes(models.Model):
     class Meta:
         managed = False
         db_table = 'UserPostLikes'
+        verbose_name_plural = "UserPostLikes"
         unique_together = (('postid', 'userid'),)
 
 
@@ -91,7 +100,11 @@ class Users(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "Users"
         db_table = 'Users'
+
+    def __str__(self):
+        return self.firstname + " " + self.lastname
 
 
 class Follows(models.Model):
@@ -102,10 +115,12 @@ class Follows(models.Model):
 
     class Meta:
         managed = False
+        verbose_name_plural = "Follows"
         db_table = 'follows'
 
 
 class Albums(models.Model):
     class Meta:
         managed = False
+        verbose_name_plural = "Albums"
         db_table = 'albums'

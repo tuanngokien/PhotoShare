@@ -13,10 +13,34 @@ Mạng xã hội chia sẻ ảnh
 
 ### Cài đặt
 Sửa cấu hình kết nối DB tại ./config/config.json
+#####[Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
 ```bash
-npm install
-npm start
+$ cd admin
+$ python import_search.py
 ```
+#####Development
+```bash
+$ cd backend
+$ npm install
+$ npm start
+```
+```bash
+$ cd frontend
+$ npm install
+$ npm start
+```
+
+#####Production
+```bash
+$ cd frontend 
+$ npm build
+$ cp -r build ../backend/frontend_build
+$ cd ../backend
+$ docker build . -t nkt/photoshare
+$ docker run -d --network="host" nkt/photoshare
+```
+
+Và sử dụng PhotoShare tại http://localhost:3000
 ### [API](api.md)
 - [api.md](api.md)
 ## Thành viên
