@@ -12,12 +12,13 @@ Mạng xã hội chia sẻ ảnh
 - Facebook SDK
 
 ### Cài đặt
-Sửa cấu hình kết nối DB tại ./config/config.json
 #####[Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
 ```bash
 $ cd admin
 $ python import_search.py
 ```
+
+Sửa cấu hình kết nối DB tại ./config/config.json
 #####Development
 ```bash
 $ cd backend
@@ -43,6 +44,20 @@ $ docker run -d --network="host" nkt/photoshare
 Và sử dụng PhotoShare tại http://localhost:3000
 ### [API](api.md)
 - [api.md](api.md)
+
+### Demo
+Login             |  Landing page | Feed |
+:-------------------------:|:-------------------------: |:-------------------------:
+![Alt text](/screenshot/login.png "login")  |   ![Alt text 2](/screenshot/landing.png "landing") | ![Alt text 2](/screenshot/feed.png "feed")
+
+Collections             |  People | Search |
+:-------------------------:|:-------------------------: |:-------------------------:
+![Alt text](/screenshot/collections.png "collections")  |   ![Alt text 2](/screenshot/people.png "people") | ![Alt text 2](/screenshot/search.png "search")
+
+Profile Photos             |  Profile Albums | Post detail|
+:-------------------------:|:-------------------------: |:-------------------------:
+![Alt text](/screenshot/profile_photos.png "photos")  |   ![Alt text 2](/screenshot/profile_album.png "albums") | ![Alt text 2](/screenshot/post_detail.png "post detail")
+
 ## Thành viên
 
 1. Đỗ Tuấn Anh - 16020831 - K61-C-CLC
