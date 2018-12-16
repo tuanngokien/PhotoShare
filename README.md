@@ -2,7 +2,7 @@
 
 Mạng xã hội chia sẻ ảnh
 
-## Công nghệ sử dụng
+### Công nghệ sử dụng
 
 - Front-end: ReactJS + Redux + Material UI
 - Backend: Express.js
@@ -12,14 +12,14 @@ Mạng xã hội chia sẻ ảnh
 - Facebook SDK
 
 ### Cài đặt
-#####[Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
+##### [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
 ```bash
 $ cd admin
 $ python import_search.py
 ```
 
 Sửa cấu hình kết nối DB tại ./config/config.json
-#####Development
+##### Development
 ```bash
 $ cd backend
 $ npm install
@@ -31,7 +31,7 @@ $ npm install
 $ npm start
 ```
 
-#####Production
+##### Production
 ```bash
 $ cd frontend 
 $ npm build
